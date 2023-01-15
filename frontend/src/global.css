@@ -1,0 +1,141 @@
+/* import { createGlobalStyle } from "styled-components";
+
+const GlobalStyle = createGlobalStyle` */
+
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap");
+
+:root{
+--clr-green: #1c5429;
+--clr-dark: #03210d;
+--clr-light: #3a9c50;
+--clr-background: #f2f7f5;
+--clr-red: #e64a47;
+--clr-white: #fff;
+--clr-black: #000;
+--clr-grey: #999;
+--clr-gold: #b39656;
+--clr-brown: #963730;
+--clr-blue: #7991ba;
+--clr-lightblue: ##a0bbe8;
+--light-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+--dark-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+*,
+::after,
+::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+  
+html {
+  height: calc(100vh - 5rem);
+  overflow-x: hidden
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  background-color: var(--clr-background);
+  min-height: calc(100vh - 5rem);
+  letter-spacing: 0.07rem;
+  overflow-x: hidden;
+  line-height: 1.5;
+  font-size: 0.875rem;
+}
+
+ul {
+  list-style-type: none;
+}
+
+li {
+  list-style-type: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  letter-spacing: var(--spacing);
+  text-transform: capitalize;
+  line-height: 1.25;
+  margin-bottom: 0.75rem;
+}
+h1 {
+  font-size: 2.5rem;
+}
+h2 {
+  font-size: 2rem;
+}
+h3 {
+  font-size: 1.5rem;
+}
+h4 {
+  font-size: 1.25rem;
+}
+p {
+  margin-bottom: 1.25rem;
+}
+
+link{
+  text-decoration: none !important;
+}
+
+a:hover {
+  text-decoration: none !important;
+  color: var(--clr-green);
+}
+
+a{
+  text-decoration: none !important;
+  color: var(--clr-dark);
+}
+
+.btn {
+  padding: 0.8rem 1.2rem;
+  border: 1px solid #000;
+  width: 7rem;
+  border-radius: 5px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  text-align: center;
+  appearance: button;
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.btn:hover {
+  transform: scale(0.98);
+}
+
+@media screen and (min-width: 800px) {
+  h1 {
+    font-size: 3rem;
+  }
+  h2 {
+    font-size: 2.5rem;
+  }
+  h3 {
+    font-size: 2rem;
+  }
+  h4 {
+    font-size: 1.5rem;
+  }
+  body {
+    font-size: 1rem;
+  }
+  h1,
+  h2,
+  h3,
+  h4 {
+    line-height: 1;
+  }
+}
+  
