@@ -15,8 +15,6 @@ const NewPost = () => {
   const [desc, setDesc] = useState("")
   const [ingredients, setIngredients] = useState([])
   const [instructions, setInstructions] = useState([])
-  const [url, setUrl] = useState("")
-  const [uploadingimg, setUploadingimg] = useState(false)
 
   const dispatch = useDispatch()
   const navigate = useNavigate()
@@ -28,34 +26,36 @@ const NewPost = () => {
   const ingredientAdd=()=>{
     const newIngredients=[...ingredients,[]]
     setIngredients(newIngredients)
-}
+  }
+
   const handleIngredientChange=(e,i)=>{
-  const inputdata=[...ingredients]
-  inputdata[i]=e.target.value
-  setIngredients(inputdata)
+    const inputdata=[...ingredients]
+    inputdata[i]=e.target.value
+    setIngredients(inputdata)
   }
+
   const ingredientDelete=(i)=>{
-      const deletIngredients=[...ingredients]
-      deletIngredients.splice(i,1)
-      setIngredients(deletIngredients)  
+    const deletIngredients=[...ingredients]
+    deletIngredients.splice(i,1)
+    setIngredients(deletIngredients)  
   }
-  console.log(ingredients,"data-")
 
   const instructionAdd=()=>{
     const newInstructions=[...instructions,[]]
     setInstructions(newInstructions)
-}
+  }
+
   const handleInstructionChange=(e,i)=>{
-  const inputdata=[...instructions]
-  inputdata[i]=e.target.value;
-  setInstructions(inputdata)
+    const inputdata=[...instructions]
+    inputdata[i]=e.target.value;
+    setInstructions(inputdata)
   }
+
   const instructionDelete=(i)=>{
-      const deletInstructions=[...instructions]
-      deletInstructions.splice(i,1)
-      setInstructions(deletInstructions)  
+    const deletInstructions=[...instructions]
+    deletInstructions.splice(i,1)
+    setInstructions(deletInstructions)  
   }
-  console.log(instructions,"data-")
 
   function handlePublish(e){
     e.preventDefault()
@@ -65,7 +65,7 @@ const NewPost = () => {
     if(title && image && desc && ingredients && instructions){
       const postData = {
         title: title,
-        image: url,
+        image: image,
         desc: desc,
         ingredients : ingredients,
         instructions : instructions,
@@ -80,46 +80,28 @@ const NewPost = () => {
   const handleClear = () => {
     setTitle("")
     setImage(null)
-    setDesc("")
-    setUrl("")   
+    setDesc("")  
     setIngredients([])
     setInstructions([])
   } 
  
-  function uploadImage(e){
-    e.preventDefault()
-    if(!image) return 
-    setUrl("")
-    const data = new FormData()
-    data.append("file", image)
-    data.append("upload_preset", "receipemern")
-    setUploadingimg(true)
-    fetch(
-      "https://api.cloudinary.com/v1_1/dj1cvvhaa/image/upload", {
-        method:"post",
-        body: data,
-      }).then((res) => res.json())
-      .then((data) => {
-        setUploadingimg(false)
-        setUrl(data.url)
-      }).catch(err => {
-        setUploadingimg(false)
-        console.log(err)
-      })
+//handle and convert it in base 64
+const handleImage = (e) =>{
+const file = e.target.files[0]
+setFileToBase(file)
+}
+
+const setFileToBase = (file) =>{
+  const reader = new FileReader()
+  reader.readAsDataURL(file)
+  reader.onloadend = () =>{
+    setImage(reader.result)
   }
-  function handleImageValidation(e){
-    const file = e.target.files[0]
-    if(file.size > 1048576){
-      setImage(null)
-      toast.error("File is too big. Please choose images 1mb or less")
-    }else{
-      setImage(file)      
-    }
-  }
+}
  
-  if(isLoading){
-    return <Spinner/>
-  }
+if(isLoading){
+  return <Spinner/>
+}
   return (
     <Wrapper>
       <div className="write">
@@ -150,20 +132,13 @@ const NewPost = () => {
                 /> 
               </div>               
               <div className="imageContainer">
-                <div>{!url && <h4 className="imageText">Please upload an image before publishing your recipe!</h4>}
-                <input className="chooseBtn" type="file" onChange={handleImageValidation} accept="image/png, image/jpeg"/>
-                <button className="imageSubmit" onClick={uploadImage} disabled={uploadingimg || !img}>Upload</button>        
+                <div>{!image && <h4 className="imageText">Please upload an image before publishing your recipe!</h4>}
+                <input className="chooseBtn" type="file" onChange={handleImage} />      
                 </div>
                 <div className="image">
-                {uploadingimg && (
-                  <div><Spinner animation="border" role="status"/>
-                  <br/>
-                  <p>Uploading Image</p>
-                  </div>
-                  )}
                   <div className="no_image">
-                  { !url && !uploadingimg && <img src={no_img}/>}
-                  {url && <img src={url} className="uploaded_image"/>}
+                  { !image && <img src={no_img}/>}
+                  {image && <img src={image} className="uploaded_image"/>}
                   </div>
                 </div>
               </div>
@@ -217,7 +192,7 @@ const NewPost = () => {
               </div>
               </div>
   
-          <button className="writeSubmit" type="submit" disabled={uploadingimg || !url || !ingredients || !instructions} onSubmit={handlePublish}>Publish</button>
+          <button className="writeSubmit" type="submit" disabled={!title || !desc || !image || !ingredients || !instructions} onSubmit={handlePublish}>Publish</button>
           </form>      
         </div>
       </div>
@@ -230,7 +205,6 @@ h3{
   color: var(--clr-green);
   font-size: 1.8rem;
 }
-
 .write{
   padding-top: 2.5rem;
   display: flex;
@@ -240,12 +214,10 @@ h3{
   min-height: calc(100vh - 7rem);
   overflow: auto;
 }
-
 .title{
   color: var(--clr-dark);
   text-align: center;
 }
-
 .writeImg{
   width: 30vw;
   height: 10vh;
@@ -254,20 +226,17 @@ h3{
   margin-top: 2rem;
   box-shadow: var(--light-shadow);
 }
-
 .titleContainer{
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
 }
-
 .writeTitle{
   background-color: var(--clr-white);
   border-radius: 0.3rem; 
   border-color: var(--clr-green);
   width: 20%;
 }
-
 .writeDesc{
   background-color: var(--clr-white);
   border-radius: 0.3rem; 
@@ -275,25 +244,21 @@ h3{
   width: 30%;
   margin-left: 1rem;
 }
-
 .writeForm{
   position: relative;
   margin-top: 2rem;
 }
-
 label{
   font-size: 1rem;
   color: var(--clr-green);
   margin-right : 1rem;
   margin-left: 1rem;
 }
-
 .formContainer{
   display:flex;
   align-items: center;
   flex-direction: column;
 }
-
 .writeSubmit{
   position: absolute;  
   top: -6rem;
@@ -306,13 +271,11 @@ label{
   cursor:pointer;
   font-size: 1rem;
 }
-
 .writeSubmit:disabled{
   background: var(--clr-grey);
   color: var(--clr-white);
   cursor: not-allowed;
 }
-
 .imageContainer{
   display:flex;
   align-items: center;
@@ -322,17 +285,14 @@ label{
   margin-left: 2rem;
   margin-right: 2rem;
 }
-
 .imageText{
   color: var(--clr-light);
   font-size: 1rem;
   margin-right: 4rem;
 }
-
 .image{
   margin-bottom: 2rem;
 }
-
 .chooseBtn{
   background: var(--clr-light);
   color:var(--clr-white);
@@ -343,7 +303,6 @@ label{
   border-radius: 0.2rem;
   text-align: center;
 }
-
 .imageSubmit {
   padding: 0.3rem 2rem;
   border: 1px solid #000;
@@ -360,19 +319,6 @@ label{
   margin-top: 1rem;
 }
 
-img{
-  width:6rem;
-  height:6rem;
-  object-fit:cover;
-}
-
-.uploaded_image{
-  width: 100%;
-  height: 30vh;
-  object-fit:cover;
-  margin-left: 2rem;
-}
-
 .arrayContainer {
   display: flex;
   flex-direction: column;
@@ -381,23 +327,19 @@ img{
   margin-top: 2rem;
   height: 40rem;
 }
-
 .ingredients {
   display:flex;
   flex-direction: row;
 }
-
 .instructions {
   display: flex;
   flex-direction: row;
   margin-top: 1rem;
 }
-
 .form_text {
   margin-top: 1rem;
   text-align: center;
 }
-
 .form {
   display: flex;
   flex-direction: row;
@@ -406,7 +348,6 @@ img{
   margin-button: 1rem;
   margin-top: 1rem;
 }
-
 input {
   background-color: var(--clr-backgound);
   color:var(--clr-green);
@@ -414,7 +355,6 @@ input {
   border-radius: 4px;
   text-align:center;
 }
-
 textarea {
   background-color: var(--clr-backgound);
   color:var(--clr-green);
@@ -423,13 +363,11 @@ textarea {
   padding-left: 2px;
   height: 4rem;
 }
-
 .order {
   color: var(--clr-green);
   font-size: 1rem;
   margin-right: 1rem;
 }
-
 .add_btn {
   padding: 0.2rem 0.2rem;
   border: 1px solid #000;
@@ -446,7 +384,6 @@ textarea {
   justify-content: center;
   margin-left: 2rem;
 }
-
 .delete_btn {
 padding: 0.2rem 0.2rem;
 border: 1px solid #000;
@@ -463,8 +400,6 @@ display: flex;
 justify-content: center;
 margin-left: 1rem;
 }
-
-
 @media screen and (min-width: 800px){
   h3{
     font-size: 1.8rem;
@@ -482,7 +417,6 @@ margin-left: 1rem;
     object-fit: cover;
     margin-top: 2rem;
   }
-
   .writeTitle{
     border-radius: 0.3rem; 
     width: 20%;
@@ -532,14 +466,6 @@ margin-left: 1rem;
     padding: 1.2rem, 2rem;
   }
   
-  .imageSubmit {
-    padding: 0.3rem 2rem;
-    width: 5rem;
-    border-radius: 5px;
-    font-size: 1rem;
-    margin-top: 1rem;
-  }
-  
   img{
     width:17rem;
     height:17rem;
@@ -551,24 +477,20 @@ margin-left: 1rem;
     height: 20rem;
     margin-left: 2rem;
   }
-
+  
   .arrayContainer {
     margin-top: 2rem;
     height: 40rem;
   }
-
   .form_text {
     margin-top: 1rem;
   }
-
   .form {
     margin-button: 1rem;
   }
-
   input {
     border-radius: 4px;
   }
-
   textarea{
     margin-top: 1rem;
   }
@@ -576,7 +498,6 @@ margin-left: 1rem;
   .order {
     font-size: 1rem;
   }
-
   .add_btn {
     padding: 0.2rem 0.2rem;
     width: 6rem;
@@ -586,7 +507,6 @@ margin-left: 1rem;
     margin-left: 2rem;
     magin-bottom: 1rem;
   }
-
   .delete_btn {
   padding: 0.2rem 0.2rem;
   width: 2rem;
@@ -597,6 +517,5 @@ margin-left: 1rem;
   margin-left: 1rem;
   }
 }
-
 `
 export default NewPost

@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const Post = require("../models/Post");
+
 const {
     getPosts,
     createPost,
@@ -15,4 +16,5 @@ router.route("/:id").delete(protect, deletePost).get(getPost).get(protect, getPo
 router.route("/userPosts/:id").get(protect, getPostsByUser)
 router.route("/userPosts/:id/edit").put(protect, updatePost)
 router.route("/user")
+
 module.exports = router

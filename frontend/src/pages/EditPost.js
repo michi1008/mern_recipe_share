@@ -15,56 +15,73 @@ const EditPost = () => {
   const [desc, setDesc] = useState(postToEdit.desc)
   const [ingredients, setIngredients] = useState(postToEdit.ingredients)
   const [instructions, setInstructions] = useState(postToEdit.instructions)
-  const [url] = useState(postToEdit.image)
+  const [image, setImage] = useState(postToEdit.image.url)
 
   const dispatch = useDispatch()
-  const navigate = useNavigate()
+  const navigate = useNavigate()    
 
-  const { isLoading, isSuccess } = useSelector((state) => state.post)
-  const { user } = useSelector((state) => state.user)
+  const { isLoading } = useSelector((state) => state.post)
 
   const ingredientAdd=()=>{
     const newIngredients=[...ingredients,[]]
     setIngredients(newIngredients)
-}
-  const handleIngredientChange=(e,i)=>{
-  const inputdata=[...ingredients]
-  inputdata[i]=e.target.value
-  setIngredients(inputdata)
-  console.log(ingredients)
   }
+
+  const handleIngredientChange=(e,i)=>{
+    const inputdata=[...ingredients]
+    inputdata[i]=e.target.value
+    setIngredients(inputdata)
+  }
+
   const ingredientDelete=(i)=>{
-      const deletIngredients=[...ingredients]
-      deletIngredients.splice(i,1)
-      setIngredients(deletIngredients)  
+    const deletIngredients=[...ingredients]
+    deletIngredients.splice(i,1)
+    setIngredients(deletIngredients)  
   }
 
   const instructionAdd=()=>{
     const newInstructions=[...instructions,[]]
     setInstructions(newInstructions)
-}
-  const handleInstructionChange=(e,i)=>{
-  const inputdata=[...instructions]
-  inputdata[i]=e.target.value;
-  setInstructions(inputdata)
   }
+
+  const handleInstructionChange=(e,i)=>{
+    const inputdata=[...instructions]
+    inputdata[i]=e.target.value;
+    setInstructions(inputdata)
+  }
+
   const instructionDelete=(i)=>{
-      const deletInstructions=[...instructions]
-      deletInstructions.splice(i,1)
-      setInstructions(deletInstructions)  
+    const deletInstructions=[...instructions]
+    deletInstructions.splice(i,1)
+    setInstructions(deletInstructions)  
+  }
+
+  //handle and convert it in base 64
+  const handleImage = (e) =>{
+    const file = e.target.files[0]
+    setFileToBase(file)
+  }
+  
+  const setFileToBase = (file) =>{
+    const reader = new FileReader()
+    reader.readAsDataURL(file)
+    reader.onloadend = () =>{
+      setImage(reader.result)
+    }
   }
 
   function handleUpdate(e){
     e.preventDefault()
-    if(!title || !desc || !ingredients || !instructions){
+    if(!title || !image || !desc || !ingredients || !instructions){
       toast.error("Please fill all the fields")
     }
-    if(title && desc && ingredients && instructions){
+    if(title && desc && image && ingredients && instructions){
       const updatePostData = {
         title: title,
         desc: desc,
         ingredients : ingredients,
         instructions : instructions,
+        image: image
       }
       dispatch(updatePost({id, updatePostData}))
       toast.success("Recipe was updated! 🚀")  
@@ -76,6 +93,7 @@ const EditPost = () => {
   const handleClear = () => {
     setTitle("")
     setDesc("")  
+    setImage(null)
     setIngredients([])
     setInstructions([])
   } 
@@ -83,97 +101,81 @@ const EditPost = () => {
   if(isLoading){
     return <Spinner/>
   }
+
   return (
     <Wrapper>
-      <div className="write">
-        <div className="title">
-          <h2>Edit your recipe!</h2>
-          <img className="writeImg" src={img} alt="" />
-        </div>
-        <div className="formContainer">
-            <form className="writeForm" onSubmit={handleUpdate}>    
-              <div className="titleContainer"> 
-                <label htmlFor="text"><h4>Title</h4></label>
-                <input
-                  className="writeTitle"
-                  type="text"
-                  name="title"
-                  id="title"
-                  value={title}
-                  onChange={(e) => setTitle(e.target.value)}
-                />   
-                 <label htmlFor="text"><h4>Description</h4></label>
-                <input
-                  className="writeDesc"
-                  type="text"
-                  name="desc"
-                  id="desc"
-                  value={desc}
-                  onChange={(e) => setDesc(e.target.value)}
-                /> 
-              </div>               
-              <div className="imageContainer">
-              <div className="imageContainer">           
-                <div>
-                {url && <img src={url} className="uploaded_image"/>}
-                </div>
-              </div>   
+    <div className="write">
+      <div className="title">
+        <h2>Edit your recipe!</h2>
+        <img className="writeImg" src={img} alt="" />
+      </div>
+      <div className="formContainer">
+          <form className="writeForm" onSubmit={handleUpdate}>    
+            <div className="titleContainer"> 
+              <label htmlFor="text"><h4>Title</h4></label>
+              <input
+                className="writeTitle"
+                type="text"
+                name="title"
+                id="title"
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+              />   
+               <label htmlFor="text"><h4>Description</h4></label>
+              <input
+                className="writeDesc"
+                type="text"
+                name="desc"
+                id="desc"
+                value={desc}
+                onChange={(e) => setDesc(e.target.value)}
+              /> 
+            </div>               
+            <div className="imageContainer"> 
+              <div><h4 className="imageText">Please re-upload image if you want to change it!</h4>
+                <input className="chooseBtn" type="file" onChange={handleImage} />      
+              </div>          
+              <div>
+              <img src={image} className="uploaded_image"/>
               </div>
-             <div className="arrayContainer">
-              <div className="ingredients">
-                <div className="inputForm">
-                  <div className="add_title"><h4>Ingredients</h4></div>
-                  <button className="add_btn" type="button" onClick={() => ingredientAdd()}>Add</button>
-                      {ingredients.map((data,i)=>{
-                          return(
-                            <div className="form" key={i}>
-                                  <input type="text" value={data} onChange={e=>handleIngredientChange(e,i)} />
-                                  <button className="delete_btn" onClick={()=>ingredientDelete(i)}>x</button>
-                            </div>
-                          )
-                      })}
-                </div>
-                {/* <div className="output">
-                  <h3>Ingredients</h3>
-                  {ingredients &&
-                      ingredients.map((i, index) => (
-                      <ul key={index}>
-                          {ingredients && <li>{i}</li>}
-                      </ul>
-                  ))}
-                </div>   */}
-             </div>
-             <div className="instructions">
+            </div>  
+           <div className="arrayContainer">
+            <div className="ingredients">
               <div className="inputForm">
-                <div className="add_title"><h4>Instructions</h4></div>
-                <button className="add_btn" type="button" onClick={() => instructionAdd()}>Add</button>
-                    {instructions.map((data,i)=>{
+                <div className="add_title"><h4>Ingredients</h4></div>
+                <button className="add_btn" type="button" onClick={() => ingredientAdd()}>Add</button>
+                    {ingredients.map((data,i)=>{
                         return(
                           <div className="form" key={i}>
-                                <div className="order">{i+1} : </div>
-                                <textarea type="text" value={data} onChange={e=>handleInstructionChange(e,i)} />
-                                <button className="delete_btn" onClick={()=>instructionDelete(i)}>x</button>
+                                <input type="text" value={data} onChange={e=>handleIngredientChange(e,i)} />
+                                <button className="delete_btn" onClick={()=>ingredientDelete(i)}>x</button>
                           </div>
                         )
                     })}
-                </div>
-{/*                 <div className="output">
-                    <h3>Instructions</h3>
-                    {instructions &&
-                        instructions.map((i, index) => (
-                        <ol key={index}>
-                            {instructions && <li>{index+1} : {i}</li>}
-                        </ol>
-                    ))}
-                </div>  */}
               </div>
+           </div>
+           <div className="instructions">
+            <div className="inputForm">
+              <div className="add_title"><h4>Instructions</h4></div>
+              <button className="add_btn" type="button" onClick={() => instructionAdd()}>Add</button>
+                  {instructions.map((data,i)=>{
+                      return(
+                        <div className="form" key={i}>
+                              <div className="order">{i+1} : </div>
+                              <textarea type="text" value={data} onChange={e=>handleInstructionChange(e,i)} />
+                              <button className="delete_btn" onClick={()=>instructionDelete(i)}>x</button>
+                        </div>
+                      )
+                  })}
               </div>
-  
-          <button className="writeSubmit" type="submit" disabled={ !url || !ingredients || !instructions} onSubmit={handleUpdate}>Edit</button>
-          </form>      
-        </div>
+            </div>
+            </div>
+
+        <button className="writeSubmit" type="submit" disabled={ !image || !ingredients || !instructions} onSubmit={handleUpdate}>Edit</button>
+        </form>      
       </div>
-    </Wrapper>   
+    </div>
+  </Wrapper>   
   )
 }
 

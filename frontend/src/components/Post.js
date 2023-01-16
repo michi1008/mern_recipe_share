@@ -11,7 +11,7 @@ const Post = ({ post }) => {
       <div className="post">
         <div className="title"><h4>{title}</h4></div>
         <div className="desc"><p>{desc}</p></div>
-        <div className="imageContainer"><img className="image" src={image} /></div>
+        <div className="imageContainer"><img className="image" src={image.url} /></div>
         <Link to={`/posts/${_id}`} className="link">
             <span className="recipeLink">Go to recipe</span>
         </Link> 

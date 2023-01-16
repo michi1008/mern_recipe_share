@@ -39,7 +39,7 @@ const UserPosts = () => {
   return (
     <Wrapper>
       <div className="userPostsTitle">
-        <div>{user && user.userName}"s recipes</div>
+        <div>{user && user.userName}'s recipes</div>
         <div className="underline"></div> 
       </div> 
       <div className="posts">
@@ -47,7 +47,7 @@ const UserPosts = () => {
         <div className="post" key={post._id}>
           <div className="title"><h4>{post.title}</h4></div>
           <div className="desc"><p>{post.desc}</p></div>
-          <div className="imageContainer"><img className="image" src={post.image} /></div>
+          <div className="imageContainer"><img className="image" src={post.image.url} /></div>
           <div className="iconContainer">
           <Link to={`/posts/userPosts/${post._id}/edit`}><EditTwoToneIcon className="icon" /></Link>
           <DeleteTwoToneIcon className="icon" onClick={()=> handledDeletePost(post._id)} />
