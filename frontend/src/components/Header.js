@@ -6,7 +6,7 @@ const Header = () => {
   return (
     <Wrapper>
         <div className="headerTitle">Let's share your favorite recipes with your friends and families! 🧑🏻‍🍳</div>
-        <div><h3>Please sign up and create your recipe. 🍱</h3></div>
+        <div><h4>Please sign up and create your recipe. 🍱</h4></div>
         <img className="headerImg" src={img} atl="cooking" />
     </Wrapper>
     
@@ -20,13 +20,15 @@ flex-direction: column;
 justify-content: center;
 align-items: center;
 
-h3{
-  color: var(--clr-green);
+h4{
+  color: var(--clr-gold);
+  text-align: center;
 }
 
 .headerTitle{
-  color: var(--clr-green);
-  font-size: 2rem;
+  color: var(--clr-brown);
+  font-size: 1.5rem;
+  text-align: center;
 }
 
 .headerImg{
@@ -38,7 +40,7 @@ h3{
 
 @media screen and (min-width: 800px){
   .headerTitle{
-    font-size: 2.2rem;
+    font-size: 2rem;
   }
 }
 

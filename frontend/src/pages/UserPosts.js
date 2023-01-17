@@ -54,7 +54,7 @@ const UserPosts = () => {
           </div>
         </div>        
       ))) : (
-        <h3>You don"t have any recipes...🥲</h3>
+        <h3>You don't have any recipes...🥲</h3>
       )}
       </div>
     </Wrapper>
@@ -73,7 +73,8 @@ margin-top: 1rem;
   display: flex;
   flex-wrap: wrap;
   margin: 1rem;
-
+  justify-content: center;
+  align-items: center; 
 }
 
 .userPostsTitle{

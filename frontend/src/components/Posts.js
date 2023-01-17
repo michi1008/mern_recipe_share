@@ -23,8 +23,8 @@ const Wrapper = styled.section`
     flex: 9;
     display: flex;
     flex-wrap: wrap;
-    margin: 1rem;
     justify-content: center;
+    margin-bottom: 2rem;
 }
 
 `

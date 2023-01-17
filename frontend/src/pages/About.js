@@ -30,8 +30,8 @@ justify-content: center;
 
 .about{
     width: 60%;
-    margin-top: 3rem;
-    padding: 2rem;
+    margin-top: 1rem;
+    padding: 1.5rem;
     background-image: linear-gradient(
         rgba(255, 255, 255, 0.4),
         rgba(255, 255, 255, 0.4)
@@ -39,8 +39,6 @@ justify-content: center;
       border-radius: 3px;
       background-color: var(--clr-green);
       background-repeat: no-repeat;
-      padding-top: 2rem;
-      padding-bottom: 2rem;
       height:calc(100vh-5rem);
 
 .aboutTitle{

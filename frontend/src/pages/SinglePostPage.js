@@ -44,10 +44,6 @@ import Spinner from "../components/Spinner"
           <div className="image"><img className="image" src={post?.image.url} /></div>
           <div className="desc"><h4>{post?.desc}</h4></div>
           <div className="infoContainer">
-            {/* <div className="userContainer">
-              <span className="userTItle">Created by</span>
-                <div className="user">{post?.user}</div>  
-            </div> */}
             <div className="dateContainer">
               <div><p>Created at : {new Date(post?.createdAt).toLocaleString("en-US", options)}</p></div> 
             </div>
@@ -95,10 +91,6 @@ align-items: center;
   margin: 2rem;
 }
 
-.title{
-  color:var(--clr-green)
-}
-
 .image{
 width: 100%;
 height: 8rem;
@@ -116,8 +108,8 @@ font-style: italic;
 
 .title {
   color: var(--clr-dark);
-  font-size: 1.3rem;
-  font-weight: 700;
+  font-size: 1.2rem;
+  font-weight: 500;
   margin-top: 1rem;
   cursor: pointer;
 }

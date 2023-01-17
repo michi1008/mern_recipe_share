@@ -109,7 +109,6 @@ export const deletePost = createAsyncThunk(
 export const updatePost = createAsyncThunk(
   "posts/userPosts/:id/edit",
   async ({id, updatePostData}, thunkAPI) => {
-    console.log(updatePostData)
     try {
       const token = thunkAPI.getState().user.user.token  
       await postService.updatePost({id, updatePostData}, token)

@@ -40,6 +40,8 @@ const Home = () => {
 const Wrapper = styled.section`
 .home{
   display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 `

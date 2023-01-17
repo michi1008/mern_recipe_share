@@ -27,11 +27,4 @@ export const store = configureStore({
 
 export const persistor = persistStore(store)
 
-/* export const store = configureStore({
-  reducer: {
-    user: userReducer,
-    post: postReducer,
-    devTools: process.env.NODE_ENV !== 'production',
-  },
-})  */
 

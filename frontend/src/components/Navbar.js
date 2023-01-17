@@ -27,17 +27,17 @@ const Navbar = () => {
         </div>
         <div className="navbarCenter">
           <ul className="navbarList">
-            <li className="navbarListItem"><Link className="link" to="/">Home</Link><div id='underline_b'></div></li>
-            <li className="navbarListItem"><Link className="link" to="/about" >About</Link><div id='underline_b'></div></li>
-            {user && (<li className="navbarListItem"><Link className="link" to="/create">Create</Link><div id='underline_b'></div></li>)}
-            {user && (<li className="navbarListItem"><Link className="link" to={`/posts/userPosts/${user._id}`} >My Receips</Link><div id='underline_b'></div></li>)}
+            <li className="navbarListItem"><Link className="link" to="/">Home</Link><div id='underline'></div></li>
+            <li className="navbarListItem"><Link className="link" to="/about" >About</Link><div id='underline'></div></li>
+            {user && (<li className="navbarListItem"><Link className="link" to="/create">Create</Link><div id='underline'></div></li>)}
+            {user && (<li className="navbarListItem"><Link className="link" to={`/posts/userPosts/${user._id}`} >My Receips</Link><div id='underline'></div></li>)}
           </ul>
         </div>
         <div className="navbarRight">
             {user && <div className="navbarUser">Hello, {user.userName}!!</div>}
-            {!user && (<><li className="navbarListItem"><Link className="link" to="/login">Login</Link><div id='underline_b'></div></li>      
-            <li className="navbarListItem"><Link className="link" to="/signup">Signup</Link><div id='underline_b'></div></li></>)}
-            {user && (<li className="navbarListItem" onClick={onLogout}><div id="logout">Logout</div><div id='underline_bt'></div></li>)}   
+            {!user && (<><li className="navbarListItem"><Link className="link" to="/login">Login</Link><div id='underline'></div></li>      
+            <li className="navbarListItem"><Link className="link" to="/signup">Signup</Link><div id='underline'></div></li></>)}
+            {user && (<li className="navbarListItem" onClick={onLogout}><div id="logout">Logout</div><div id='underline'></div></li>)}   
         </div> 
     </div> 
     </Wrapper>   
@@ -58,47 +58,28 @@ const Wrapper = styled.section`
 
 .logo{
   margin-top: 1rem;
-  margin-left: 1rem;
-  width: 3rem;
-  height: 3rem;
+  margin-left: 0.5rem;
+  width: 2.5rem;
+  height: 2.5rem;
   border-radius: 1.5%;
   object-fit: cover;
 }
 
 .navbarLeft{
-  flex: 4;
+  flex: 3;
   display: flex;
   justify-content: center;
 }
 
 .title{
-  margin-left: 1rem;
+  margin-left: 0.4rem;
   margin-top: 1rem;
   color: var(--clr-dark);
   text-align: center;
 }
 
 h4{
-  font-size: 1.2rem;
-}
-
-.underline{
-  width: 80%;
-  height: 0.25rem;
-  background: var(--clr-green);
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 0.5rem; 
-}
-
-#underline_b{
-  display:none;
-  width: 80%;
-  height: 0.25rem;
-  background: var(--clr-green);
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 0.5rem; 
+  font-size: 0.8rem;
 }
 
 .navbarCenter{
@@ -115,23 +96,20 @@ h4{
 
 .navbarListItem{
   color: var(--clr-dark);
-  font-size: 0.9rem;
+  font-size: 0.75rem;
   font-weight: 400;
   cursor: pointer;
-  margin-right: 1rem;
+  margin-left: 0.3rem;
+  margin-right: 0.5rem;
   display:block;
 }
 
-a:hover + #underline_b{
-  display:block;
+a:hover {
+  color: var(--clr-gold);
 }
 
-#logout{
-  display:block;
-}
-
-#logout:hover + #underline_b{
-  display:block;
+#logout:hover{
+  color: var(--clr-gold);
 }
 
 .navbarRight{
@@ -144,8 +122,7 @@ a:hover + #underline_b{
 
 .navbarUser{
   color: var(--clr-brown);
-  font-size: 1rem;
-  margin-right: 1rem;
+  font-size: 0.75rem;
 }
 
 @media screen and (min-width: 800px){
@@ -155,27 +132,25 @@ a:hover + #underline_b{
   
   .logo{
     margin-top; 0.8rem;
-    width: 3rem;
-    height: 3rem;
-  }
-    
-  .title{
-    margin-left: 2rem;
-    margin-top: 1rem;
+    width: 4rem;
+    height: 4rem;
   }
   
-  h4{
-    font-size: 1.8rem;
-  }
-  .underline{
-    width: 85%;
-    height: 0.25rem;
-    background: var(--clr-green);
-    margin-top: 0.5rem; 
+  h4 {
+    font-size: 1.5rem;
   }
 
-  .underline_b{
-    width: 85%;
+  .title {
+    margin: 2rem;
+  }
+
+  .underline{
+    width: 80%;
+    height: 0.25rem;
+    background: var(--clr-green);
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 0.5rem; 
   }
   
   .navbarListItem{
@@ -187,7 +162,6 @@ a:hover + #underline_b{
   .navbarUser{
     font-size: 1.3rem;
   }
-
 }
 
 `

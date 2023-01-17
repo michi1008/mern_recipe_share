@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import styled from "styled-components"
 import { Spinner } from "react-bootstrap"
 import img from "../assets/write.jpg"
@@ -20,7 +20,7 @@ const EditPost = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()    
 
-  const { isLoading } = useSelector((state) => state.post)
+  const { error, isLoading } = useSelector((state) => ({...state.post}))
 
   const ingredientAdd=()=>{
     const newIngredients=[...ingredients,[]]
@@ -97,6 +97,11 @@ const EditPost = () => {
     setIngredients([])
     setInstructions([])
   } 
+
+
+  useEffect(() => {
+    error && toast.error(error);
+  }, [error]);
 
   if(isLoading){
     return <Spinner/>

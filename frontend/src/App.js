@@ -13,13 +13,11 @@ import Footer from "./components/Footer"
 import { ToastContainer } from "react-toastify"
 import PrivateRoute from "./components/PrivateRoute"
 import "react-toastify/dist/ReactToastify.css"
-/* import GlobalStyle from "./global" */
 
 function App() {
   return (
    
     <BrowserRouter>
-     
       <Navbar />
       <Routes>
         <Route>

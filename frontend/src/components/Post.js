@@ -23,7 +23,7 @@ const Post = ({ post }) => {
 const Wrapper = styled.section`
 .post {
   width: 25rem;
-  margin: 0rem 1.2rem 2rem 1.2rem;
+  margin: 2rem 1.2rem 2rem 1.2rem;
 }
 
 .title{
@@ -32,14 +32,15 @@ const Wrapper = styled.section`
 
 .image{
 width: 100%;
-height: 20rem;
+height: 15rem;
 object-fit: cover;
 border-radius: 0.2rem;
 box-shadow: var(--dark-shadow);
+margin-bottom: 1rem;
 }
 
 .desc {
-font-size: 0.8rem;
+font-size: 1rem;
 color: var(--clr-light);
 font-style: italic;
 line-height: 1.2rem;
@@ -55,7 +56,6 @@ display: -webkit-box;
   color: var(--clr-brown);
   font-size: 1rem;
   font-weight: 700;
-  margin-top: 1rem;
   cursor: pointer;
 }
 
@@ -63,10 +63,33 @@ display: -webkit-box;
   color: var(--clr-red);
 }
 
-.creator{
-  color: var(--clr-green);
+@media screen and (min-width: 800px){
+  .post {
+    width: 25rem;
+    margin: 2rem 1.2rem 2rem 1.2rem;
+  }
   
+  .image{
+  width: 100%;
+  height: 20rem;
+  border-radius: 0.2rem;
+  margin-bottom: 1rem;
+  }
+  
+  .desc {
+  font-size: 1.2rem;
+  line-height: 1.2rem;
+  margin-top: 1rem;
+  }
+  
+  .recipeLink {
+    font-size: 1.2rem;
+    font-weight: 700;
+    cursor: pointer;
+  }
+
 }
+
 
 `
 export default Post
