@@ -137,11 +137,11 @@ a:hover {
   }
   
   h4 {
-    font-size: 1.5rem;
+    font-size: 1.2rem;
   }
 
   .title {
-    margin: 2rem;
+    margin: 1.8rem;
   }
 
   .underline{
@@ -154,13 +154,13 @@ a:hover {
   }
   
   .navbarListItem{
-    font-size: 1.4rem;
+    font-size: 1rem;
     font-weight: 500;
-    margin-right: 1.2rem;
+    margin-right: 1rem;
   }
   
   .navbarUser{
-    font-size: 1.3rem;
+    font-size: 1rem;
   }
 }
 

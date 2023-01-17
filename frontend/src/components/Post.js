@@ -22,7 +22,7 @@ const Post = ({ post }) => {
 
 const Wrapper = styled.section`
 .post {
-  width: 25rem;
+  width: 20rem;
   margin: 2rem 1.2rem 2rem 1.2rem;
 }
 

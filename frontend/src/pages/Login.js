@@ -104,7 +104,7 @@ flex-direction: column;
 margin-top: 2rem;
 
 .login{
-width:40%;
+width:60%;
 background-image: linear-gradient(
   rgba(255, 255, 255, 0.5),
   rgba(255, 255, 255, 0.5)
@@ -119,7 +119,7 @@ background-blend-mode: multiply;
 }
   
 .loginTitle{
-  font-size: 3rem;
+  font-size: 2rem;
   color: var(--clr-white);
   margin-left: 2rem;
 }
@@ -132,7 +132,7 @@ background-blend-mode: multiply;
 
 .loginForm > Label{
   margin: 1rem 0; 
-  color: var(--clr-green);
+  color: var(--clr-white);
 }
 
 .loginInput{
@@ -155,8 +155,8 @@ background-blend-mode: multiply;
 
 .loginSignupBtn{
   position: absolute;
-  top: 7rem;
-  right: 10rem;
+  top: 6rem;
+  right: 2rem;
   margin-top: 1.2rem;
   cursor: pointer;
   background-color: var(--clr-gold);

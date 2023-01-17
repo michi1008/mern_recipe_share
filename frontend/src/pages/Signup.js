@@ -127,9 +127,9 @@ justify-content: center;
 align-items: center;
 flex-direction: column;
 margin-top: 2rem;
-
+margin-bottom: 2rem;
 .signup{
-width:40%;
+width:60%;
 background-image: linear-gradient(
   rgba(255, 255, 255, 0.4),
   rgba(255, 255, 255, 0.4)
@@ -143,7 +143,7 @@ height:calc(100vh-5rem);
 }
 
 .signupTitle{
-font-size: 2.5rem;
+font-size: 2rem;
 color: var(--clr-brown);
 opacity: 1;
 }
@@ -184,7 +184,7 @@ box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
 .signupLoginBtn{
 position: absolute;
 top: 7rem;
-right: 10rem;
+right: 2rem;
 background-color: var(--clr-gold);
 color: var(--clr-white);
 border-radius: 0.3rem;

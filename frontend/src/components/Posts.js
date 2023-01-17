@@ -12,7 +12,7 @@ const Posts = ({ posts }) => {
           ))}
         </div>
       ) : (
-        <h3>No recipe 😞</h3>
+        <h3 className="no_posts">No recipe 😞</h3>
       )} </div>
       </Wrapper>
   )
@@ -25,6 +25,10 @@ const Wrapper = styled.section`
     flex-wrap: wrap;
     justify-content: center;
     margin-bottom: 2rem;
+}
+
+.no_posts{
+  margin-top: 2rem;
 }
 
 `

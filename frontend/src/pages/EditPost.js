@@ -98,11 +98,6 @@ const EditPost = () => {
     setInstructions([])
   } 
 
-
-  useEffect(() => {
-    error && toast.error(error);
-  }, [error]);
-
   if(isLoading){
     return <Spinner/>
   }
