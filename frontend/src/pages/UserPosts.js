@@ -68,9 +68,7 @@ flex-direction: column;
 align-items: center;
 justify-content: center;
 
-
 .posts{
-  flex: 9;
   display: flex;
   flex-wrap: wrap;
   margin: 1rem;
@@ -94,7 +92,7 @@ justify-content: center;
 }
 
 .post {
-  width: 25rem;
+  width: 20rem;
   margin: 0rem 1.2rem 2rem 1.2rem;
 }
 
@@ -104,7 +102,7 @@ justify-content: center;
 
 .image{
 width: 75%;
-height: 20rem;
+height: 15rem;
 object-fit: cover;
 border-radius: 0.2rem;
 box-shadow: var(--dark-shadow);
@@ -130,7 +128,6 @@ display: -webkit-box;
 }
 
 .iconContainer {
-  display:flex;
   justify-content: end; 
 }
 

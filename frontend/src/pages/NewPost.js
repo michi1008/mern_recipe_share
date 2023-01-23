@@ -132,7 +132,7 @@ if(isLoading){
                 /> 
               </div>               
               <div className="imageContainer">
-                <div>{!image && <h4 className="imageText">Please upload an image before publishing your recipe!</h4>}
+                <div>{!image && <div className="imageText">Please upload an image before publishing your recipe!</div>}
                 <input className="chooseBtn" type="file" onChange={handleImage} />      
                 </div>
                 <div className="image">
@@ -191,7 +191,7 @@ h3{
   padding-top: 2.5rem;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: center;
   padding-botoom: 3rem;
   min-height: calc(100vh - 7rem);
   overflow: auto;
@@ -217,13 +217,13 @@ h3{
   background-color: var(--clr-white);
   border-radius: 0.3rem; 
   border-color: var(--clr-green);
-  width: 20%;
+  width: 18%;
 }
 .writeDesc{
   background-color: var(--clr-white);
   border-radius: 0.3rem; 
   border-color: var(--clr-green);
-  width: 30%;
+  width: 28%;
   margin-left: 1rem;
 }
 .writeForm{
@@ -270,17 +270,18 @@ label{
 .imageText{
   color: var(--clr-light);
   font-size: 1rem;
-  margin-right: 4rem;
+  margin-bottom: 1rem;
 }
 .image{
   margin-bottom: 2rem;
+  margin-left: 1rem;
 }
 .chooseBtn{
   background: var(--clr-light);
   color:var(--clr-white);
-  width: 16rem;
+  width: 12rem;
   display: inline-block;
-  padding: 1.2rem, 2rem;
+  padding: 1.2rem, 1.2rem;
   border: 1px solid var(--clr-green);
   border-radius: 0.2rem;
   text-align: center;
@@ -288,7 +289,7 @@ label{
 .imageSubmit {
   padding: 0.3rem 2rem;
   border: 1px solid #000;
-  width: 5rem;
+  width: 4rem;
   border-radius: 5px;
   background: var(--clr-light);
   color: var(--clr-white);
@@ -385,17 +386,16 @@ margin-left: 1rem;
 
 .image{
   margin-bottom: 2rem;
-  margin-left: 2rem;
 }
 
-.chooseBtn{
-  width: 15rem;
-  padding: 1.2rem, 2rem;
+.no_image {
+  width: 8rem;
+  height: 8rem;
 }
 
 img{
-  width:17rem;
-  height:17rem;
+  width:8rem;
+  height:8rem;
   object-fit:cover;
 }
 
