@@ -229,7 +229,7 @@ h3{
 .titleContainer{
   display: flex;
   flex-direction: row;
-  justify-content: flex-start;
+  justify-content: center;
 }
 .writeTitle{
   background-color: var(--clr-white);
@@ -262,7 +262,7 @@ label{
 .writeSubmit{
   position: absolute;  
   top: -6rem;
-  right: 1rem;
+  right: 2rem;
   color: var(--clr-white);  
   background-color: var(--clr-green);
   padding: 1rem;
@@ -400,6 +400,23 @@ display: flex;
 justify-content: center;
 margin-left: 1rem;
 }
+
+.image{
+  margin-bottom: 2rem;
+  margin-left: 2rem;
+}
+
+.chooseBtn{
+  width: 15rem;
+  padding: 1.2rem, 2rem;
+}
+
+img{
+  width:17rem;
+  height:17rem;
+  object-fit:cover;
+}
+
 @media screen and (min-width: 800px){
   h3{
     font-size: 1.8rem;

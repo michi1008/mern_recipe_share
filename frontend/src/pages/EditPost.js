@@ -183,6 +183,7 @@ const EditPost = () => {
 
 const Wrapper = styled.section`
 min-height: calc(100vh - 5rem);
+margin: 1rem;
 
 h3{
   color: var(--clr-green);

@@ -7,6 +7,7 @@ const initialState = {
   isError: false,
   isSuccess: false,
   isLoading: false,
+  editId: "",
   message: "",
 }
 
@@ -230,5 +231,5 @@ export const postSlice = createSlice({
   },
 })
 
-export const { reset } = postSlice.actions
+export const { reset, setEditRecipe } = postSlice.actions
 export default postSlice.reducer
