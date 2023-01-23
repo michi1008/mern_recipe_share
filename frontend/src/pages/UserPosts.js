@@ -67,7 +67,7 @@ display: flex;
 flex-direction: column;
 align-items: center;
 justify-content: center;
-padding: 2rem;
+
 
 .posts{
   flex: 9;
@@ -103,7 +103,7 @@ padding: 2rem;
 }
 
 .image{
-width: 100%;
+width: 75%;
 height: 20rem;
 object-fit: cover;
 border-radius: 0.2rem;
