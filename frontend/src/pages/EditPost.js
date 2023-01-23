@@ -106,7 +106,7 @@ const EditPost = () => {
 
   return (
     <Wrapper>
-    <div className="write">
+    <div className="writeContainer">
       <div className="title">
         <h2>Edit your recipe!</h2>
         <img className="writeImg" src={img} alt="" />
@@ -182,80 +182,68 @@ const EditPost = () => {
 }
 
 const Wrapper = styled.section`
-min-height: calc(100vh - 5rem);
-margin: 1rem;
-
 h3{
   color: var(--clr-green);
   font-size: 1.8rem;
 }
-
-.write{
+.writeContainer{
   padding-top: 2.5rem;
   display: flex;
-  align-items : center;
   flex-direction: column;
   justify-content: flex-start;
   padding-botoom: 3rem;
+  min-height: calc(100vh - 7rem);
+  overflow: auto;
 }
-
 .title{
   color: var(--clr-dark);
   text-align: center;
 }
-
 .writeImg{
-  width: 30%;
-  height: auto;
+  width: 30vw;
+  height: 10vh;
   border-radius: 0.3rem;
   object-fit: cover;
   margin-top: 2rem;
   box-shadow: var(--light-shadow);
 }
-
 .titleContainer{
   display: flex;
   flex-direction: row;
-  justify-content: flex-start;
+  justify-content: center;
 }
-
 .writeTitle{
   background-color: var(--clr-white);
   border-radius: 0.3rem; 
   border-color: var(--clr-green);
   width: 20%;
 }
-
 .writeDesc{
   background-color: var(--clr-white);
   border-radius: 0.3rem; 
   border-color: var(--clr-green);
-  width: 35%;
+  width: 30%;
   margin-left: 1rem;
 }
-
 .writeForm{
   position: relative;
   margin-top: 2rem;
 }
-
 label{
   font-size: 1rem;
   color: var(--clr-green);
   margin-right : 1rem;
   margin-left: 1rem;
 }
-
 .formContainer{
   display:flex;
   align-items: center;
   flex-direction: column;
 }
-
 .writeSubmit{
   position: absolute;  
   top: -6rem;
-  right: 1rem;
+  right: 2rem;
   color: var(--clr-white);  
   background-color: var(--clr-green);
   padding: 1rem;
@@ -264,13 +252,11 @@ label{
   cursor:pointer;
   font-size: 1rem;
 }
-
 .writeSubmit:disabled{
   background: var(--clr-grey);
   color: var(--clr-white);
   cursor: not-allowed;
 }
-
 .imageContainer{
   display:flex;
   align-items: center;
@@ -278,28 +264,26 @@ label{
   margin-buttom: 3rem;
   margin-top: 2rem;
   margin-left: 2rem;
+  margin-right: 2rem;
 }
-
 .imageText{
   color: var(--clr-light);
-  font-size: 0.8rem;
+  font-size: 1rem;
   margin-right: 4rem;
 }
-
 .image{
   margin-bottom: 2rem;
 }
-
 .chooseBtn{
   background: var(--clr-light);
   color:var(--clr-white);
-  width: 14rem;
+  width: 16rem;
   display: inline-block;
   padding: 1.2rem, 2rem;
   border: 1px solid var(--clr-green);
-  border-radius: 0.3rem;
+  border-radius: 0.2rem;
+  text-align: center;
 }
-
 .imageSubmit {
   padding: 0.3rem 2rem;
   border: 1px solid #000;
@@ -308,7 +292,6 @@ label{
   background: var(--clr-light);
   color: var(--clr-white);
   font-size: 1rem;
-  font-weight: 700;
   cursor: pointer;
   text-align: center;
   appearance: button;
@@ -317,58 +300,35 @@ label{
   margin-top: 1rem;
 }
 
-.no_image{
-  width: 100%;
-  height: 20vh;
-  object-fit:cover;
-}
-
-.uploaded_image{
-  width: 100%;
-  height: 15rem;
-  object-fit:cover;
-}
-
 .arrayContainer {
   display: flex;
-  flex-direction: row;
-  align-items : start;
-  justify-content: space-between;
+  flex-direction: column;
+  align-items : center;
+  justify-content: flex-start;
   margin-top: 2rem;
   height: 40rem;
 }
-
 .ingredients {
   display:flex;
   flex-direction: row;
 }
-
 .instructions {
   display: flex;
   flex-direction: row;
+  margin-top: 1rem;
 }
-
 .form_text {
   margin-top: 1rem;
   text-align: center;
 }
-
 .form {
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: center;
   margin-button: 1rem;
   margin-top: 1rem;
 }
-
-textarea {
-  background-color: var(--clr-backgound);
-  color:var(--clr-green);
-  border: 2px solid var(--clr-dark);
-  border-radius: 4px;
-  text-align:center;
-}
-
 input {
   background-color: var(--clr-backgound);
   color:var(--clr-green);
@@ -376,13 +336,19 @@ input {
   border-radius: 4px;
   text-align:center;
 }
-
+textarea {
+  background-color: var(--clr-backgound);
+  color:var(--clr-green);
+  border: 2px solid var(--clr-dark);
+  border-radius: 2px;
+  padding-left: 2px;
+  height: 4rem;
+}
 .order {
   color: var(--clr-green);
   font-size: 1rem;
   margin-right: 1rem;
 }
-
 .add_btn {
   padding: 0.2rem 0.2rem;
   border: 1px solid #000;
@@ -399,7 +365,6 @@ input {
   justify-content: center;
   margin-left: 2rem;
 }
-
 .delete_btn {
 padding: 0.2rem 0.2rem;
 border: 1px solid #000;
@@ -415,6 +380,140 @@ appearance: button;
 display: flex;
 justify-content: center;
 margin-left: 1rem;
+}
+
+.image{
+  margin-bottom: 2rem;
+  margin-left: 2rem;
+}
+
+.chooseBtn{
+  width: 15rem;
+  padding: 1.2rem, 2rem;
+}
+
+img{
+  width:17rem;
+  height:17rem;
+  object-fit:cover;
+}
+
+@media screen and (min-width: 800px){
+  h3{
+    font-size: 1.8rem;
+  }
+  
+  .write{
+    padding-top: 2.5rem;
+    padding-botoom: 3rem;
+  }
+  
+  .writeImg{
+    width: 30vw;
+    height: 10vh;
+    border-radius: 0.3rem;
+    object-fit: cover;
+    margin-top: 2rem;
+  }
+  .writeTitle{
+    border-radius: 0.3rem; 
+    width: 20%;
+  }
+  
+  .writeDesc{
+    border-radius: 0.3rem; 
+    width: 35%;
+    margin-left: 1rem;
+  }
+  
+  .writeForm{
+    margin-top: 2rem;
+  }
+  
+  label{
+    margin-right : 1rem;
+    margin-left: 1rem;
+  }
+  
+  .writeSubmit{
+    top: -6rem;
+    right: -1rem;
+    padding: 1rem;
+    border-radius: 0.3rem;
+    font-size: 1rem;
+  }
+ 
+  .imageContainer{
+    margin-buttom: 3rem;
+    margin-top: 2rem;
+    margin-left: 2rem;
+  }
+  
+  .imageText{
+    font-size: 1rem;
+    margin-right: 4rem;
+  }
+  
+  .image{
+    margin-bottom: 2rem;
+    margin-left: 2rem;
+  }
+  
+  .chooseBtn{
+    width: 15rem;
+    padding: 1.2rem, 2rem;
+  }
+  
+  img{
+    width:17rem;
+    height:17rem;
+    object-fit:cover;
+  }
+
+  .uploaded_image{
+    width: 100%;
+    height: 20rem;
+    margin-left: 2rem;
+  }
+  
+  .arrayContainer {
+    margin-top: 2rem;
+    height: 40rem;
+  }
+  .form_text {
+    margin-top: 1rem;
+  }
+  .form {
+    margin-button: 1rem;
+  }
+  input {
+    border-radius: 4px;
+  }
+  textarea{
+    margin-top: 1rem;
+  }
+  
+  .order {
+    font-size: 1rem;
+  }
+  .add_btn {
+    padding: 0.2rem 0.2rem;
+    width: 6rem;
+    border-radius: 4px;
+    font-size: 1rem;
+    font-weight: 500;
+    margin-left: 2rem;
+    magin-bottom: 1rem;
+  }
+  .delete_btn {
+  padding: 0.2rem 0.2rem;
+  width: 2rem;
+  border-radius: 2px;
+  font-size: 1rem;
+  font-weight: 500;
+  justify-content: center;
+  margin-left: 1rem;
+  }
 }
 
 `

@@ -67,7 +67,7 @@ display: flex;
 flex-direction: column;
 align-items: center;
 justify-content: center;
-margin: 1rem;
+padding: 2rem;
 
 .posts{
   flex: 9;

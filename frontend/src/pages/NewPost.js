@@ -104,7 +104,7 @@ if(isLoading){
 }
   return (
     <Wrapper>
-      <div className="write">
+      <div className="writeContainer">
         <div className="title">
           <h2>Create a recipe!</h2>
           <img className="writeImg" src={img} alt="" />
@@ -156,15 +156,6 @@ if(isLoading){
                           )
                       })}
                 </div>
-                {/* <div className="output">
-                  <h3>Ingredients</h3>
-                  {ingredients &&
-                      ingredients.map((i, index) => (
-                      <ul key={index}>
-                          {ingredients && <li>{i}</li>}
-                      </ul>
-                  ))}
-                </div>   */}
              </div>
              <div className="instructions">
               <div className="inputForm">
@@ -180,15 +171,6 @@ if(isLoading){
                         )
                     })}
                 </div>
-                {/* <div className="output">
-                    <h3>Instructions</h3>
-                    {instructions &&
-                        instructions.map((i, index) => (
-                        <ol key={index}>
-                            {instructions && <li>{index+1} : {i}</li>}
-                        </ol>
-                    ))}
-                </div>  */}
               </div>
               </div>
   
@@ -205,7 +187,7 @@ h3{
   color: var(--clr-green);
   font-size: 1.8rem;
 }
-.write{
+.writeContainer{
   padding-top: 2.5rem;
   display: flex;
   flex-direction: column;
@@ -322,7 +304,7 @@ label{
 .arrayContainer {
   display: flex;
   flex-direction: column;
-  align-items : flex-start;
+  align-items : center;
   justify-content: flex-start;
   margin-top: 2rem;
   height: 40rem;
