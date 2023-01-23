@@ -106,16 +106,16 @@ margin-top: 2rem;
 .login{
 width:60%;
 background-image: linear-gradient(
-  rgba(255, 255, 255, 0.5),
-  rgba(255, 255, 255, 0.5)
+  rgba(255, 255, 255, 0.2),
+  rgba(255, 255, 255, 0.2)
 ), url(${img});
 border-radius: 3px;
-background-color: var(--clr-light);
+background-color: var(--clr-gold);
 background-repeat: no-repeat;
 padding-top: 2rem;
 padding-bottom: 2rem;
 height:calc(100vh-5rem);
-background-blend-mode: multiply;
+background-blend-mode: multiply; 
 }
   
 .loginTitle{
@@ -161,7 +161,7 @@ background-blend-mode: multiply;
   cursor: pointer;
   background-color: var(--clr-gold);
   border: none;
-  color: var(--clr-dark);
+  color: var(--clr-brown);
   border-radius: 0.5rem;
   padding: 0.7rem;
   box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);

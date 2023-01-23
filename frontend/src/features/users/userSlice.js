@@ -6,6 +6,7 @@ const user = JSON.parse(localStorage.getItem("user"))
 
 const initialState = {
   user: user ? user : null,
+  isSidebarOpen: false,
   isError: false,
   isSuccess: false,
   isLoading: false,
@@ -71,6 +72,9 @@ export const userSlice = createSlice({
   name: "user",
   initialState,
   reducers: {
+    toggleSidebar: (state) => {
+      state.isSidebarOpen = !state.isSidebarOpen
+    },
     reset: (state) => {
       state.isLoading = false
       state.isSuccess = false
@@ -128,5 +132,5 @@ export const userSlice = createSlice({
   },
 })
 
-export const { reset, setUser, setLogout } = userSlice.actions
+export const { toggleSidebar, reset, setUser, setLogout } = userSlice.actions
 export default userSlice.reducer

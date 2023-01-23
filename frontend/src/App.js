@@ -9,6 +9,7 @@ import SinglePostPage from "./pages/SinglePostPage"
 import ErrorPage from "./pages/ErrorPage"
 import Login from "./pages/Login"
 import Navbar from "./components/Navbar"
+import Sidebar from "./components/Sidebar"
 import Footer from "./components/Footer"
 import { ToastContainer } from "react-toastify"
 import PrivateRoute from "./components/PrivateRoute"
@@ -19,6 +20,7 @@ function App() {
    
     <BrowserRouter>
       <Navbar />
+      <Sidebar />
       <Routes>
         <Route>
           <Route exact path="/" element={<Home />} />  

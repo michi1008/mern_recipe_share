@@ -1,14 +1,21 @@
-import React from "react"
+import React, {useState} from "react"
 import { useSelector, useDispatch } from "react-redux"
 import styled from "styled-components"
 import { Link, useNavigate } from "react-router-dom"
 import img from "../assets/logo.png"
-import { logout, reset } from "../features/users/userSlice"
+import { toggleSidebar, logout, reset } from "../features/users/userSlice"
+import MenuSharpIcon from "@mui/icons-material/MenuSharp"
+import ExitToAppRoundedIcon from "@mui/icons-material/ExitToAppRounded"
 
 const Navbar = () => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
   const { user } = useSelector((state) => state.user)
+
+  const toggle = () => {
+    dispatch(toggleSidebar())
+  }
+
   const onLogout = () => {
     dispatch(logout())
     dispatch(reset())
@@ -18,26 +25,28 @@ const Navbar = () => {
   return (
     <Wrapper>        
     <div className="navbarContainer">
-        <div className="navbarLeft"> 
-        <img className="logo" src={img} alt="logo" />    
-            <div className="title">
-            <h4>Share Recipe</h4>
-            <div className='underline'></div>       
-            </div>
+        <div className="navbarHeader"> 
+          <img src={img} alt="logo" />    
+          <div className="title">
+          Share Recipe
+          <div className='underline'></div>       
+          </div>
+          <button type="button" className="nav-toggle" onClick={toggle}>
+          <MenuSharpIcon />
+          </button>
         </div>
-        <div className="navbarCenter">
-          <ul className="navbarList">
-            <li className="navbarListItem"><Link className="link" to="/">Home</Link><div id='underline'></div></li>
-            <li className="navbarListItem"><Link className="link" to="/about" >About</Link><div id='underline'></div></li>
-            {user && (<li className="navbarListItem"><Link className="link" to="/create">Create</Link><div id='underline'></div></li>)}
-            {user && (<li className="navbarListItem"><Link className="link" to={`/posts/userPosts/${user._id}`} >My Receips</Link><div id='underline'></div></li>)}
-          </ul>
-        </div>
-        <div className="navbarRight">
-            {user && <div className="navbarUser">Hello, {user.userName}!!</div>}
-            {!user && (<><li className="navbarListItem"><Link className="link" to="/login">Login</Link><div id='underline'></div></li>      
-            <li className="navbarListItem"><Link className="link" to="/signup">Signup</Link><div id='underline'></div></li></>)}
-            {user && (<li className="navbarListItem" onClick={onLogout}><div id="logout">Logout</div><div id='underline'></div></li>)}   
+        
+        <div>
+          <ul className="navbarLinks">
+            <li><Link to="/">Home</Link></li>
+            <li><Link to="/about" >About</Link><div id='underline'></div></li>
+            {user && (<li><Link to="/create">Create</Link></li>)}
+            {user && (<li><Link to={`/posts/userPosts/${user._id}`} >My Receips</Link></li>)}
+            {user && <li className="navUser">Hello, {user.userName}!!</li>}
+            {!user && (<><li><Link to="/login">Login</Link></li>      
+            <li><Link to="/signup">Signup</Link></li></>)}
+            {user && (<li onClick={onLogout}><ExitToAppRoundedIcon fontSize="large" /></li>)} 
+          </ul>  
         </div> 
     </div> 
     </Wrapper>   
@@ -45,30 +54,39 @@ const Navbar = () => {
   
 }
 const Wrapper = styled.section`
+  height: 5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 
 .navbarContainer{
-  height: 5rem;
-  width: 100%;
-  display: flex;
-  align-items: center; 
-  position: sticky;
-  top: 0;
-  z-index: 999;
+  margin: 0 auto;
+  width: 90vw;
+  max-width: var(--max-width);
 }
 
-.logo{
-  margin-top: 1rem;
-  margin-left: 0.5rem;
-  width: 2.5rem;
-  height: 2.5rem;
-  border-radius: 1.5%;
-  object-fit: cover;
+.navbarHeader{
+  display: flex;
+  justify-content: space-between;
+  img {
+    width: 3rem;
+    margin-left: 1rem;
+    margin-top: 1rem; 
+  }
 }
 
-.navbarLeft{
-  flex: 3;
-  display: flex;
-  justify-content: center;
+.nav-toggle {
+  background: transparent;
+  border: transparent;
+  color: var(--clr-green);
+  cursor: pointer;
+  svg {
+    font-size: 2rem;
+  }
+}
+
+.navbarLinks {
+  display: none;
 }
 
 .title{
@@ -76,91 +94,52 @@ const Wrapper = styled.section`
   margin-top: 1rem;
   color: var(--clr-dark);
   text-align: center;
+  font-size: 2rem;
 }
 
-h4{
-  font-size: 0.8rem;
-}
-
-.navbarCenter{
-  flex: 6;
-}
-
-.navbarList{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 0;
-  padding: 0;
-}
-
-.navbarListItem{
-  color: var(--clr-dark);
-  font-size: 0.75rem;
-  font-weight: 400;
-  cursor: pointer;
-  margin-left: 0.3rem;
-  margin-right: 0.5rem;
-  display:block;
-}
-
-a:hover {
-  color: var(--clr-gold);
-}
-
-#logout:hover{
-  color: var(--clr-gold);
-}
-
-.navbarRight{
-  flex: 3;
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  color: var(--clr-green);
-}
-
-.navbarUser{
-  color: var(--clr-brown);
-  font-size: 0.75rem;
-}
 
 @media screen and (min-width: 800px){
-  .navbarContainer{
-    height: 5rem;
+  .nav-toggle {
+    display: none;
   }
-  
-  .logo{
-    margin-top; 0.8rem;
-    width: 4rem;
-    height: 4rem;
+
+  .navbarContainer {
+    width:100%;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
   }
-  
-  h4 {
-    font-size: 1.2rem;
+
+  .navbarHeader{
+    img {
+      width: 5rem;
+      margin: 1rem;
+    }
   }
 
   .title {
-    margin: 1.8rem;
+    font-size: 2rem;
   }
 
-  .underline{
-    width: 80%;
-    height: 0.25rem;
-    background: var(--clr-green);
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 0.5rem; 
-  }
-  
-  .navbarListItem{
-    font-size: 1rem;
-    font-weight: 500;
-    margin-right: 1rem;
-  }
-  
-  .navbarUser{
-    font-size: 1rem;
+  .navbarLinks {
+    display: flex;
+    justify-content: center;
+    li {
+      margin: 0 0.5rem;
+    }
+    a {
+      color: var(--clr-green);
+      font-size: 1.5rem;
+      text-transform: capitalize;
+      letter-spacing: var(--spacing);
+      padding: 0.5rem;
+      &:hover {
+        border-bottom: 3px solid var(--clr-green);
+      }
+    } 
+  .navUser {
+    color: var(--clr-gold);
+    font-size: 1.5rem;
   }
 }
 

@@ -74,6 +74,7 @@ const EditPost = () => {
     e.preventDefault()
     if(!title || !image || !desc || !ingredients || !instructions){
       toast.error("Please fill all the fields")
+      return
     }
     if(title && desc && image && ingredients && instructions){
       const updatePostData = {
@@ -84,8 +85,9 @@ const EditPost = () => {
         image: image
       }
       dispatch(updatePost({id, updatePostData}))
-      toast.success("Recipe was updated! 🚀")  
+      toast.success("Recipe was updated! 🚀") 
       navigate(`/posts/userPosts/${id}`)
+      
     }
     handleClear();
   } 

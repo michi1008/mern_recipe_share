@@ -6,7 +6,7 @@ const About = () => {
   return (
     <Wrapper>
         <div className="about">
-        <div className="aboutTitle"><h1>About this site</h1></div>
+        <div className="aboutTitle"><h2>About this site</h2></div>
         <div className="aboutContent">
             <p>This website is to share recipes among friends. <br></br>
                 When I invite my friends for a dinner party, many of them ask me for my food recipes. My dishes are usally my own creations. I don"t follow any recipes. With this website, I can easily share my recipes with my friends. <br></br>
@@ -48,7 +48,6 @@ justify-content: center;
 p{
     color: var(--clr-green);
 }
-
 
 `
 export default About

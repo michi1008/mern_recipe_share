@@ -27,6 +27,7 @@ const UserPosts = () => {
   }, [userId, navigate, isError, message, dispatch])
 
   const handledDeletePost = ((id) => {
+    if(window.confirm("Are you sure you want to delete this recipe?"))
     dispatch(deletePost(id))
     toast.success("Your post was deleted")
     navigate(`/posts/userPosts/${id}`)

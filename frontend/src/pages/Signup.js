@@ -185,7 +185,7 @@ box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
 position: absolute;
 top: 7rem;
 right: 2rem;
-background-color: var(--clr-gold);
+background-color: var(--clr-blue);
 color: var(--clr-white);
 border-radius: 0.3rem;
 padding: 0.7rem;
