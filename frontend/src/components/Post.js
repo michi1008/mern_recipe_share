@@ -1,17 +1,16 @@
-import React, {useState} from "react"
+import React from "react"
 import styled from "styled-components"
 import { Link } from "react-router-dom"
-
 const Post = ({ post }) => {
   
-  const { _id, title, desc, image, user } = post
-  
+  const { _id, title, desc, image} = post
+  console.log(post)
   return (
     <Wrapper>
       <div className="post">
         <div className="title"><h4>{title}</h4></div>
         <div className="desc"><p>{desc}</p></div>
-        <div className="imageContainer"><img className="image" src={image.url} /></div>
+        <div className="imageContainer"><img className="image" src={image} /></div>
         <Link to={`/posts/${_id}`} className="link">
             <span className="recipeLink">Go to recipe</span>
         </Link> 

@@ -15,12 +15,12 @@ const EditPost = () => {
   const [desc, setDesc] = useState(postToEdit.desc)
   const [ingredients, setIngredients] = useState(postToEdit.ingredients)
   const [instructions, setInstructions] = useState(postToEdit.instructions)
-  const [image, setImage] = useState(postToEdit.image.url)
+  const [image, setImage] = useState(postToEdit.image)
 
   const dispatch = useDispatch()
   const navigate = useNavigate()    
 
-  const { error, isLoading } = useSelector((state) => ({...state.post}))
+  const { isLoading } = useSelector((state) => ({...state.post}))
 
   const ingredientAdd=()=>{
     const newIngredients=[...ingredients,[]]
@@ -56,49 +56,56 @@ const EditPost = () => {
     setInstructions(deletInstructions)  
   }
 
-  //handle and convert it in base 64
-  const handleImage = (e) =>{
-    const file = e.target.files[0]
-    setFileToBase(file)
+  function convertToBase64(file){
+    return new Promise((resolve, reject) => {
+      const fileReader = new FileReader();
+      fileReader.readAsDataURL(file);
+      fileReader.onload = () => {
+        resolve(fileReader.result)
+      };
+      fileReader.onerror = (error) => {
+        reject(error)
+      }
+    })
   }
-  
-  const setFileToBase = (file) =>{
-    const reader = new FileReader()
-    reader.readAsDataURL(file)
-    reader.onloadend = () =>{
-      setImage(reader.result)
-    }
+  //handle and convert it in base 64
+  const handleImage = async (e) =>{
+  const file = e.target.files[0]
+  const base64 = await convertToBase64(file)
+  console.log(base64)
+  setImage(base64)
   }
 
   function handleUpdate(e){
     e.preventDefault()
     if(!title || !image || !desc || !ingredients || !instructions){
       toast.error("Please fill all the fields")
-      return
     }
     if(title && desc && image && ingredients && instructions){
       const updatePostData = {
-        title: title,
-        desc: desc,
-        ingredients : ingredients,
-        instructions : instructions,
-        image: image
+        title,
+        desc,
+        ingredients,
+        instructions,
+        image, 
       }
       dispatch(updatePost({id, updatePostData}))
       toast.success("Recipe was updated! 🚀") 
       navigate(`/posts/userPosts/${id}`)
       
     }
-    handleClear();
+    handleClear()
   } 
 
   const handleClear = () => {
     setTitle("")
     setDesc("")  
-    setImage(null)
+    setImage("")
     setIngredients([])
     setInstructions([])
   } 
+
+
 
   if(isLoading){
     return <Spinner/>
@@ -114,7 +121,7 @@ const EditPost = () => {
       <div className="formContainer">
           <form className="writeForm" onSubmit={handleUpdate}>    
             <div className="titleContainer"> 
-              <label htmlFor="text"><h4>Title</h4></label>
+              <label htmlFor="text">Title</label>
               <input
                 className="writeTitle"
                 type="text"
@@ -123,7 +130,7 @@ const EditPost = () => {
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
               />   
-               <label htmlFor="text"><h4>Description</h4></label>
+               <label htmlFor="text">Description</label>
               <input
                 className="writeDesc"
                 type="text"
@@ -135,7 +142,7 @@ const EditPost = () => {
             </div>               
             <div className="imageContainer"> 
               <div><h4 className="imageText">Please re-upload image if you want to change it!</h4>
-                <input className="chooseBtn" type="file" onChange={handleImage} />      
+                <input className="chooseBtn" type="file" onChange={(e) => handleImage(e)} />      
               </div>          
               <div>
               <img src={image} className="uploaded_image"/>
@@ -182,15 +189,11 @@ const EditPost = () => {
 }
 
 const Wrapper = styled.section`
-h3{
-  color: var(--clr-green);
-  font-size: 1.8rem;
-}
 .writeContainer{
   padding-top: 2.5rem;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: center;
   padding-botoom: 3rem;
   min-height: calc(100vh - 7rem);
   overflow: auto;
@@ -201,7 +204,7 @@ h3{
 }
 .writeImg{
   width: 30vw;
-  height: 10vh;
+  height: 20vh;
   border-radius: 0.3rem;
   object-fit: cover;
   margin-top: 2rem;
@@ -216,13 +219,13 @@ h3{
   background-color: var(--clr-white);
   border-radius: 0.3rem; 
   border-color: var(--clr-green);
-  width: 20%;
+  width: 18%;
 }
 .writeDesc{
   background-color: var(--clr-white);
   border-radius: 0.3rem; 
   border-color: var(--clr-green);
-  width: 30%;
+  width: 28%;
   margin-left: 1rem;
 }
 .writeForm{
@@ -269,17 +272,18 @@ label{
 .imageText{
   color: var(--clr-light);
   font-size: 1rem;
-  margin-right: 4rem;
+  margin-bottom: 1rem;
 }
 .image{
   margin-bottom: 2rem;
+  margin-left: 1rem;
 }
 .chooseBtn{
   background: var(--clr-light);
   color:var(--clr-white);
-  width: 16rem;
+  width: 12rem;
   display: inline-block;
-  padding: 1.2rem, 2rem;
+  padding: 1.2rem, 1.2rem;
   border: 1px solid var(--clr-green);
   border-radius: 0.2rem;
   text-align: center;
@@ -287,7 +291,7 @@ label{
 .imageSubmit {
   padding: 0.3rem 2rem;
   border: 1px solid #000;
-  width: 5rem;
+  width: 4rem;
   border-radius: 5px;
   background: var(--clr-light);
   color: var(--clr-white);
@@ -315,8 +319,8 @@ label{
 .instructions {
   display: flex;
   flex-direction: row;
-  margin-top: 1rem;
 }
+
 .form_text {
   margin-top: 1rem;
   text-align: center;
@@ -384,137 +388,133 @@ margin-left: 1rem;
 
 .image{
   margin-bottom: 2rem;
-  margin-left: 2rem;
 }
 
-.chooseBtn{
-  width: 15rem;
-  padding: 1.2rem, 2rem;
+.no_image {
+  width: 8rem;
+  height: 8rem;
 }
 
 img{
-  width:17rem;
-  height:17rem;
+  width:8rem;
+  height:8rem;
   object-fit:cover;
 }
 
 @media screen and (min-width: 800px){
-  h3{
-    font-size: 1.8rem;
-  }
-  
-  .write{
-    padding-top: 2.5rem;
+  .writeContainer{
+    flex-direction: column;
+    justify-content: center;
     padding-botoom: 3rem;
+    min-height: calc(100vh - 7rem);
+    overflow: auto;
   }
-  
-  .writeImg{
-    width: 30vw;
-    height: 10vh;
-    border-radius: 0.3rem;
-    object-fit: cover;
-    margin-top: 2rem;
-  }
-  .writeTitle{
-    border-radius: 0.3rem; 
-    width: 20%;
-  }
-  
+
   .writeDesc{
+    background-color: var(--clr-white);
     border-radius: 0.3rem; 
-    width: 35%;
+    border-color: var(--clr-green);
+    width: 40%;
     margin-left: 1rem;
   }
-  
   .writeForm{
+    position: relative;
     margin-top: 2rem;
   }
-  
+
   label{
-    margin-right : 1rem;
-    margin-left: 1rem;
+    font-size: 2rem;
   }
-  
+s
+  .formContainer{
+    display:flex;
+    align-items: center;
+    flex-direction: column;
+  }
   .writeSubmit{
+    position: absolute;  
     top: -6rem;
-    right: -1rem;
-    padding: 1rem;
-    border-radius: 0.3rem;
+    right: -6rem;
     font-size: 1rem;
   }
- 
+
   .imageContainer{
+    display:flex;
+    align-items: center;
+    flex-direction: row;
     margin-buttom: 3rem;
     margin-top: 2rem;
     margin-left: 2rem;
+    margin-right: 2rem;
   }
-  
+
   .imageText{
     font-size: 1rem;
-    margin-right: 4rem;
-  }
-  
-  .image{
-    margin-bottom: 2rem;
-    margin-left: 2rem;
+    word-wrap: break-word;
+    margin-bottom: 1rem;
   }
   
   .chooseBtn{
     width: 15rem;
-    padding: 1.2rem, 2rem;
-  }
-  
-  img{
-    width:17rem;
-    height:17rem;
-    object-fit:cover;
   }
 
-  .uploaded_image{
-    width: 100%;
-    height: 20rem;
-    margin-left: 2rem;
+  .imageSubmit {
+    padding: 0.3rem 2rem;
+    width: 5rem;
+    font-size: 1rem;
+    margin-top: 1rem;
   }
   
   .arrayContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
     margin-top: 2rem;
     height: 40rem;
   }
-  .form_text {
-    margin-top: 1rem;
+
+  textarea {
+    height: 4rem;
   }
-  .form {
-    margin-button: 1rem;
-  }
-  input {
-    border-radius: 4px;
-  }
-  textarea{
-    margin-top: 1rem;
-  }
-  
   .order {
+    color: var(--clr-green);
     font-size: 1rem;
+    margin-right: 1rem;
   }
+
   .add_btn {
     padding: 0.2rem 0.2rem;
+    border: 1px solid #000;
     width: 6rem;
-    border-radius: 4px;
     font-size: 1rem;
     font-weight: 500;
     margin-left: 2rem;
-    magin-bottom: 1rem;
   }
+
   .delete_btn {
   padding: 0.2rem 0.2rem;
-  width: 2rem;
-  border-radius: 2px;
+  border: 1px solid #000;
+  width: 1.8rem;
   font-size: 1rem;
   font-weight: 500;
-  justify-content: center;
   margin-left: 1rem;
   }
+  
+  .image{
+    margin-bottom: 2rem;
+  }
+  
+  .no_image {
+    width: 12rem;
+    height: 12rem;
+  }
+  
+  img{
+    width: 15rem;
+    height: 15rem;
+    object-fit: cover;
+  }
 }
-
 `
 export default EditPost

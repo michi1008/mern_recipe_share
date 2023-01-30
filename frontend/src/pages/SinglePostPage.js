@@ -39,9 +39,9 @@ import Spinner from "../components/Spinner"
 
     return (
       <Wrapper>
-        <div className="container">
+        <div className="leftContainer">
           <div className="title"><h3>{post?.title}</h3></div>
-          <div className="image"><img className="image" src={post?.image.url} /></div>
+          <div className="image"><img className="image" src={post?.image} /></div>
           <div className="desc"><h4>{post?.desc}</h4></div>
           <div className="infoContainer">
             <div className="dateContainer">
@@ -49,9 +49,8 @@ import Spinner from "../components/Spinner"
             </div>
           </div>
         </div>
-        <div className="contentContainer">
+        <div className="recipeContainer">
           <div className="contentTitle"><h3>Recipe 👨🏽‍🍳</h3></div>
-          <div className="recipeContainer">
           <div className="ingredientContainer">
             <h4 className="arrayTitle">Ingredients</h4>
             {post?.ingredients &&
@@ -70,8 +69,7 @@ import Spinner from "../components/Spinner"
           </ol>
             ))}
           </div> 
-          </div>
-          </div>        
+          </div>      
      </Wrapper>
     )
   }
@@ -82,13 +80,11 @@ flex-direction: row;
 justify-content: center;
 align-items: center;
 
-.container {
-  flex: 1 1 0;
+.leftContainer {
   display: flex;
   flex-direction: column;
   justfiy-content: center;
   align-items: center;
-  margin: 2rem;
 }
 
 .image{
@@ -114,16 +110,11 @@ font-style: italic;
   cursor: pointer;
 }
 
-.contentContainer{
-  flex: 2 1 0;
-  display: flex;
-  flex-direction: column;
-}
-
 .recipeContainer{
   display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
+  flex-direction: column;
+  justify-content: center;
+  height: 40rem;
 }
 
 .contentTitle{
@@ -134,7 +125,6 @@ font-style: italic;
 }
 
 .instructionContainer{
-  margin-left: 3rem;
   color: var(--clr-green)
 }
 
@@ -158,21 +148,6 @@ font-style: italic;
   color: var(--clr-green);
 }
 
-.userContainer{
-  display:flex;
-  flex-direction: row;
-}
-
-.userTItle{
-  font-size: 1.2rem;
-  color:var(--clr-green);
-}
-
-.user{
-  margin-left: 1rem;
-  color: var(--clr-red);
-  font-size: 1.2rem;
-}
 
 .dateContainer{
   display:flex;
@@ -181,9 +156,8 @@ font-style: italic;
 }
 
 @media screen and (min-width: 800px) {
-  .container {
+  .recipeContainer{
     margin-left: 2rem;
-    margin-top: 2rem;
   }
   
   .image{
@@ -201,27 +175,20 @@ font-style: italic;
     margin-top: 1rem;
   }
   
-  .contentContainer{
+  .recipeContainer{
     margin-left: 3rem;
   } 
+
   .contentTitle{
     font-weight: 700;
     font-size: 1.5rem;
     margin-bottom: 2rem;
   }
-  .instructionContainer{
-    margin-left: 3rem;
-  }
+
   .content {
     font-size: 1.2rem;  
   }
-  .userTItle{
-    font-size: 1.2rem;
-  }
-  .user{
-    margin-left: 1rem
-    font-size: 1.2rem;
-  }
+
 }
 
 `

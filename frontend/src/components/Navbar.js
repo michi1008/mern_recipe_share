@@ -115,6 +115,7 @@ const Wrapper = styled.section`
       width: 5rem;
       margin: 1rem;
     }
+    margin-top: 1rem;
   }
 
   .title {
