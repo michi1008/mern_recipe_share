@@ -19,7 +19,7 @@ const NewPost = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
-  const { isLoading } = useSelector((state) => state.post)
+  const { isLoading, error } = useSelector((state) => state.post)
   const { user } = useSelector((state) => state.user)
   const id = user._id
 
@@ -94,6 +94,7 @@ function convertToBase64(file){
     };
     fileReader.onerror = (error) => {
       reject(error)
+      toast.error("Image size is too big. The maxium is 50KB")
     }
   })
 }
@@ -101,7 +102,6 @@ function convertToBase64(file){
 const handleImage = async (e) =>{
 const file = e.target.files[0]
 const base64 = await convertToBase64(file)
-console.log(base64)
 setImage(base64)
 }
  
@@ -157,7 +157,7 @@ if(isLoading){
                       {ingredients.map((data,i)=>{
                           return(
                             <div className="form" key={i}>
-                                  <input type="text" value={data} onChange={e=>handleIngredientChange(e,i)} />
+                                  <input className="arrayInput" type="text" value={data} onChange={e=>handleIngredientChange(e,i)} />
                                   <button className="delete_btn" onClick={()=>ingredientDelete(i)}>x</button>
                             </div>
                           )
@@ -172,7 +172,7 @@ if(isLoading){
                         return(
                           <div className="form" key={i}>
                                 <div className="order">{i+1} : </div>
-                                <textarea type="text" value={data} onChange={e=>handleInstructionChange(e,i)} />
+                                <textarea className="arrayInput" type="text" value={data} onChange={e=>handleInstructionChange(e,i)} />
                                 <button className="delete_btn" onClick={()=>instructionDelete(i)}>X</button>
                           </div>
                         )
@@ -403,25 +403,6 @@ img{
 }
 
 @media screen and (min-width: 800px){
-  .writeContainer{
-    flex-direction: column;
-    justify-content: center;
-    padding-botoom: 3rem;
-    min-height: calc(100vh - 7rem);
-    overflow: auto;
-  }
-
-  .writeDesc{
-    background-color: var(--clr-white);
-    border-radius: 0.3rem; 
-    border-color: var(--clr-green);
-    width: 40%;
-    margin-left: 1rem;
-  }
-  .writeForm{
-    position: relative;
-    margin-top: 2rem;
-  }
 
   label{
     font-size: 3rem;
@@ -475,6 +456,9 @@ img{
     height: 40rem;
   }
 
+  .arrayInput {
+    width: 18rem;
+  }
   textarea {
     height: 4rem;
   }
@@ -514,7 +498,6 @@ img{
   img{
     width: 15rem;
     height: 15rem;
-    object-fit: cover;
   }
 }
 `

@@ -69,21 +69,21 @@ import Spinner from "../components/Spinner"
           </ol>
             ))}
           </div> 
-          </div>      
+        </div>      
      </Wrapper>
     )
   }
   
 const Wrapper = styled.section`
 display:flex;
-flex-direction: row;
+flex-direction: column;
 justify-content: center;
 align-items: center;
 
 .leftContainer {
   display: flex;
   flex-direction: column;
-  justfiy-content: center;
+  justfiy-content: flex-start;
   align-items: center;
 }
 
@@ -113,8 +113,10 @@ font-style: italic;
 .recipeContainer{
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  height: 40rem;
+  align-items: flex-start;
+  height: 50rem;
+  color: var(--clr-green);
+  margin-left: 1rem;
 }
 
 .contentTitle{
@@ -124,14 +126,9 @@ font-style: italic;
   margin-bottom: 2rem;
 }
 
-.instructionContainer{
-  color: var(--clr-green)
-}
-
 .content {
   color: var(--clr-dark)
   font-size: 1.2rem;
-  
 }
 
 .arrayTitle{
@@ -141,13 +138,8 @@ font-style: italic;
 .infoContainer{
   display:flex;
   flex-direction: row;
-  justify-content: flex-start;
+  justify-content: center;
 }
-
-.ingredientContainer{
-  color: var(--clr-green);
-}
-
 
 .dateContainer{
   display:flex;
@@ -156,9 +148,7 @@ font-style: italic;
 }
 
 @media screen and (min-width: 800px) {
-  .recipeContainer{
-    margin-left: 2rem;
-  }
+flex-direction: row;
   
   .image{
   height: 20rem;
@@ -177,6 +167,8 @@ font-style: italic;
   
   .recipeContainer{
     margin-left: 3rem;
+    display: flex;
+
   } 
 
   .contentTitle{
@@ -188,7 +180,6 @@ font-style: italic;
   .content {
     font-size: 1.2rem;  
   }
-
 }
 
 `
