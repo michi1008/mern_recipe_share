@@ -41,7 +41,7 @@ const Navbar = () => {
             <li><Link to="/">Home</Link></li>
             <li><Link to="/about" >About</Link><div id='underline'></div></li>
             {user && (<li><Link to="/create">Create</Link></li>)}
-            {user && (<li><Link to={`/posts/userPosts/${user._id}`} >My Receips</Link></li>)}
+            {user && (<li><Link to={`/posts/userPosts/${user._id}`} >{user.userName}'s Recipes</Link></li>)}
             {user && <li className="navUser">Hello, {user.userName}!!</li>}
             {!user && (<><li><Link to="/login">Login</Link></li>      
             <li><Link to="/signup">Signup</Link></li></>)}
