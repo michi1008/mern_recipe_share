@@ -201,7 +201,6 @@ const Wrapper = styled.section`
 
 .titleContainer {
   color: var(--clr-brown);
-  text-align: center;
 }
 
 .writeImg {
@@ -236,18 +235,19 @@ label {
 
 .writeTitle {
   border: 1px solid var(--clr-light);
-  width: 20rem;
-  height: 2.5rem;
+  width: 15rem;
+  height: 2rem;
 }
 
 .writeDesc {
   border: 1px solid var(--clr-light);
-  width: 20rem;
-  height: 2.5rem;
+  width: 25rem;
+  height: 2rem;
 }
 
 input {
   background-color: var(--clr-background);
+
 }
 
 input:focus {
@@ -257,13 +257,13 @@ input:focus {
 .submitButton {
   color: var(--clr-white);  
   background-color: var(--clr-brown);
-  padding: 0.8rem;
   border: none;
   border-radius: 0.3rem;
-  cursor: pointer;
+  cursor:pointer;
   font-size: 1rem;
   width: 6rem;
   margin-top: 1rem;
+  text-align: center;
 }
 
 .submitButton:disabled {
@@ -273,7 +273,7 @@ input:focus {
 }
 
 .imageContainer {
-  display: flex;
+  display:flex;
   align-items: center;
   flex-direction: row;
   margin-buttom: 3rem;
@@ -281,25 +281,24 @@ input:focus {
   margin-right: 2rem;
 }
 
-.imageText{
+.imageText {
   color: var(--clr-brown);
   font-size: 0.8rem;
   margin-bottom: 1rem;
 }
 
-.image{
+.image {
   margin-bottom: 2rem;
   margin-left: 2rem;
 }
 
-.chooseBtn{
+.chooseBtn {
   background: var(--clr-green);
-  color: var(--clr-white);
+  color:var(--clr-white);
   width: 12rem;
   display: inline-block;
   padding: 1.2rem, 1.2rem;
   border: 1px solid var(--clr-dark);
-  border-radius: 0.2rem;
   text-align: center;
 }
 
@@ -307,7 +306,6 @@ input:focus {
   padding: 0.3rem 2rem;
   border: 1px solid #000;
   width: 4rem;
-  border-radius: 5px;
   background: var(--clr-light);
   color: var(--clr-white);
   font-size: 1rem;
@@ -325,7 +323,7 @@ input:focus {
   align-items : flex-start;
   justify-content: flex-start;
   margin-top: 2rem;
-  height: 30rem;
+  min-height: 20rem;
   color: var(--clr-brown);
 }
 
@@ -413,6 +411,11 @@ margin-left: 1rem;
   margin-bottom: 2rem;
 }
 
+.no_image {
+  width: 8rem;
+  height: 8rem;
+}
+
 img{
   width:8rem;
   height:8rem;
@@ -422,7 +425,7 @@ img{
 @media screen and (min-width: 800px){
   padding: 1rem;
 
-.writeImg {
+.writeImg{
   width: 30vw;
   height: 20vh;
 }
@@ -448,12 +451,10 @@ label {
 
 .writeTitle {
   width: 30rem;
-  height: 2rem;
 }
 
 .writeDesc  {
   width: 50rem;
-  height: 4rem;
 }
 
 .submitButton {
@@ -486,14 +487,12 @@ label {
 .chooseBtn {
   width: 15rem;
   padding: 1.2rem, 1.2rem;
-  border-radius: 0.2rem;
 }
 
 .imageSubmit {
   padding: 0.3rem 2rem;
   border: 1px solid #000;
   width: 6rem;
-  border-radius: 5px;
   font-size: 1rem;
   margin-top: 1rem;
 }
@@ -504,7 +503,7 @@ label {
   align-items : flex-start;
   justify-content: flex-start;
   margin-top: 2rem;
-  height: 60rem;
+  min-height: 20rem;
 }
 
 .instructions {
@@ -551,11 +550,15 @@ margin-left: 1rem;
   margin-bottom: 2rem;
 }
 
+.no_image {
+  width: 8rem;
+  height: 8rem;
+}
+
 img {
   width:8rem;
   height:8rem;
   object-fit:cover;
-  box-shadow:var(--dark-shadow);
 }
 `
 export default EditPost
