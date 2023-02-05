@@ -6,7 +6,7 @@ const About = () => {
   return (
     <Wrapper>
         <div className="about">
-        <div className="aboutTitle"><h2>About this site</h2></div>
+        <div className="aboutTitle">About this site</div>
         <div className="aboutContent">
             <p>This website is to share recipes among friends. <br></br>
                 When I invite my friends for a dinner party, many of them ask me for my food recipes. My dishes are usally my own creations. I don"t follow any recipes. With this website, I can easily share my recipes with my friends. <br></br>
@@ -29,20 +29,21 @@ align-items: center;
 justify-content: center;
 
 .about {
-    width: 60%;
-    margin-top: 1rem;
+    width: 80%;
+    margin: 2rem;
     padding: 1.5rem;
     background-image: linear-gradient(
         rgba(255, 255, 255, 0.4),
         rgba(255, 255, 255, 0.4)
-      ), url(${img});
-      border-radius: 3px;
-      background-color: var(--clr-green);
-      background-repeat: no-repeat;
-      height: calc(100vh-5rem);
+        ), url(${img});
+    border-radius: 3px;
+    background-color: var(--clr-green);
+    background-repeat: no-repeat;
+    height: calc(100vh-5rem);
 
 .aboutTitle {
     color: var(--clr-dark);
+    font-size: 1.5rem;
 }
 
 p {

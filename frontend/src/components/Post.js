@@ -72,12 +72,6 @@ display: -webkit-box;
   .post {
     width: 20rem;
     height: 32rem;
-    margin: 2rem 1.2rem 2rem 1.2rem;
-    background-color: var(--clr-white);
-    padding: 1rem;
-    border: 1px solid var(--clr-green);
-    border-radius: 5px;
-    box-shadow: var(----dark-shadow);
   }
   
   .image {

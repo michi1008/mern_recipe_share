@@ -181,9 +181,11 @@ if(isLoading){
                   })}
               </div>
             </div>
-          </div>       
+          </div>          
+            <div className="buttonContainer">
             <button className="btn submitButton" type="submit" disabled={!title || !desc || !image || !ingredients || !instructions} onSubmit={handlePublish}>Submit</button>
-      </form>      
+            </div> 
+          </form>
     </Wrapper>   
   )
 }
@@ -199,10 +201,14 @@ const Wrapper = styled.section`
 
 .titleContainer {
   color: var(--clr-brown);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .writeImg {
-  width: 30vw;
+  width: 50vw;
   height: 15vh;
   border-radius: 0.3rem;
   object-fit: cover;
@@ -213,11 +219,10 @@ const Wrapper = styled.section`
 .writeForm {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
   align-items: flex-start;
-  margin-top: 2rem;
-  border: 2px solid var(--clr-light);
-  padding: 1rem;
+  margin: 3rem
+ /*  border: 2px solid var(--clr-light); */
 }
 
 .topContainer {
@@ -245,29 +250,10 @@ label {
 
 input {
   background-color: var(--clr-background);
-
 }
 
 input:focus {
   outline: 1px solid var(--clr-gold);
-}
-
-.submitButton {
-  color: var(--clr-white);  
-  background-color: var(--clr-brown);
-  border: none;
-  border-radius: 0.3rem;
-  cursor:pointer;
-  font-size: 1rem;
-  width: 6rem;
-  margin-top: 1rem;
-  text-align: center;
-}
-
-.submitButton:disabled {
-  background: var(--clr-grey);
-  color: var(--clr-white);
-  cursor: not-allowed;
 }
 
 .imageContainer {
@@ -418,6 +404,28 @@ img{
   width:8rem;
   height:8rem;
   object-fit:cover;
+}
+
+.buttonContainer {
+  align-self: flex-end; 
+  margin-right: 2rem;
+}
+
+.submitButton {
+  color: var(--clr-white);  
+  background-color: var(--clr-brown);
+  border: none;
+  border-radius: 0.3rem;
+  cursor: pointer;
+  font-size: 1rem;
+  width: 6rem;
+  text-align: center;
+}
+
+.submitButton:disabled {
+  background: var(--clr-grey);
+  color: var(--clr-white);
+  cursor: not-allowed;
 }
 
 @media screen and (min-width: 800px){

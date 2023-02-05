@@ -26,7 +26,7 @@ const UserPosts = () => {
       dispatch(getPostsByUser(userId))
   }, [userId, navigate, isError, message, dispatch])
 
-  const handledDeletePost = ((id) => {
+  const handledDeletePost = ( (id) => {
     if(window.confirm("Are you sure you want to delete this recipe?"))
     dispatch(deletePost(id))
     toast.success("Your post was deleted")
@@ -67,11 +67,11 @@ display: flex;
 flex-direction: column;
 align-items: center;
 justify-content: center;
+padding: 2rem;
 
 .posts {
   display: flex;
   flex-wrap: wrap;
-  margin: 1rem;
   justify-content: center;
   align-items: center; 
 }
@@ -93,7 +93,13 @@ justify-content: center;
 
 .post {
   width: 20rem;
-  margin: 0rem 1.2rem 2rem 1.2rem;
+  height: 26rem;
+  margin: 2rem 1.2rem 2rem 1.2rem;
+  background-color: var(--clr-white);
+  padding: 1rem;
+  border: 2px solid var(--clr-gold);
+  border-radius: 5px;
+  box-shadow: var(--dark-shadow);
 }
 
 .title {
@@ -101,7 +107,7 @@ justify-content: center;
 }
 
 .image {
-width: 75%;
+width: 100%;
 height: 15rem;
 object-fit: cover;
 border-radius: 0.2rem;
@@ -128,7 +134,8 @@ display: -webkit-box;
 }
 
 .iconContainer {
-  justify-content: end; 
+  display: flex;
+  justify-content : flex-end; 
 }
 
 .icon {
@@ -148,8 +155,15 @@ display: -webkit-box;
   }
   
   .post {
-    width: 25rem;
-    margin: 0rem 1.2rem 2rem 1.2rem;
+    width: 22rem;
+    height: 30rem;
+    margin: 2rem 1.2rem 2rem 1.2rem;
+    background-color: var(--clr-white);
+    padding: 1rem;
+    border: 2px solid var(--clr-light);
+    border-radius: 5px;
+    box-shadow: var(--dark-shadow);
+    
   }
   
    .image {

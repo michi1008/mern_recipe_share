@@ -75,6 +75,7 @@ const updatePost = async (req, res) => {
     creator: req.body.creator,
     title: req.body.title,
     desc: req.body.desc,
+    image: req.body.image,
     ingredients: req.body.ingredients,
     instructions: req.body.instructions,
   }
