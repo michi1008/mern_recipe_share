@@ -19,7 +19,7 @@ const Posts = ({ posts }) => {
 }
 
 const Wrapper = styled.section`
-.posts{
+.posts {
     flex: 9;
     display: flex;
     flex-wrap: wrap;
@@ -27,7 +27,7 @@ const Wrapper = styled.section`
     margin-bottom: 2rem;
 }
 
-.no_posts{
+.no_posts {
   margin-top: 2rem;
 }
 

@@ -89,7 +89,7 @@ const Wrapper = styled.section`
   display: none;
 }
 
-.title{
+.title {
   margin-left: 0.4rem;
   margin-top: 1rem;
   color: var(--clr-dark);
@@ -110,7 +110,7 @@ const Wrapper = styled.section`
     align-items: center;
   }
 
-  .navbarHeader{
+  .navbarHeader {
     img {
       width: 5rem;
       margin: 1rem;
@@ -130,17 +130,17 @@ const Wrapper = styled.section`
     }
     a {
       color: var(--clr-green);
-      font-size: 1.5rem;
+      font-size: 1.2rem;
       text-transform: capitalize;
       letter-spacing: var(--spacing);
       padding: 0.5rem;
       &:hover {
-        border-bottom: 3px solid var(--clr-green);
+        border-bottom: 2px solid var(--clr-green);
       }
     } 
   .navUser {
     color: var(--clr-gold);
-    font-size: 1.5rem;
+    font-size: 1.2rem;
   }
 }
 

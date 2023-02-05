@@ -110,185 +110,197 @@ if(isLoading){
 }
   return (
     <Wrapper>
-      <div className="writeContainer">
-        <div className="title">
-          <h2>Create a recipe!</h2>
+        <div className="titleContainer">
+          <h3>Create a recipe!</h3>
           <img className="writeImg" src={img} alt="" />
         </div>
-        <div className="formContainer">
-            <form className="writeForm" onSubmit={handlePublish}>    
-              <div className="titleContainer"> 
-                <label htmlFor="text"><h4>Title</h4></label>
-                <input
-                  className="writeTitle"
-                  type="text"
-                  name="title"
-                  id="title"
-                  value={title}
-                  onChange={(e) => setTitle(e.target.value)}
-                />   
-                 <label htmlFor="text"><h4>Description</h4></label>
-                <input
-                  className="writeDesc"
-                  type="text"
-                  name="desc"
-                  id="desc"
-                  value={desc}
-                  onChange={(e) => setDesc(e.target.value)}
-                /> 
-              </div>               
-              <div className="imageContainer">
-                <div>{!image && <div className="imageText">Please upload an image before publishing your recipe! <br></br>The max file size is 100KB.</div>}
+        <form className="writeForm" onSubmit={handlePublish}>    
+          <div className="topContainer"> 
+            <label htmlFor="text">Title</label>
+            <input
+              className="writeTitle"
+              type="text"
+              name="title"
+              id="title"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+            />   
+            <label htmlFor="text">Description</label>
+            <input
+              className="writeDesc"
+              type="text"
+              name="desc"
+              id="desc"
+              value={desc}
+              onChange={(e) => setDesc(e.target.value)}
+            /> 
+          </div>               
+          <div className="imageContainer">
+            <div>{!image && <div className="imageText">Please upload an image before publishing your recipe! <br></br>The max file size is 100KB.</div>}
 
-                <input className="chooseBtn" type="file" name="image" accept=".jpeg, .png, .jpg" onChange={(e) => handleImage(e)} />    
-                </div>
-                <div className="image">
-                  <div className="no_image">
-                  { !image && <img src={no_img}/>}
-                  {image && <img src={image} className="uploaded_image"/>}
-                  </div>
-                </div>
+            <input className="chooseBtn" type="file" name="image" accept=".jpeg, .png, .jpg" onChange={(e) => handleImage(e)} />    
+            </div>
+            <div className="image">
+              <div className="no_image">
+              { !image && <img src={no_img}/>}
+              {image && <img src={image} className="uploaded_image"/>}
               </div>
-             <div className="arrayContainer">
-              <div className="ingredients">
-                <div className="inputForm">
-                  <div className="add_title"><h4>Ingredients</h4></div>
-                  <button className="add_btn" type="button" onClick={() => ingredientAdd()}>Add</button>
-                      {ingredients.map((data,i)=>{
-                          return(
-                            <div className="form" key={i}>
-                                  <input className="arrayInput" type="text" value={data} onChange={e=>handleIngredientChange(e,i)} />
-                                  <button className="delete_btn" onClick={()=>ingredientDelete(i)}>x</button>
-                            </div>
-                          )
-                      })}
+            </div>
+          </div>
+          <div className="arrayContainer">
+            <div className="ingredients">
+              <div>
+                <div className="arrayTitleContainer">
+                <div className="add_title">Ingredients</div>
+                <button className="add_btn" type="button" onClick={() => ingredientAdd()}>Add</button>
                 </div>
-             </div>
-             <div className="instructions">
-              <div className="inputForm">
-                <div className="add_title"><h4>Instructions</h4></div>
-                <button className="add_btn" type="button" onClick={() => instructionAdd()}>Add</button>
-                    {instructions.map((data,i)=>{
+                    {ingredients.map((data,i)=>{
                         return(
                           <div className="form" key={i}>
-                                <div className="order">{i+1} : </div>
-                                <textarea className="arrayInput" type="text" value={data} onChange={e=>handleInstructionChange(e,i)} />
-                                <button className="delete_btn" onClick={()=>instructionDelete(i)}>X</button>
+                                <input className="arrayInput" type="text" value={data} onChange={e=>handleIngredientChange(e,i)} />
+                                <button className="delete_btn" onClick={()=>ingredientDelete(i)}>x</button>
                           </div>
                         )
                     })}
-                </div>
               </div>
-              </div> 
-          <button className="writeSubmit" type="submit" disabled={!title || !desc || !image || !ingredients || !instructions} onSubmit={handlePublish}>Publish</button>
-          </form>      
-        </div>
-      </div>
+            </div>
+          <div className="instructions">
+            <div>
+              <div className="arrayTitleContainer">
+              <div className="add_title">Instructions</div>
+              <button className="add_btn" type="button" onClick={() => instructionAdd()}>Add</button>
+              </div>
+                  {instructions.map((data,i)=>{
+                      return(
+                        <div className="form" key={i}>
+                              <div className="order">{i+1} : </div>
+                              <textarea className="arrayInput" type="text" value={data} onChange={e=>handleInstructionChange(e,i)} />
+                              <button className="delete_btn" onClick={()=>instructionDelete(i)}>X</button>
+                        </div>
+                      )
+                  })}
+              </div>
+            </div>
+          </div> 
+      <button className="submitButton" type="submit" disabled={!title || !desc || !image || !ingredients || !instructions} onSubmit={handlePublish}>Submit</button>
+      </form>      
     </Wrapper>   
   )
 }
 
 const Wrapper = styled.section`
-
-.writeContainer{
-  padding-top: 2.5rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding-botoom: 3rem;
+  align-items: center;
   min-height: calc(100vh - 7rem);
   overflow: auto;
-}
-.title{
-  color: var(--clr-dark);
+  padding: 2rem;
+
+.titleContainer {
+  color: var(--clr-brown);
   text-align: center;
 }
-.writeImg{
+
+.writeImg {
   width: 30vw;
-  height: 20vh;
+  height: 15vh;
   border-radius: 0.3rem;
   object-fit: cover;
   margin-top: 2rem;
   box-shadow: var(--light-shadow);
 }
-.titleContainer{
+
+.writeForm {
   display: flex;
-  flex-direction: row;
-  justify-content: center;
-}
-.writeTitle{
-  background-color: var(--clr-white);
-  border-radius: 0.3rem; 
-  border-color: var(--clr-green);
-  width: 18%;
-}
-.writeDesc{
-  background-color: var(--clr-white);
-  border-radius: 0.3rem; 
-  border-color: var(--clr-green);
-  width: 28%;
-  margin-left: 1rem;
-}
-.writeForm{
-  position: relative;
-  margin-top: 2rem;
-}
-label{
-  font-size: 1rem;
-  color: var(--clr-green);
-  margin-right : 1rem;
-  margin-left: 1rem;
-}
-.formContainer{
-  display:flex;
-  align-items: center;
   flex-direction: column;
-}
-.writeSubmit{
-  position: absolute;  
-  top: -6rem;
-  right: 2rem;
-  color: var(--clr-white);  
-  background-color: var(--clr-green);
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-top: 2rem;
+  border: 2px solid var(--clr-light);
   padding: 1rem;
+}
+
+.topContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+label {
+  font-size: 1rem;
+  color: var(--clr-brown);
+}
+
+.writeTitle {
+  border: 1px solid var(--clr-light);
+  width: 20rem;
+  height: 2.5rem;
+}
+
+.writeDesc {
+  border: 1px solid var(--clr-light);
+  width: 20rem;
+  height: 2.5rem;
+}
+
+input {
+  background-color: var(--clr-background);
+}
+
+input:focus {
+  outline: 1px solid var(--clr-gold);
+}
+
+.submitButton {
+  color: var(--clr-white);  
+  background-color: var(--clr-brown);
+  padding: 0.8rem;
   border: none;
   border-radius: 0.3rem;
   cursor:pointer;
   font-size: 1rem;
+  width: 6rem;
+  margin-top: 1rem;
 }
-.writeSubmit:disabled{
+
+.submitButton:disabled {
   background: var(--clr-grey);
   color: var(--clr-white);
   cursor: not-allowed;
 }
-.imageContainer{
+
+.imageContainer {
   display:flex;
   align-items: center;
   flex-direction: row;
   margin-buttom: 3rem;
   margin-top: 2rem;
-  margin-left: 2rem;
   margin-right: 2rem;
 }
-.imageText{
-  color: var(--clr-light);
-  font-size: 1rem;
+
+.imageText {
+  color: var(--clr-brown);
+  font-size: 0.8rem;
   margin-bottom: 1rem;
 }
-.image{
+
+.image {
   margin-bottom: 2rem;
-  margin-left: 1rem;
+  margin-left: 2rem;
 }
-.chooseBtn{
-  background: var(--clr-light);
+
+.chooseBtn {
+  background: var(--clr-green);
   color:var(--clr-white);
   width: 12rem;
   display: inline-block;
   padding: 1.2rem, 1.2rem;
-  border: 1px solid var(--clr-green);
+  border: 1px solid var(--clr-dark);
   border-radius: 0.2rem;
   text-align: center;
 }
+
 .imageSubmit {
   padding: 0.3rem 2rem;
   border: 1px solid #000;
@@ -308,24 +320,32 @@ label{
 .arrayContainer {
   display: flex;
   flex-direction: column;
-  align-items : center;
+  align-items : flex-start;
   justify-content: flex-start;
   margin-top: 2rem;
-  height: 40rem;
-}
-.ingredients {
-  display:flex;
-  flex-direction: row;
-}
-.instructions {
-  display: flex;
-  flex-direction: row;
+  height: 30rem;
+  color: var(--clr-brown);
 }
 
-.form_text {
-  margin-top: 1rem;
-  text-align: center;
+.ingredients {
+  display:flex;
+  flex-direction: column;
 }
+
+.arrayInput {
+  border: 1px solid var(--clr-light);
+}
+
+.arrayInput:focus {
+  outline: 1px solid var(--clr-gold);
+}
+
+.instructions {
+  display: flex;
+  flex-direction: column;
+  margin-top: 2rem;
+}
+
 .form {
   display: flex;
   flex-direction: row;
@@ -334,42 +354,42 @@ label{
   margin-button: 1rem;
   margin-top: 1rem;
 }
-input {
-  background-color: var(--clr-backgound);
-  color:var(--clr-green);
-  border: 2px solid var(--clr-dark);
-  border-radius: 4px;
-  text-align:center;
-}
+
 textarea {
   background-color: var(--clr-backgound);
   color:var(--clr-green);
-  border: 2px solid var(--clr-dark);
+  border: 1px solid var(--clr-green);
   border-radius: 2px;
   padding-left: 2px;
   height: 4rem;
 }
+
+textarea:focus {
+  outline: 1px solid var(--clr-gold);
+}
+
 .order {
   color: var(--clr-green);
-  font-size: 1rem;
+  font-size: 0.8rem;
   margin-right: 1rem;
 }
+
 .add_btn {
   padding: 0.2rem 0.2rem;
   border: 1px solid #000;
-  width: 6rem;
-  border-radius: 4px;
+  width: 2rem;
   background: var(--clr-green);
   color: var(--clr-white);
-  font-size: 1rem;
-  font-weight: 500;
+  font-size: 0.6rem;
+  font-weight: 400;
   cursor: pointer;
   text-align: center;
   appearance: button;
   display: flex;
   justify-content: center;
-  margin-left: 2rem;
+  margin-top: 0.5rem;
 }
+
 .delete_btn {
 padding: 0.2rem 0.2rem;
 border: 1px solid #000;
@@ -403,102 +423,146 @@ img{
 }
 
 @media screen and (min-width: 800px){
+  padding: 1rem;
 
-  label{
-    font-size: 3rem;
-  }
+.writeImg{
+  width: 30vw;
+  height: 20vh;
+}
 
-  .formContainer{
-    display:flex;
-    align-items: center;
-    flex-direction: column;
-  }
-  .writeSubmit{
-    position: absolute;  
-    top: -6rem;
-    right: -6rem;
-    font-size: 1rem;
-  }
+.writeForm {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-top: 2rem;
+  padding: 0.5rem 5rem;
+}
 
-  .imageContainer{
-    display:flex;
-    align-items: center;
-    flex-direction: row;
-    margin-buttom: 3rem;
-    margin-top: 2rem;
-    margin-left: 2rem;
-    margin-right: 2rem;
-  }
+.topContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
 
-  .imageText{
-    font-size: 1rem;
-    word-wrap: break-word;
-    margin-bottom: 1rem;
-  }
-  
-  .chooseBtn{
-    width: 15rem;
-  }
+label {
+  font-size: 1.5rem;
+}
 
-  .imageSubmit {
-    padding: 0.3rem 2rem;
-    width: 5rem;
-    font-size: 1rem;
-    margin-top: 1rem;
-  }
-  
-  .arrayContainer {
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    justify-content: space-between;
-    margin-top: 2rem;
-    height: 40rem;
-  }
+.writeTitle {
+  width: 30rem;
+  height: 2rem;
+}
 
-  .arrayInput {
-    width: 18rem;
-  }
-  textarea {
-    height: 4rem;
-  }
-  .order {
-    color: var(--clr-green);
-    font-size: 1rem;
-    margin-right: 1rem;
-  }
+.writeDesc  {
+  width: 50rem;
+  height: 4rem;
+}
 
-  .add_btn {
-    padding: 0.2rem 0.2rem;
-    border: 1px solid #000;
-    width: 6rem;
-    font-size: 1rem;
-    font-weight: 500;
-    margin-left: 2rem;
-  }
+.submitButton {
+  padding: 0.8rem;
+  border-radius: 0.3rem;
+  font-size: 1rem;
+  width: 6rem;
+  margin-top: 1rem;
+}
 
-  .delete_btn {
+.imageContainer {
+  display:flex;
+  align-items: center;
+  flex-direction: row;
+  margin-buttom: 3rem;
+  margin-top: 2rem;
+  margin-right: 2rem;
+}
+
+.imageText {
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}
+
+.image {
+  margin-bottom: 2rem;
+  margin-left: 2rem;
+}
+
+.chooseBtn {
+  width: 15rem;
+  padding: 1.2rem, 1.2rem;
+  border-radius: 0.2rem;
+}
+
+.imageSubmit {
+  padding: 0.3rem 2rem;
+  border: 1px solid #000;
+  width: 6rem;
+  border-radius: 5px;
+  font-size: 1rem;
+  margin-top: 1rem;
+}
+
+.arrayContainer {
+  display: flex;
+  flex-direction: column;
+  align-items : flex-start;
+  justify-content: flex-start;
+  margin-top: 2rem;
+  height: 30rem;
+}
+
+.instructions {
+  display: flex;
+  flex-direction: row;
+  margin-top: 2rem;
+}
+
+.add_title {
+  font-size: 1.5rem;
+}
+
+textarea {
+  border-radius: 2px;
+  padding-left: 2px;
+  height: 4rem;
+}
+
+.order {
+  font-size: 1rem;
+  margin-right: 1rem;
+}
+
+.add_btn {
   padding: 0.2rem 0.2rem;
   border: 1px solid #000;
-  width: 1.8rem;
+  width: 6rem;
+  border-radius: 4px;
   font-size: 1rem;
   font-weight: 500;
-  margin-left: 1rem;
-  }
-  
-  .image{
-    margin-bottom: 2rem;
-  }
-  
-  .no_image {
-    width: 12rem;
-    height: 12rem;
-  }
-  
-  img{
-    width: 15rem;
-    height: 15rem;
-  }
+}
+
+.delete_btn {
+padding: 0.2rem 0.2rem;
+border: 1px solid #000;
+width: 1.8rem;
+border-radius: 4px;
+font-size: 1rem;
+font-weight: 500;
+margin-left: 1rem;
+}
+
+.image {
+  margin-bottom: 2rem;
+}
+
+.no_image {
+  width: 8rem;
+  height: 8rem;
+}
+
+img {
+  width:8rem;
+  height:8rem;
+  object-fit:cover;
 }
 `
 export default NewPost

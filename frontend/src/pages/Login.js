@@ -103,8 +103,8 @@ align-items: center;
 flex-direction: column;
 margin-top: 2rem;
 
-.login{
-width:60%;
+.login {
+width: 60%;
 background-image: linear-gradient(
   rgba(255, 255, 255, 0.2),
   rgba(255, 255, 255, 0.2)
@@ -117,43 +117,51 @@ padding-bottom: 2rem;
 height:calc(100vh-5rem);
 background-blend-mode: multiply; 
 }
+
+input::placeholder {
+  color: var(--clr-brown);
+}
+
+input:focus {
+  outline: 2px solid var(--clr-brown);
+}
   
-.loginTitle{
+.loginTitle {
   font-size: 2rem;
   color: var(--clr-white);
   margin-left: 2rem;
 }
 
-.loginForm{
+.loginForm {
   margin: 1.2rem;
   display: flex;
   flex-direction: column;
 }
 
-.loginForm > Label{
+.loginForm > Label {
   margin: 1rem 0; 
   color: var(--clr-white);
 }
 
-.loginInput{
+.loginInput {
   padding: 0.8rem;
   background-color: var(--clr-white);
   border: none;
   border-radius: 0.5rem;
 }
 
-.loginBtn{
+.loginBtn {
   margin-top: 1.2rem;
   cursor: pointer;
   background-color: var(--clr-white);
   border: none;
-  color: var(--clr-green);
+  color: var(--clr-brown);
   border-radius: 0.5rem;
   padding: 0.7rem;
-  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+  box-shadow:var(--dark-shadow);
 }
 
-.loginSignupBtn{
+.loginSignupBtn {
   position: absolute;
   top: 6rem;
   right: 2rem;
@@ -161,14 +169,17 @@ background-blend-mode: multiply;
   cursor: pointer;
   background-color: var(--clr-gold);
   border: none;
-  color: var(--clr-brown);
   border-radius: 0.5rem;
   padding: 0.7rem;
-  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+  box-shadow:var(--dark-shadow);
 }
 
-.loginSignupBtn:hover{
-  background-color: var(--clr-blue);
+.loginSignupBtn a {
+  color: var(--clr-white);
+}
+
+.loginSignupBtn:hover {
+  background-color: var(--clr-brown);
 }
 
 @media screen and (min-width: 800px){
@@ -176,13 +187,13 @@ background-blend-mode: multiply;
     width:40%;
   }
 
-  .loginTitle{
+  .loginTitle {
     font-size: 4rem;
     margin-left: 2rem;
     margin-top: 2rem;
   }
   
-  .loginForm{
+  .loginForm {
     margin-top: 1.2rem;
   }
   
@@ -190,18 +201,18 @@ background-blend-mode: multiply;
     margin: 1rem 0; 
   }
   
-  .loginInput{
+  .loginInput {
     padding: 0.8rem;
     border-radius: 0.5rem;
   }
   
-  .loginBtn{
+  .loginBtn {
     margin-top: 1.2rem;
     border-radius: 0.5rem;
     padding: 0.5rem;
   }
   
-  .loginSignupBtn{
+  .loginSignupBtn {
     top: 6rem;
     right: 12rem;
     border-radius: 0.5rem;

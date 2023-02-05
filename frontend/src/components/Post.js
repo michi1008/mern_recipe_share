@@ -22,14 +22,20 @@ const Post = ({ post }) => {
 const Wrapper = styled.section`
 .post {
   width: 20rem;
+  height: 26rem;
   margin: 2rem 1.2rem 2rem 1.2rem;
+  background-color: var(--clr-white);
+  padding: 1rem;
+  border: 2px solid var(--clr-light);
+  border-radius: 5px;
+  box-shadow: var(--dark-shadow);
 }
 
-.title{
-  color:var(--clr-green);
+.title {
+  color: var(--clr-green);
 }
 
-.image{
+.image {
 width: 100%;
 height: 15rem;
 object-fit: cover;
@@ -58,17 +64,23 @@ display: -webkit-box;
   cursor: pointer;
 }
 
-.recipeLink:hover{
+.recipeLink:hover {
   color: var(--clr-red);
 }
 
 @media screen and (min-width: 800px){
   .post {
-    width: 25rem;
+    width: 20rem;
+    height: 32rem;
     margin: 2rem 1.2rem 2rem 1.2rem;
+    background-color: var(--clr-white);
+    padding: 1rem;
+    border: 1px solid var(--clr-green);
+    border-radius: 5px;
+    box-shadow: var(----dark-shadow);
   }
   
-  .image{
+  .image {
   width: 100%;
   height: 20rem;
   border-radius: 0.2rem;
@@ -86,9 +98,7 @@ display: -webkit-box;
     font-weight: 700;
     cursor: pointer;
   }
-
 }
-
 
 `
 export default Post

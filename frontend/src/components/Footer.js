@@ -8,14 +8,14 @@ const Footer = () => {
   )
 }
 const Wrapper = styled.section`
-  text-align:center;
+  text-align: center;
   background-color: var(--clr-green);
-  bottom:0px;
-  height:2rem;
-  width:100%;
+  bottom: 0px;
+  height: 2rem;
+  width: 100%;
   position: fixed;
 
-  .copyright{
+  .copyright {
       font-size: 1rem;
       color: var(--clr-white);
       padding-top: 0.2rem;

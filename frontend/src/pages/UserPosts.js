@@ -68,7 +68,7 @@ flex-direction: column;
 align-items: center;
 justify-content: center;
 
-.posts{
+.posts {
   display: flex;
   flex-wrap: wrap;
   margin: 1rem;
@@ -76,13 +76,13 @@ justify-content: center;
   align-items: center; 
 }
 
-.userPostsTitle{
+.userPostsTitle {
   text-align: center;
   font-size: 2rem;
   margin-bottom: 2rem;
 }
 
-.underline{
+.underline {
   width: 60%;
   height: 0.25rem;
   background: var(--clr-green);
@@ -96,11 +96,11 @@ justify-content: center;
   margin: 0rem 1.2rem 2rem 1.2rem;
 }
 
-.title{
+.title {
   color:var(--clr-green);
 }
 
-.image{
+.image {
 width: 75%;
 height: 15rem;
 object-fit: cover;
@@ -137,12 +137,12 @@ display: -webkit-box;
 }
 
 @media screen and (min-width: 800px){
-  .userPostsTitle{
+  .userPostsTitle {
     font-size: 3rem;
     margin-bottom: 2rem;
   }
   
-  .underline{
+  .underline {
     height: 0.25rem;
     margin-top: 0.5rem; 
   }
@@ -152,9 +152,10 @@ display: -webkit-box;
     margin: 0rem 1.2rem 2rem 1.2rem;
   }
   
-   .image{
+   .image {
     width: 100%;
     height: 20rem; 
+    box-shadow:var(--dark-shadow);
    }
   
    .desc {

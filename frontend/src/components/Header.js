@@ -20,18 +20,18 @@ flex-direction: column;
 justify-content: center;
 align-items: center;
 
-h4{
+h4 {
   color: var(--clr-gold);
   text-align: center;
 }
 
-.headerTitle{
+.headerTitle {
   color: var(--clr-brown);
   font-size: 1.5rem;
   text-align: center;
 }
 
-.headerImg{
+.headerImg {
     width: 75%;
     height: 15rem;
     margin-top: 3rem;
@@ -39,7 +39,7 @@ h4{
 }
 
 @media screen and (min-width: 800px){
-  .headerTitle{
+  .headerTitle {
     font-size: 2rem;
   }
 }

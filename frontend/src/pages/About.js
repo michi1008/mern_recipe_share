@@ -28,7 +28,7 @@ display: flex;
 align-items: center;
 justify-content: center;
 
-.about{
+.about {
     width: 60%;
     margin-top: 1rem;
     padding: 1.5rem;
@@ -39,13 +39,13 @@ justify-content: center;
       border-radius: 3px;
       background-color: var(--clr-green);
       background-repeat: no-repeat;
-      height:calc(100vh-5rem);
+      height: calc(100vh-5rem);
 
-.aboutTitle{
+.aboutTitle {
     color: var(--clr-dark);
 }
 
-p{
+p {
     color: var(--clr-green);
 }
 

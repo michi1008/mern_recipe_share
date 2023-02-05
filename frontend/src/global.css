@@ -15,8 +15,8 @@ const GlobalStyle = createGlobalStyle` */
 --clr-grey: #999;
 --clr-gold: #b39656;
 --clr-brown: #963730;
---clr-blue: #7991ba;
---clr-lightblue: ##a0bbe8;
+--clr-blue: #2b4cba;
+--clr-lightblue: #a0bbe8;
 --light-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 --dark-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 --max-width: 1170px;
@@ -104,10 +104,10 @@ a{
 .btn {
   padding: 0.8rem 1.2rem;
   border: 1px solid #000;
-  width: 7rem;
+  width: 6rem;
   border-radius: 5px;
   font-size: 1rem;
-  font-weight: 700;
+  font-weight: 500;
   cursor: pointer;
   text-align: center;
   appearance: button;
