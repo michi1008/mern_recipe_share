@@ -263,16 +263,25 @@ input:focus {
 }
 
 .imageContainer {
-  display:flex;
+  display: flex;
   align-items: center;
-  flex-direction: row;
+  justify-content: center;
+  flex-direction: column;
   margin: 2rem auto;
+}
+
+.imageUpload {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .imageText {
   color: var(--clr-brown);
   font-size: 0.8rem;
   margin-bottom: 1rem;
+  text-align: center;
 }
 
 .image {
@@ -282,7 +291,7 @@ input:focus {
 .chooseBtn {
   background: var(--clr-green);
   color:var(--clr-white);
-  width: 12rem;
+  width: 14rem;
   display: inline-block;
   padding: 1.2rem, 1.2rem;
   border: 1px solid var(--clr-dark);
