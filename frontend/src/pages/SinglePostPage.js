@@ -89,7 +89,7 @@ align-items: center;
 
 .image {
 width: 100%;
-height: 8rem;
+height: 10rem;
 object-fit: cover;
 border-radius: 0.1rem;
 box-shadow: var(--dark-shadow);
@@ -151,6 +151,7 @@ font-style: italic;
 flex-direction: row;
   
   .image {
+  width: 100%;
   height: 20rem;
   border-radius: 0.1rem;
   }

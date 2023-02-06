@@ -185,7 +185,7 @@ const EditPost = () => {
             </div>
           </div> 
       <div className="buttonContainer">
-      <button className="submitButton" type="submit" disabled={!title || !desc || !image || !ingredients || !instructions} onSubmit={handleUpdate}>Edit</button>
+      <button className="btn submitButton" type="submit" disabled={!title || !desc || !image || !ingredients || !instructions} onSubmit={handleUpdate}>Edit</button>
       </div>
       </form>      
     </Wrapper>   
@@ -199,7 +199,6 @@ const Wrapper = styled.section`
   align-items: center;
   min-height: calc(100vh - 7rem);
   overflow: auto;
-  padding: 2rem;
 
 .titleContainer {
   color: var(--clr-brown);
@@ -207,7 +206,11 @@ const Wrapper = styled.section`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  align-self: center;
+  margin: 2rem auto;
+}
+
+.mainTitle {
+  font-size: 1.2rem;
 }
 
 .writeImg {
@@ -223,16 +226,15 @@ const Wrapper = styled.section`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: flex-start;
-  margin-top: 3rem;
-  border: 2px solid var(--clr-light);
-  padding: 2rem;
+  align-items: center;
+  margin: 0 auto;
 }
 
 .topContainer {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  margin: 0 auto;
 }
 
 label {
@@ -248,7 +250,7 @@ label {
 
 .writeDesc {
   border: 1px solid var(--clr-light);
-  width: 25rem;
+  width: 20rem;
   height: 2rem;
 }
 
@@ -264,9 +266,7 @@ input:focus {
   display:flex;
   align-items: center;
   flex-direction: row;
-  margin-buttom: 3rem;
-  margin-top: 2rem;
-  margin-right: 2rem;
+  margin: 2rem auto;
 }
 
 .imageText {
@@ -276,8 +276,7 @@ input:focus {
 }
 
 .image {
-  margin-bottom: 2rem;
-  margin-left: 2rem;
+  margin: 2rem;
 }
 
 .chooseBtn {
@@ -308,11 +307,11 @@ input:focus {
 .arrayContainer {
   display: flex;
   flex-direction: column;
-  align-items : flex-start;
+  align-items: flex-start;
   justify-content: flex-start;
-  margin-top: 2rem;
-  min-height: 20rem;
+  min-height: 12rem;
   color: var(--clr-brown);
+  margin: 2rem auto;
 }
 
 .ingredients {
@@ -412,7 +411,7 @@ img{
 
 .buttonContainer {
   align-self: flex-end; 
-  margin-right: 2rem;
+  margin: 2rem auto;
 }
 
 .submitButton {
@@ -435,9 +434,13 @@ img{
 @media screen and (min-width: 800px){
   padding: 1rem;
 
-.writeImg{
+.writeImg {
   width: 30vw;
-  height: 20vh;
+  height: 25vh;
+}
+
+.mainTitle {
+  font-size: 2rem;
 }
 
 .writeForm {
@@ -447,12 +450,14 @@ img{
   align-items: flex-start;
   margin-top: 2rem;
   padding: 0.5rem 5rem;
+  border: 2px solid var(--clr-light); 
 }
 
 .topContainer {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  margin-top: 2rem;
 }
 
 label {
@@ -464,15 +469,15 @@ label {
 }
 
 .writeDesc  {
-  width: 50rem;
+  width: 35rem;
 }
 
 .submitButton {
-  padding: 0.8rem;
+  padding: 0.5rem;
   border-radius: 0.3rem;
   font-size: 1rem;
   width: 6rem;
-  margin-top: 1rem;
+  margin-botton: 2rem;
 }
 
 .imageContainer {
@@ -566,9 +571,9 @@ margin-left: 1rem;
 }
 
 img {
-  width:8rem;
-  height:8rem;
-  object-fit:cover;
+  width: 8rem;
+  height: 8rem;
+  object-fit: cover;
 }
 `
 export default EditPost

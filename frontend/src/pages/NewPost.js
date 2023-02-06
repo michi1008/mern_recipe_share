@@ -204,7 +204,7 @@ const Wrapper = styled.section`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 2rem 10rem;
+  margin: 2rem auto;
 }
 
 .mainTitle {
@@ -224,15 +224,15 @@ const Wrapper = styled.section`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: flex-start;
-  margin: 0 10rem;
+  align-items: center;
+  margin: 0 auto;
 }
 
 .topContainer {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  margin: 0 10rem;
+  margin: 0 auto;
 }
 
 label {
@@ -248,7 +248,7 @@ label {
 
 .writeDesc {
   border: 1px solid var(--clr-light);
-  width: 25rem;
+  width: 20rem;
   height: 2rem;
 }
 
@@ -264,7 +264,7 @@ input:focus {
   display:flex;
   align-items: center;
   flex-direction: row;
-  margin: 2rem 10rem;
+  margin: 2rem auto;
 }
 
 .imageText {
@@ -305,11 +305,11 @@ input:focus {
 .arrayContainer {
   display: flex;
   flex-direction: column;
-  align-items : flex-start;
+  align-items: flex-start;
   justify-content: flex-start;
   min-height: 12rem;
   color: var(--clr-brown);
-  margin: 2rem 10rem;
+  margin: 2rem auto;
 }
 
 .ingredients {
@@ -409,7 +409,7 @@ img{
 
 .buttonContainer {
   align-self: flex-end; 
-  margin: 2rem 10rem;
+  margin: 2rem auto;
 }
 
 .submitButton {
@@ -432,9 +432,13 @@ img{
 @media screen and (min-width: 800px){
   padding: 1rem;
 
-.writeImg{
+.writeImg {
   width: 30vw;
-  height: 20vh;
+  height: 25vh;
+}
+
+.mainTitle {
+  font-size: 2rem;
 }
 
 .writeForm {
@@ -463,15 +467,15 @@ label {
 }
 
 .writeDesc  {
-  width: 50rem;
+  width: 35rem;
 }
 
 .submitButton {
-  padding: 0.8rem;
+  padding: 0.5rem;
   border-radius: 0.3rem;
   font-size: 1rem;
   width: 6rem;
-  margin-top: 1rem;
+  margin-botton: 2rem;
 }
 
 .imageContainer {
@@ -565,9 +569,9 @@ margin-left: 1rem;
 }
 
 img {
-  width:8rem;
-  height:8rem;
-  object-fit:cover;
+  width: 8rem;
+  height: 8rem;
+  object-fit: cover;
 }
 `
 export default NewPost
