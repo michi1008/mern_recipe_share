@@ -111,7 +111,7 @@ if(isLoading){
   return (
     <Wrapper>
         <div className="titleContainer">
-          <h3>Create a recipe!</h3>
+          <div className="mainTitle">Create a recipe!</div>
           <img className="writeImg" src={img} alt="" />
         </div>
         <form className="writeForm" onSubmit={handlePublish}>    
@@ -136,7 +136,7 @@ if(isLoading){
             /> 
           </div>               
           <div className="imageContainer">
-            <div>{!image && <div className="imageText">Please upload an image before publishing your recipe! <br></br>The max file size is 100KB.</div>}
+            <div>{!image && <div className="imageText">Please upload an image before submitting your recipe! <br></br>The max file size is 100KB.</div>}
 
             <input className="chooseBtn" type="file" name="image" accept=".jpeg, .png, .jpg" onChange={(e) => handleImage(e)} />    
             </div>
@@ -197,7 +197,6 @@ const Wrapper = styled.section`
   align-items: center;
   min-height: calc(100vh - 7rem);
   overflow: auto;
-  padding: 2rem;
 
 .titleContainer {
   color: var(--clr-brown);
@@ -205,6 +204,11 @@ const Wrapper = styled.section`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin: 2rem 10rem;
+}
+
+.mainTitle {
+  font-size: 1.2rem;
 }
 
 .writeImg {
@@ -221,14 +225,14 @@ const Wrapper = styled.section`
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  margin: 3rem
- /*  border: 2px solid var(--clr-light); */
+  margin: 0 10rem;
 }
 
 .topContainer {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  margin: 0 10rem;
 }
 
 label {
@@ -260,9 +264,7 @@ input:focus {
   display:flex;
   align-items: center;
   flex-direction: row;
-  margin-buttom: 3rem;
-  margin-top: 2rem;
-  margin-right: 2rem;
+  margin: 2rem 10rem;
 }
 
 .imageText {
@@ -272,8 +274,7 @@ input:focus {
 }
 
 .image {
-  margin-bottom: 2rem;
-  margin-left: 2rem;
+  margin: 2rem;
 }
 
 .chooseBtn {
@@ -306,9 +307,9 @@ input:focus {
   flex-direction: column;
   align-items : flex-start;
   justify-content: flex-start;
-  margin-top: 2rem;
-  min-height: 20rem;
+  min-height: 12rem;
   color: var(--clr-brown);
+  margin: 2rem 10rem;
 }
 
 .ingredients {
@@ -408,7 +409,7 @@ img{
 
 .buttonContainer {
   align-self: flex-end; 
-  margin-right: 2rem;
+  margin: 2rem 10rem;
 }
 
 .submitButton {
@@ -443,12 +444,14 @@ img{
   align-items: flex-start;
   margin-top: 2rem;
   padding: 0.5rem 5rem;
+  border: 2px solid var(--clr-light); 
 }
 
 .topContainer {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  margin-top: 2rem;
 }
 
 label {

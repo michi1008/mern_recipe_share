@@ -139,7 +139,7 @@ const EditPost = () => {
             /> 
           </div>               
           <div className="imageContainer">
-            <div>{!image && <div className="imageText">Please upload an image before publishing your recipe! <br></br>The max file size is 100KB.</div>}
+            <div><div className="imageText">The max file size is 100KB.</div>
 
             <input className="chooseBtn" type="file" name="image" accept=".jpeg, .png, .jpg" onChange={(e) => handleImage(e)} />    
             </div>

@@ -27,7 +27,7 @@ h4 {
 
 .headerTitle {
   color: var(--clr-brown);
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   text-align: center;
 }
 
@@ -36,11 +36,12 @@ h4 {
     height: 15rem;
     margin-top: 3rem;
     object-fit: cover;
+    box-shadow: var(--light-shadow);
 }
 
 @media screen and (min-width: 800px){
   .headerTitle {
-    font-size: 2rem;
+    font-size: 1.8rem;
   }
 }
 

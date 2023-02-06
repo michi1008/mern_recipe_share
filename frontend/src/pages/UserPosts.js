@@ -95,9 +95,9 @@ padding: 2rem;
   width: 20rem;
   height: 26rem;
   margin: 2rem 1.2rem 2rem 1.2rem;
-  background-color: var(--clr-white);
+  background-color: var(--clr-background);
   padding: 1rem;
-  border: 2px solid var(--clr-gold);
+  border: 2px solid var(--clr-light);
   border-radius: 5px;
   box-shadow: var(--dark-shadow);
 }
@@ -116,7 +116,7 @@ box-shadow: var(--dark-shadow);
 
 .desc {
 font-size: 0.8rem;
-color: var(--clr-light);
+color: var(--clr-gold);
 font-style: italic;
 line-height: 1.2rem;
 margin-top: 1rem;
@@ -158,18 +158,12 @@ display: -webkit-box;
     width: 22rem;
     height: 30rem;
     margin: 2rem 1.2rem 2rem 1.2rem;
-    background-color: var(--clr-white);
-    padding: 1rem;
-    border: 2px solid var(--clr-light);
-    border-radius: 5px;
-    box-shadow: var(--dark-shadow);
-    
+    border-radius: 5px; 
   }
   
    .image {
     width: 100%;
     height: 20rem; 
-    box-shadow:var(--dark-shadow);
    }
   
    .desc {

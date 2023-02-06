@@ -24,7 +24,7 @@ const Wrapper = styled.section`
   width: 20rem;
   height: 26rem;
   margin: 2rem 1.2rem 2rem 1.2rem;
-  background-color: var(--clr-white);
+  background-color: var(--clr-background);
   padding: 1rem;
   border: 2px solid var(--clr-light);
   border-radius: 5px;
@@ -46,7 +46,7 @@ margin-bottom: 1rem;
 
 .desc {
 font-size: 1rem;
-color: var(--clr-light);
+color: var(--clr-gold);
 font-style: italic;
 line-height: 1.2rem;
 margin-top: 1rem;
