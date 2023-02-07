@@ -19,6 +19,7 @@ display:flex;
 flex-direction: column;
 justify-content: center;
 align-items: center;
+padding: 1rem;
 
 h4 {
   color: var(--clr-gold);
