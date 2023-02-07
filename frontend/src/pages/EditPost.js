@@ -139,9 +139,9 @@ const EditPost = () => {
             /> 
           </div>               
           <div className="imageContainer">
-            <div><div className="imageText">The max file size is 100KB.</div>
-
-            <input className="chooseBtn" type="file" name="image" accept=".jpeg, .png, .jpg" onChange={(e) => handleImage(e)} />    
+            <div className="imageUpload">
+              <div className="imageText">The max file size is 100KB.</div>
+              <input className="chooseBtn" type="file" name="image" accept=".jpeg, .png, .jpg" onChange={(e) => handleImage(e)} />    
             </div>
             <div className="image">
               <div className="no_image">
@@ -200,6 +200,7 @@ const Wrapper = styled.section`
   min-height: calc(100vh - 7rem);
   overflow: auto;
 
+
 .titleContainer {
   color: var(--clr-brown);
   display: flex;
@@ -220,6 +221,7 @@ const Wrapper = styled.section`
   object-fit: cover;
   margin-top: 2rem;
   box-shadow: var(--light-shadow);
+  margin: 0 auto;
 }
 
 .writeForm {
@@ -234,7 +236,6 @@ const Wrapper = styled.section`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  margin: 0 auto;
 }
 
 label {
@@ -320,7 +321,6 @@ input:focus {
   justify-content: flex-start;
   min-height: 12rem;
   color: var(--clr-brown);
-  margin: 2rem auto;
 }
 
 .ingredients {
@@ -420,7 +420,6 @@ img{
 
 .buttonContainer {
   align-self: flex-end; 
-  margin: 2rem auto;
 }
 
 .submitButton {
@@ -441,7 +440,10 @@ img{
 }
 
 @media screen and (min-width: 800px){
-  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
 
 .writeImg {
   width: 30vw;
@@ -455,18 +457,19 @@ img{
 .writeForm {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
   align-items: flex-start;
   margin-top: 2rem;
-  padding: 0.5rem 5rem;
+  padding: 0.5rem 2rem;
   border: 2px solid var(--clr-light); 
 }
 
 .topContainer {
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-  margin-top: 2rem;
+  justify-content: center;
+  align-items: flex-start;
+  margin: 2rem 0;
 }
 
 label {
@@ -491,16 +494,23 @@ label {
 
 .imageContainer {
   display:flex;
-  align-items: center;
   flex-direction: row;
-  margin-buttom: 3rem;
-  margin-top: 2rem;
-  margin-right: 2rem;
+  align-items: center;
+  justify-content: space-between;
+  margin: 3rem 0;
+}
+
+.imageUpload {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
 }
 
 .imageText {
   font-size: 1rem;
   margin-bottom: 1rem;
+  text-align: start;
 }
 
 .image {
@@ -511,6 +521,7 @@ label {
 .chooseBtn {
   width: 15rem;
   padding: 1.2rem, 1.2rem;
+  align-self: start;
 }
 
 .imageSubmit {
@@ -521,10 +532,20 @@ label {
   margin-top: 1rem;
 }
 
+.image {
+  margin-bottom: 2rem;
+}
+
+img {
+  width: 10rem;
+  height: 10rem;
+  object-fit: cover;
+}
+
 .arrayContainer {
   display: flex;
   flex-direction: column;
-  align-items : flex-start;
+  align-items: flex-start;
   justify-content: flex-start;
   margin-top: 2rem;
   min-height: 20rem;
@@ -570,19 +591,9 @@ font-weight: 500;
 margin-left: 1rem;
 }
 
-.image {
-  margin-bottom: 2rem;
+.buttonContainer {
+  align-self: flex-end; 
 }
-
-.no_image {
-  width: 8rem;
-  height: 8rem;
-}
-
-img {
-  width: 8rem;
-  height: 8rem;
-  object-fit: cover;
 }
 `
 export default EditPost

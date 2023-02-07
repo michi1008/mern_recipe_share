@@ -79,6 +79,7 @@ display:flex;
 flex-direction: column;
 justify-content: center;
 align-items: center;
+padding: 1rem;
 
 .leftContainer {
   display: flex;
@@ -152,7 +153,7 @@ flex-direction: row;
   
   .image {
   width: 100%;
-  height: 20rem;
+  height: 22rem;
   border-radius: 0.1rem;
   }
   

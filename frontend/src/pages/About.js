@@ -29,7 +29,7 @@ align-items: center;
 justify-content: center;
 
 .about {
-    width: 80%;
+    width: 60%;
     margin: 2rem;
     padding: 1.5rem;
     background-image: linear-gradient(
