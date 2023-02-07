@@ -448,6 +448,7 @@ img{
 .writeImg {
   width: 30vw;
   height: 25vh;
+  margin: 2rem;
 }
 
 .mainTitle {
@@ -457,18 +458,18 @@ img{
 .writeForm {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-center;
   align-items: flex-start;
   margin-top: 2rem;
   padding: 0.5rem 2rem;
   border: 2px solid var(--clr-light); 
 }
 
-.topContainer {
+.titleContainer {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center;
   margin: 2rem 0;
 }
 
@@ -496,14 +497,15 @@ label {
   display:flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-between;
-  margin: 3rem 0;
+  justify-content: center;
+  margin-buttom: 3rem;
+  margin-right: 2rem;
 }
 
 .imageUpload {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   justify-content: flex-start;
 }
 
@@ -536,9 +538,14 @@ label {
   margin-bottom: 2rem;
 }
 
+.no_image {
+  width: 8rem;
+  height: 8rem;
+}
+
 img {
-  width: 10rem;
-  height: 10rem;
+  width: 8rem;
+  height: 8rem;
   object-fit: cover;
 }
 
@@ -593,6 +600,7 @@ margin-left: 1rem;
 
 .buttonContainer {
   align-self: flex-end; 
+  padding: 2rem;
 }
 }
 `

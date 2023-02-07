@@ -152,7 +152,7 @@ if(isLoading){
               <div>
                 <div className="arrayTitleContainer">
                 <div className="add_title">Ingredients</div>
-                <button className="add_btn" type="button" onClick={() => ingredientAdd()}>Add</button>
+                
                 </div>
                     {ingredients.map((data,i)=>{
                         return(
@@ -162,13 +162,14 @@ if(isLoading){
                           </div>
                         )
                     })}
+                  <button className="add_btn" type="button" onClick={() => ingredientAdd()}>Add</button>
               </div>
             </div>
           <div className="instructions">
             <div>
               <div className="arrayTitleContainer">
               <div className="add_title">Instructions</div>
-              <button className="add_btn" type="button" onClick={() => instructionAdd()}>Add</button>
+              
               </div>
                   {instructions.map((data,i)=>{
                       return(
@@ -179,6 +180,7 @@ if(isLoading){
                         </div>
                       )
                   })}
+                  <button className="add_btn" type="button" onClick={() => instructionAdd()}>Add</button>
               </div>
             </div>
           </div>          
@@ -446,6 +448,7 @@ img{
 .writeImg {
   width: 30vw;
   height: 25vh;
+  margin: 2rem;
 }
 
 .mainTitle {
@@ -462,11 +465,11 @@ img{
   border: 2px solid var(--clr-light); 
 }
 
-.topContainer {
+.titleContainer {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center;
   margin: 2rem 0;
 }
 
@@ -597,6 +600,7 @@ margin-left: 1rem;
 
 .buttonContainer {
   align-self: flex-end; 
+  padding: 2rem;
 }
 }
 `
