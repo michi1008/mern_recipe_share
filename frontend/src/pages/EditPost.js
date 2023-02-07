@@ -154,7 +154,6 @@ const EditPost = () => {
               <div>
                 <div className="arrayTitleContainer">
                 <div className="add_title">Ingredients</div>
-                <button className="add_btn" type="button" onClick={() => ingredientAdd()}>Add</button>
                 </div>
                     {ingredients.map((data,i)=>{
                         return(
@@ -164,13 +163,13 @@ const EditPost = () => {
                           </div>
                         )
                     })}
+                    <button className="add_btn" type="button" onClick={() => ingredientAdd()}>Add</button>
               </div>
             </div>
           <div className="instructions">
             <div>
               <div className="arrayTitleContainer">
               <div className="add_title">Instructions</div>
-              <button className="add_btn" type="button" onClick={() => instructionAdd()}>Add</button>
               </div>
                   {instructions.map((data,i)=>{
                       return(
@@ -181,6 +180,7 @@ const EditPost = () => {
                         </div>
                       )
                   })}
+                  <button className="add_btn" type="button" onClick={() => instructionAdd()}>Add</button>
               </div>
             </div>
           </div> 
@@ -219,7 +219,7 @@ const Wrapper = styled.section`
   height: 15vh;
   border-radius: 0.3rem;
   object-fit: cover;
-  margin-top: 2rem;
+  margin: 2rem;
   box-shadow: var(--light-shadow);
   margin: 0 auto;
 }

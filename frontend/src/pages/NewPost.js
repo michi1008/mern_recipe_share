@@ -219,7 +219,7 @@ const Wrapper = styled.section`
   height: 15vh;
   border-radius: 0.3rem;
   object-fit: cover;
-  margin-top: 2rem;
+  margin: 2rem;
   box-shadow: var(--light-shadow);
   margin: 0 auto;
 }
