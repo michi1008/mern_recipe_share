@@ -6,6 +6,7 @@ import { toast } from "react-toastify"
 import { updatePost } from "../features/posts/postSlice"
 import { useDispatch, useSelector } from "react-redux"
 import { useNavigate, useParams } from "react-router-dom"
+import Resizer from "react-image-file-resizer"
 
 const EditPost = () => {
   const {id} = useParams()
@@ -15,7 +16,7 @@ const EditPost = () => {
   const [desc, setDesc] = useState(postToEdit.desc)
   const [ingredients, setIngredients] = useState(postToEdit.ingredients)
   const [instructions, setInstructions] = useState(postToEdit.instructions)
-  const [image, setImage] = useState(postToEdit.image)
+  const [image, setImage] = useState(postToEdit.image.url)
 
   const dispatch = useDispatch()
   const navigate = useNavigate()    
@@ -56,25 +57,29 @@ const EditPost = () => {
     setInstructions(deletInstructions)  
   }
 
-  function convertToBase64(file){
-    return new Promise((resolve, reject) => {
-      const fileReader = new FileReader();
-      fileReader.readAsDataURL(file);
-      fileReader.onload = () => {
-        resolve(fileReader.result)
-      };
-      fileReader.onerror = (error) => {
-        reject(error)
-      }
-    })
-  }
-  //handle and convert it in base 64
-  const handleImage = async (e) =>{
+  const resizeFile = (file) =>
+  new Promise((resolve) => {
+    Resizer.imageFileResizer(
+      file,
+      300,
+      400,
+      "JPEG",
+      80,
+      0,
+      (uri) => {
+        resolve(uri);
+      },
+      "base64"
+    );
+  });
+
+//handle and convert it in base 64
+const handleImage = async (e) =>{
   const file = e.target.files[0]
-  const base64 = await convertToBase64(file)
-  console.log(base64)
+  const base64 = await resizeFile(file)
   setImage(base64)
   }
+
 
   function handleUpdate(e){
     e.preventDefault()
@@ -140,8 +145,8 @@ const EditPost = () => {
           </div>               
           <div className="imageContainer">
             <div className="imageUpload">
-              <div className="imageText">The max file size is 100KB.</div>
-              <input className="chooseBtn" type="file" name="image" accept=".jpeg, .png, .jpg" onChange={(e) => handleImage(e)} />    
+              <div className="imageText">If you need to update the image, please upload the new image.</div>
+              <input className="chooseBtn" type="file" name="image" accept=".jpeg, .png, .jpg" onChange={handleImage} />    
             </div>
             <div className="image">
               <div className="no_image">

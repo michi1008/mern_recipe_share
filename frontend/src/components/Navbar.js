@@ -5,12 +5,13 @@ import { Link, useNavigate } from "react-router-dom"
 import img from "../assets/logo.png"
 import { toggleSidebar, logout, reset } from "../features/users/userSlice"
 import MenuSharpIcon from "@mui/icons-material/MenuSharp"
-import ExitToAppRoundedIcon from "@mui/icons-material/ExitToAppRounded"
+import ExitToAppRoundedIcon from '@mui/icons-material/ExitToAppRounded'
 
 const Navbar = () => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
   const { user } = useSelector((state) => state.user)
+
 
   const toggle = () => {
     dispatch(toggleSidebar())
@@ -45,7 +46,7 @@ const Navbar = () => {
             {user && <li className="navUser">Hello, {user.userName}!!</li>}
             {!user && (<><li><Link to="/login">Login</Link></li>      
             <li><Link to="/signup">Signup</Link></li></>)}
-            {user && (<li onClick={onLogout}><ExitToAppRoundedIcon fontSize="large" /></li>)} 
+            {user && (<li onClick={onLogout}><ExitToAppRoundedIcon fontSize="large" sx={{ "& :hover": { color: "#b39656"} }} /></li>)} 
           </ul>  
         </div> 
     </div> 

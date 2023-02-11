@@ -1,15 +1,25 @@
 const router = require("express").Router()
-/* const multer = require('multer')
-const path = require("path")
 
-// Set Storage Engine
+const {
+    getPosts,
+    createPost,
+    getPost,
+    getPostsByUser,
+    updatePost,
+    deletePost,
+} = require("../controllers/postController")
+const { protect } =require("../middleware/authMiddleware")
+
+/* const multer = require("multer")
+const { v4: uuiv4} = require("uuid")
+
 const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, path.join(__dirname, "../../frontend/public/uploads"));
+  destination: function(req, file, cb) {
+      cb(null, 'images');
   },
-  filename: function (req, file, cb) {
-    cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
-  },
+  filename: function(req, file, cb) {   
+      cb(null, uuidv4() + '-' + Date.now() + path.extname(file.originalname));
+  }
 });
 
 const fileFilter = (req, file, cb) => {
@@ -21,26 +31,7 @@ const fileFilter = (req, file, cb) => {
   }
 }
 
-// Init Upload
-const upload = multer({
-  storage: storage,
-  limits: {
-    filesSize: {
-      fileSize: 1024 * 1024 * 5,
-    },
-    fileFilter: fileFilter
-  }
-}); */
-
-const {
-    getPosts,
-    createPost,
-    getPost,
-    getPostsByUser,
-    updatePost,
-    deletePost,
-} = require("../controllers/postController")
-const { protect } =require("../middleware/authMiddleware")
+let upload = multer({ storage, fileFilter }); */
 
 router.route("/").get(getPosts).post(protect, createPost)
 router.route("/:id").delete(protect, deletePost).get(getPost).get(protect, getPostsByUser)

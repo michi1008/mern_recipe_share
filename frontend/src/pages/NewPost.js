@@ -7,6 +7,7 @@ import { createPost } from "../features/posts/postSlice"
 import { useDispatch, useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom"
 import no_img from "../assets/no_image.jpg"
+import Resizer from "react-image-file-resizer"
 
 const NewPost = () => {
 
@@ -22,6 +23,42 @@ const NewPost = () => {
   const { isLoading, error } = useSelector((state) => state.post)
   const { user } = useSelector((state) => state.user)
   const id = user._id
+
+  const resizeFile = (file) =>
+  new Promise((resolve) => {
+    Resizer.imageFileResizer(
+      file,
+      300,
+      400,
+      "JPEG",
+      80,
+      0,
+      (uri) => {
+        resolve(uri);
+      },
+      "base64"
+    );
+  });
+
+/*   function convertToBase64(file){
+    return new Promise((resolve, reject) => {
+      const fileReader = new FileReader();
+      fileReader.readAsDataURL(file);
+      fileReader.onload = () => {
+        resolve(fileReader.result)
+      };
+      fileReader.onerror = (error) => {
+        reject(error)
+        toast.error("Image size is too big. The maxium is 50KB")
+      }
+    })
+  } */
+  //handle and convert it in base 64
+  const handleImage = async (e) =>{
+  const file = e.target.files[0]
+  const base64 = await resizeFile(file)
+  setImage(base64)
+  }
 
   const ingredientAdd=()=>{
     const newIngredients=[...ingredients,[]]
@@ -85,25 +122,7 @@ const NewPost = () => {
     setInstructions([])
   } 
 
-function convertToBase64(file){
-  return new Promise((resolve, reject) => {
-    const fileReader = new FileReader();
-    fileReader.readAsDataURL(file);
-    fileReader.onload = () => {
-      resolve(fileReader.result)
-    };
-    fileReader.onerror = (error) => {
-      reject(error)
-      toast.error("Image size is too big. The maxium is 50KB")
-    }
-  })
-}
-//handle and convert it in base 64
-const handleImage = async (e) =>{
-const file = e.target.files[0]
-const base64 = await convertToBase64(file)
-setImage(base64)
-}
+
  
 if(isLoading){
   return <Spinner/>
@@ -114,7 +133,7 @@ if(isLoading){
           <div className="mainTitle">Create a recipe!</div>
           <img className="writeImg" src={img} alt="" />
         </div>
-        <form className="writeForm" onSubmit={handlePublish}>    
+        <form className="writeForm" enctype="multipart/form-data" onSubmit={handlePublish}>    
           <div className="topContainer"> 
             <label htmlFor="text">Title</label>
             <input
@@ -137,8 +156,8 @@ if(isLoading){
           </div>               
           <div className="imageContainer">
             <div className="imageUpload">
-              {!image && <div className="imageText">Please upload an image before submitting your recipe! <br></br>The max file size is 100KB.</div>}
-              <input className="chooseBtn" type="file" name="image" accept=".jpeg, .png, .jpg" onChange={(e) => handleImage(e)} />    
+              {!image && <div className="imageText">Please upload an image before submitting your recipe!</div>}
+              <input className="chooseBtn" type="file" name="image" accept=".jpeg, .png, .jpg" onChange={handleImage} />    
             </div>
             <div className="image">
               <div className="no_image">

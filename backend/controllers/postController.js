@@ -3,10 +3,9 @@ const mongoose  = require("mongoose")
 const Post = require("../models/Post")
 const User = require("../models/User")
 
-
 const createPost = async (req, res) => {
   const {title, desc, image, ingredients, instructions} = req.body
-  
+   
   if (!title || !desc || !image || !ingredients || !instructions) {
     res.status(400)
     throw new Error('Please add all the values')
@@ -70,7 +69,6 @@ const deletePost = async (req, res) => {
 const updatePost = async (req, res) => {
   const { id } = req.params;
   const currentPost = await Post.findById(req.params.id)
-
   const updatedPost = {
     creator: req.body.creator,
     title: req.body.title,
@@ -79,7 +77,6 @@ const updatePost = async (req, res) => {
     ingredients: req.body.ingredients,
     instructions: req.body.instructions,
   }
-
   try {
     if (!mongoose.Types.ObjectId.isValid(id)) {
       return res.status(404).json({ message: `No post exist with id: ${id}` });
