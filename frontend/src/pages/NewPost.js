@@ -40,20 +40,6 @@ const NewPost = () => {
     );
   });
 
-/*   function convertToBase64(file){
-    return new Promise((resolve, reject) => {
-      const fileReader = new FileReader();
-      fileReader.readAsDataURL(file);
-      fileReader.onload = () => {
-        resolve(fileReader.result)
-      };
-      fileReader.onerror = (error) => {
-        reject(error)
-        toast.error("Image size is too big. The maxium is 50KB")
-      }
-    })
-  } */
-  //handle and convert it in base 64
   const handleImage = async (e) =>{
   const file = e.target.files[0]
   const base64 = await resizeFile(file)
@@ -374,7 +360,7 @@ input:focus {
 }
 
 textarea {
-  background-color: var(--clr-backgound);
+  background-color: var(--clr-white);
   color:var(--clr-green);
   border: 1px solid var(--clr-green);
   border-radius: 2px;
