@@ -3,7 +3,7 @@ import styled from "styled-components"
 import { Spinner } from "react-bootstrap"
 import img from "../assets/write.jpg"
 import { toast } from "react-toastify"
-import { createPost } from "../features/posts/postSlice"
+import { createPost, getPostsByUser } from "../features/posts/postSlice"
 import { useDispatch, useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom"
 import no_img from "../assets/no_image.jpg"
@@ -93,10 +93,12 @@ const NewPost = () => {
         ingredients,
         instructions,
       }
-      dispatch(createPost(postData))
-      toast.success("Recipe was created! 🚀")  
-      navigate(`/posts/userPosts/${id}`)
-      handleClear() 
+      dispatch(createPost(postData)).then(() =>{
+        dispatch(getPostsByUser(id))
+        toast.success("Recipe was created! 🚀")  
+        navigate(`/posts/userPosts/${id}`)
+        handleClear()
+      })   
     }
   } 
 
