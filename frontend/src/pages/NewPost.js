@@ -109,7 +109,7 @@ const NewPost = () => {
       }
       dispatch(createPost(postData))
       toast.success("Recipe was created! 🚀")  
-      navigate("`/posts/userPosts/${id}`")
+      navigate(`/posts/userPosts/${id}`)
       handleClear() 
     }
   } 

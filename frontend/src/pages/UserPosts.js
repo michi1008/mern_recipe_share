@@ -46,12 +46,12 @@ const UserPosts = () => {
       <div className="posts">
       {userPosts?.length > 0 ? (userPosts.map((post) => (
         <div className="post" key={post._id}>
-          <div className="title"><h4>{post.title}</h4></div>
+          <div className="title"><h5>{post.title}</h5></div>
           <div className="desc"><p>{post.desc}</p></div>
           <div className="imageContainer"><img className="image" src={post.image} /></div>
           <div className="iconContainer">
           <Link to={`/posts/userPosts/${post._id}/edit`}><EditTwoToneIcon className="icon" /></Link>
-          <DeleteTwoToneIcon className="icon" onClick={()=> handledDeletePost(post._id)} />
+          <DeleteTwoToneIcon className="icon" onClick={() => handledDeletePost(post._id)} />
           </div>
         </div>        
       ))) : (
@@ -67,7 +67,7 @@ display: flex;
 flex-direction: column;
 align-items: center;
 justify-content: center;
-padding: 2rem;
+padding: 1rem;
 
 .posts {
   display: flex;
@@ -156,9 +156,10 @@ display: -webkit-box;
   
   .post {
     width: 22rem;
-    height: 30rem;
+    height: 32rem;
     margin: 2rem 1.2rem 2rem 1.2rem;
     border-radius: 5px; 
+    
   }
   
    .image {

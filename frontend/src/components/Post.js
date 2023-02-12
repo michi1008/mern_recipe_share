@@ -8,7 +8,7 @@ const Post = ({ post }) => {
   return (
     <Wrapper>
       <div className="post">
-        <div className="title"><h4>{title}</h4></div>
+        <div className="title"><h5>{title}</h5></div>
         <div className="desc"><p>{desc}</p></div>
         <div className="imageContainer"><img className="image" src={image} /></div>
         <Link to={`/posts/${_id}`} className="link">
@@ -71,7 +71,7 @@ display: -webkit-box;
 @media screen and (min-width: 800px){
   .post {
     width: 20rem;
-    height: 32rem;
+    height: 35rem;
   }
   
   .image {
