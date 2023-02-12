@@ -65,7 +65,7 @@ import Spinner from "../components/Spinner"
           {post?.instructions &&
           post?.instructions.map((i, index) => (
           <ol key={index}>
-              {post?.instructions && <li>{index+1} : {i}</li>}
+              {post?.instructions && <li className="instructions">{index+1}.  {i}</li>}
           </ol>
             ))}
           </div> 
