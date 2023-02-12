@@ -2,7 +2,7 @@ import React, {useEffect} from "react"
 import styled from "styled-components"
 import { useNavigate, Link } from "react-router-dom"
 import { useDispatch, useSelector} from "react-redux"
-import { getPostsByUser, deletePost, reset } from "../features/posts/postSlice"
+import { updateUserPosts, getPostsByUser, deletePost, reset } from "../features/posts/postSlice"
 import Spinner from "../components/Spinner"
 import DeleteTwoToneIcon from "@material-ui/icons/DeleteTwoTone"
 import EditTwoToneIcon from "@material-ui/icons/EditTwoTone"
@@ -24,14 +24,22 @@ const UserPosts = () => {
     }
     if(userId)
       dispatch(getPostsByUser(userId))
-  }, [userId, navigate, isError, message, dispatch])
+  }, [userId, isError, message])
 
-  const handledDeletePost = ( (id) => {
-    if(window.confirm("Are you sure you want to delete this recipe?"))
-    dispatch(deletePost(id))
-    toast.success("Your post was deleted")
-    navigate(`/posts/userPosts/${id}`)
-  })
+  const handledDeletePost = (id) => {
+    if (window.confirm("Are you sure you want to delete this recipe?")) {
+      dispatch(deletePost(id)).then(() => {
+        // After the post has been deleted, dispatch a new action to update the local state
+        dispatch(getPostsByUser(id))
+        toast.success("Your post was deleted")
+        navigate(`/posts/userPosts/${id}`)
+      })
+      .catch(error => {
+        console.error(error);
+        toast.error("Failed to delete post")
+      })
+    }
+  }
 
   if (isLoading) {
     return <Spinner />

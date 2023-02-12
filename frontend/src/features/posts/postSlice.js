@@ -84,24 +84,6 @@ export const getPostsByUser = createAsyncThunk(
   }
 )
 
-// Delete user post
-export const deletePost = createAsyncThunk(
-  "posts/delete",
-  async (id, thunkAPI) => {
-    try {
-      const token = thunkAPI.getState().user.user.token
-      return await postService.deletePost(id, token)
-    } catch (error) {
-      const message =
-        (error.response &&
-          error.response.data &&
-          error.response.data.message) ||
-        error.message ||
-        error.toString()
-      return thunkAPI.rejectWithValue(message)
-    }
-  }
-)
 
 // Update user post
 export const updatePost = createAsyncThunk(
@@ -121,6 +103,26 @@ export const updatePost = createAsyncThunk(
     }
   }
 )
+
+// Delete user post
+export const deletePost = createAsyncThunk(
+  "posts/delete",
+  async (id, thunkAPI) => {
+    try {
+      const token = thunkAPI.getState().user.user.token
+      return await postService.deletePost(id, token)
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString()
+      return thunkAPI.rejectWithValue(message)
+    }
+  }
+)
+
 
 export const postSlice = createSlice({
   name: "post",
@@ -226,5 +228,5 @@ export const postSlice = createSlice({
   },
 })
 
-export const { reset, setEditRecipe } = postSlice.actions
+export const { reset } = postSlice.actions
 export default postSlice.reducer

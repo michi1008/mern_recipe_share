@@ -64,7 +64,6 @@ const createPost = async (postData, token) => {
     const response = await axios.put(API_URL + "userPosts/" + id + "/edit", updatePostData, config)
     return response.data
   }
-
   
   const postService = {
     createPost,

@@ -12,7 +12,6 @@ const reducers = combineReducers({
   devTools: process.env.NODE_ENV !== 'production',
 })
 
-
 const persistConfig = {
   key: 'root',
   storage,
