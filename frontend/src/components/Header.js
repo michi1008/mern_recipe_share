@@ -6,7 +6,6 @@ const Header = () => {
   return (
     <Wrapper>
         <div className="headerTitle">Let's share our favorite recipes with our friends and families! 🧑🏻‍🍳</div>
-        <div><h4>Please sign up and create your recipe. 🍱</h4></div>
         <img className="headerImg" src={img} atl="cooking" />
     </Wrapper>
     
@@ -19,7 +18,8 @@ display:flex;
 flex-direction: column;
 justify-content: center;
 align-items: center;
-padding: 1rem;
+padding: 2rem;
+background-color: var(--clr-background-2);
 
 h4 {
   color: var(--clr-gold);
@@ -27,7 +27,7 @@ h4 {
 }
 
 .headerTitle {
-  color: var(--clr-brown);
+  color: var(--clr-green);
   font-size: 1.2rem;
   text-align: center;
 }

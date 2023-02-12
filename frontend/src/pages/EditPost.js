@@ -117,7 +117,7 @@ const handleImage = async (e) =>{
   return (
     <Wrapper>
         <div className="titleContainer">
-          <h3>Eidt your recipe!</h3>
+          <h3>Edit your recipe!</h3>
           <img className="writeImg" src={img} alt="" />
         </div>
         <form className="writeForm" onSubmit={handleUpdate}>    
@@ -210,7 +210,7 @@ const Wrapper = styled.section`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 2rem auto;
+  margin: 2rem;
 }
 
 .mainTitle {
@@ -233,6 +233,8 @@ const Wrapper = styled.section`
   justify-content: center;
   align-items: center;
   margin: 0 auto;
+  background-color: var(--clr-background-2);
+  padding: 1rem;
 }
 
 .topContainer {
@@ -322,7 +324,7 @@ input:focus {
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
-  min-height: 12rem;
+  min-height: 32srem;
   color: var(--clr-brown);
 }
 

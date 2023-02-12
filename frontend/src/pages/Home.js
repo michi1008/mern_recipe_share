@@ -6,7 +6,9 @@ import { useDispatch, useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom"
 import Posts from "../components/Posts"
 import Header from "../components/Header"
+import HowItWoks from "../components/HowItWorks"
 import Spinner from "../components/Spinner"
+import HowItWorks from "../components/HowItWorks"
 
 const Home = () => {
 
@@ -32,6 +34,7 @@ const Home = () => {
   return (
     <Wrapper>
       <Header />
+      <HowItWorks />
       <div className="home"><Posts posts={posts} /></div>
     </Wrapper>
   )

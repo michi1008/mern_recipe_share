@@ -9,6 +9,8 @@ const GlobalStyle = createGlobalStyle` */
 --clr-dark: #03210d;
 --clr-light: #3a9c50;
 --clr-background: #f2f7f5;
+--clr-background-2: #e4f2bb;
+--clr-background-3: #f2cb91;
 --clr-red: #e64a47;
 --clr-white: #fff;
 --clr-black: #000;

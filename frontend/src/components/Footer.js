@@ -2,8 +2,10 @@ import React from "react"
 import styled from "styled-components"
 
 const Footer = () => {
+
+ const currentYear = (new Date().getFullYear()) 
   return (
-    <Wrapper><p className="copyright">Copyright &copy; <script>document.write(new Date().getFullYear())</script> Michiko Taguchi All Rights Reserved</p>
+    <Wrapper><p className="copyright">Copyright &copy; { currentYear } Michiko Taguchi All Rights Reserved</p>
     </Wrapper>
   )
 }

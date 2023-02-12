@@ -27,6 +27,7 @@ const Wrapper = styled.section`
     align-items: center;
     margin-bottom: 2rem;
     padding: 2rem;
+    background-color: var(--clr-background-3);
 }
 
 .no_posts {

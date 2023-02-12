@@ -26,7 +26,7 @@ const Wrapper = styled.section`
   margin: 2rem 1.2rem 2rem 1.2rem;
   background-color: var(--clr-background);
   padding: 1rem;
-  border: 2px solid var(--clr-light);
+  border: 2px solid var(--clr-brown);
   border-radius: 5px;
   box-shadow: var(--dark-shadow);
 }

@@ -109,7 +109,7 @@ const NewPost = () => {
       }
       dispatch(createPost(postData))
       toast.success("Recipe was created! 🚀")  
-      navigate("/")
+      navigate("`/posts/userPosts/${id}`")
       handleClear() 
     }
   } 
@@ -218,6 +218,7 @@ const Wrapper = styled.section`
   align-items: center;
   min-height: calc(100vh - 7rem);
   overflow: auto;
+  min-height: 40rem;
 
 
 .titleContainer {
@@ -226,7 +227,7 @@ const Wrapper = styled.section`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 2rem auto;
+  margin: 2rem;
 }
 
 .mainTitle {
@@ -249,6 +250,9 @@ const Wrapper = styled.section`
   justify-content: center;
   align-items: center;
   margin: 0 auto;
+  background-color: var(--clr-background-2);
+  padding: 1rem;
+
 }
 
 .topContainer {
@@ -338,7 +342,6 @@ input:focus {
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
-  min-height: 12rem;
   color: var(--clr-brown);
 }
 
@@ -439,6 +442,7 @@ img{
 
 .buttonContainer {
   align-self: flex-end; 
+  padding-bottom: 2rem;
 }
 
 .submitButton {
