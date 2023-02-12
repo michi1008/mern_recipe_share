@@ -16,7 +16,7 @@ const EditPost = () => {
   const [desc, setDesc] = useState(postToEdit.desc)
   const [ingredients, setIngredients] = useState(postToEdit.ingredients)
   const [instructions, setInstructions] = useState(postToEdit.instructions)
-  const [image, setImage] = useState(postToEdit.image.url)
+  const [image, setImage] = useState(postToEdit.image)
 
   const dispatch = useDispatch()
   const navigate = useNavigate()    
@@ -110,8 +110,6 @@ const handleImage = async (e) =>{
     setInstructions([])
   } 
 
-
-
   if(isLoading){
     return <Spinner/>
   }
@@ -146,7 +144,7 @@ const handleImage = async (e) =>{
           <div className="imageContainer">
             <div className="imageUpload">
               <div className="imageText">If you need to update the image, please upload the new image.</div>
-              <input className="chooseBtn" type="file" name="image" accept=".jpeg, .png, .jpg" onChange={handleImage} />    
+              <input className="chooseBtn" type="file" name="image" accept=".jpeg, .png, .jpg" onChange={(e) => handleImage(e)} />    
             </div>
             <div className="image">
               <div className="no_image">

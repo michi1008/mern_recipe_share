@@ -70,7 +70,6 @@ const updatePost = async (req, res) => {
   const { id } = req.params;
   const currentPost = await Post.findById(req.params.id)
   const updatedPost = {
-    creator: req.body.creator,
     title: req.body.title,
     desc: req.body.desc,
     image: req.body.image,
