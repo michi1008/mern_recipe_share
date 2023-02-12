@@ -3,7 +3,7 @@ import styled from "styled-components"
 import { Spinner } from "react-bootstrap"
 import img from "../assets/write.jpg"
 import { toast } from "react-toastify"
-import { updatePost } from "../features/posts/postSlice"
+import { updatePost, getPostsByUser } from "../features/posts/postSlice"
 import { useDispatch, useSelector } from "react-redux"
 import { useNavigate, useParams } from "react-router-dom"
 import Resizer from "react-image-file-resizer"
@@ -94,9 +94,16 @@ const handleImage = async (e) =>{
         instructions,
         image, 
       }
-      dispatch(updatePost({id, updatePostData}))
-      toast.success("Recipe was updated! 🚀") 
-      navigate(`/posts/userPosts/${id}`)
+      dispatch(updatePost({id, updatePostData})).then(() => {
+        dispatch(getPostsByUser(id))
+        toast.success("Recipe was updated! 🚀") 
+        navigate(`/posts/userPosts/${id}`)
+      })
+      .catch(error => {
+        console.log(error)
+        toast.error("Failed to update your posts 😅")
+      })
+      
       
     }
     handleClear()
@@ -161,7 +168,7 @@ const handleImage = async (e) =>{
                     {ingredients.map((data,i)=>{
                         return(
                           <div className="form" key={i}>
-                                <input className="arrayInput" type="text" value={data} onChange={e=>handleIngredientChange(e,i)} />
+                                <input className="arrayInput ingredients" type="text" value={data} onChange={e=>handleIngredientChange(e,i)} />
                                 <button className="delete_btn" onClick={()=>ingredientDelete(i)}>x</button>
                           </div>
                         )
@@ -177,8 +184,8 @@ const handleImage = async (e) =>{
                   {instructions.map((data,i)=>{
                       return(
                         <div className="form" key={i}>
-                              <div className="order">{i+1} : </div>
-                              <textarea className="arrayInput" type="text" value={data} onChange={e=>handleInstructionChange(e,i)} />
+                              <div className="order">{i+1} </div>
+                              <textarea className="arrayInput instructions" type="text" value={data} onChange={e=>handleInstructionChange(e,i)} />
                               <button className="delete_btn" onClick={()=>instructionDelete(i)}>X</button>
                         </div>
                       )
@@ -563,10 +570,15 @@ img {
   min-height: 20rem;
 }
 
+.ingredients {
+  width: 25rem;
+}
+
 .instructions {
   display: flex;
   flex-direction: row;
   margin-top: 2rem;
+  width: 25rem;
 }
 
 .add_title {
@@ -582,6 +594,7 @@ textarea {
 .order {
   font-size: 1rem;
   margin-right: 1rem;
+  font-weight: 700;
 }
 
 .add_btn {

@@ -162,7 +162,7 @@ if(isLoading){
                     {ingredients.map((data,i)=>{
                         return(
                           <div className="form" key={i}>
-                                <input className="arrayInput" type="text" value={data} onChange={e=>handleIngredientChange(e,i)} />
+                                <input className="arrayInput ingredients" type="text" value={data} onChange={e=>handleIngredientChange(e,i)} />
                                 <button className="delete_btn" onClick={()=>ingredientDelete(i)}>x</button>
                           </div>
                         )
@@ -179,8 +179,8 @@ if(isLoading){
                   {instructions.map((data,i)=>{
                       return(
                         <div className="form" key={i}>
-                              <div className="order">{i+1} : </div>
-                              <textarea className="arrayInput" type="text" value={data} onChange={e=>handleInstructionChange(e,i)} />
+                              <div className="order">{i+1} </div>
+                              <textarea className="arrayInput instructions" type="text" value={data} onChange={e=>handleInstructionChange(e,i)} />
                               <button className="delete_btn" onClick={()=>instructionDelete(i)}>X</button>
                         </div>
                       )
@@ -204,8 +204,6 @@ const Wrapper = styled.section`
   align-items: center;
   min-height: calc(100vh - 7rem);
   overflow: auto;
-  min-height: 40rem;
-
 
 .titleContainer {
   color: var(--clr-brown);
@@ -565,13 +563,20 @@ img {
   justify-content: flex-start;
   margin-top: 2rem;
   min-height: 20rem;
+  width: 80%;
+}
+
+.ingredients {
+  width: 25rem;
 }
 
 .instructions {
   display: flex;
   flex-direction: row;
   margin-top: 2rem;
+  width: 25rem;
 }
+
 
 .add_title {
   font-size: 1.5rem;
@@ -586,6 +591,7 @@ textarea {
 .order {
   font-size: 1rem;
   margin-right: 1rem;
+  font-weight: 700;
 }
 
 .add_btn {
