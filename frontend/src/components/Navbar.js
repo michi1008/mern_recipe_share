@@ -59,6 +59,7 @@ const Wrapper = styled.section`
   display: flex;
   align-items: center;
   justify-content: space-between;
+ 
 
 .navbarContainer{
   margin: 0 auto;
@@ -93,18 +94,27 @@ const Wrapper = styled.section`
 .title {
   margin-left: 0.4rem;
   margin-top: 1rem;
-  color: var(--clr-dark);
+  color: var(--clr-white);
   text-align: center;
   font-size: 2rem;
 }
 
 
 @media screen and (min-width: 800px){
+  background-color: var(--clr-green);
+  top: 0;
+  z-index: 100;
+  height: 7rem;
+  position: -webkit-sticky; /* for Safari */
+  position: sticky;
+  align-self: flex-start;
+  
   .nav-toggle {
     display: none;
   }
 
   .navbarContainer {
+    top: 0;
     width:100%;
     display: grid;
     grid-template-columns: auto 1fr auto;
@@ -125,12 +135,12 @@ const Wrapper = styled.section`
 
   .navbarLinks {
     display: flex;
-    justify-content: center;
+    justify-content: start;
     li {
       margin: 0 0.5rem;
     }
     a {
-      color: var(--clr-green);
+      color: var(--clr-white);
       font-size: 1.2rem;
       text-transform: capitalize;
       letter-spacing: var(--spacing);

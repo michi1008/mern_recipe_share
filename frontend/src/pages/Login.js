@@ -61,6 +61,11 @@ const Login = () => {
         <div className="login">
         <span className="loginTitle">Login</span>
         <form className="loginForm" onSubmit={onSubmit}>
+          <button className="btn loginSignupBtn">
+            <Link className="link" to="/signup">
+              Signup
+            </Link>
+          </button>
           <label>Email</label>
           <input
             type="email"
@@ -85,11 +90,7 @@ const Login = () => {
             Login
           </button>
         </form>
-        <button className="btn loginSignupBtn">
-          <Link className="link" to="/signup">
-            Signup
-          </Link>
-        </button>
+        
       </div>   
       </Wrapper>    
     )
@@ -114,7 +115,7 @@ background-color: var(--clr-gold);
 background-repeat: no-repeat;
 padding-top: 2rem;
 padding-bottom: 2rem;
-height:calc(100vh-5rem);
+min-height:calc(100vh-5rem);
 background-blend-mode: multiply; 
 }
 
@@ -183,6 +184,7 @@ input:focus {
 }
 
 @media screen and (min-width: 800px){
+  min-height:calc(100vh-5rem);
   .login{
     width:40%;
   }
@@ -213,10 +215,11 @@ input:focus {
   }
   
   .loginSignupBtn {
-    top: 6rem;
-    right: 12rem;
+    top: 9rem;
+    right: 27rem;
     border-radius: 0.5rem;
     padding: 0.6rem;
+    background-color: var(--clr-brown);
   } 
 }
 

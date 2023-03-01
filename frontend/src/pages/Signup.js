@@ -66,6 +66,11 @@ return (
   <Wrapper>
     <div className="signup">
     <form className="signupForm" onSubmit={onSubmit}>
+      <button className="btn signupLoginBtn">
+        <Link className="link" to="/login">
+          Login
+        </Link>
+      </button>
       <span className="signupTitle">Signup</span>
       <label>Username</label>
       <input
@@ -111,11 +116,7 @@ return (
         Sign up
       </button>
     </form>
-    <button className="btn signupLoginBtn">
-      <Link className="link" to="/login">
-        Login
-      </Link>
-    </button>
+    
   </div>
   </Wrapper>
 )
@@ -222,7 +223,7 @@ box-shadow: var(--dark-shadow);
     border-radius: 3px;
     padding-top: 2rem;
     padding-bottom: 2rem;
-    height: calc(100vh-5rem);
+    min-height: calc(100vh-8rem);
     }
     
     .signupTitle {
@@ -251,8 +252,8 @@ box-shadow: var(--dark-shadow);
     }
     
     .signupLoginBtn {
-    top: 6rem;
-    right: 12rem;
+    top: -3rem;
+    right: 3rem;
     border-radius: 0.3rem;
     padding: 0.4rem;
     font-size: 1.5rem;

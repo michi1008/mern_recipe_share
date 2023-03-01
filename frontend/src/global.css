@@ -37,8 +37,7 @@ const GlobalStyle = createGlobalStyle` */
 }
   
 html {
-  height: calc(100vh - 5rem);
-  overflow-x: hidden
+  min-height: calc(100vh - 5rem);
 }
 
 body {
