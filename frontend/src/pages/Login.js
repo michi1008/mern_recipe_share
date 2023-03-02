@@ -61,11 +61,7 @@ const Login = () => {
         <div className="login">
         <span className="loginTitle">Login</span>
         <form className="loginForm" onSubmit={onSubmit}>
-          <button className="btn loginSignupBtn">
-            <Link className="link" to="/signup">
-              Signup
-            </Link>
-          </button>
+          
           <label>Email</label>
           <input
             type="email"
@@ -86,11 +82,17 @@ const Login = () => {
             value={password}
             onChange={onChange}
           />
+          <div className="btn-container">
           <button className="btn loginBtn" type="submit">
             Login
           </button>
-        </form>
-        
+          <button className="btn loginSignupBtn">
+            <Link className="link" to="/signup">
+              Signup
+            </Link>
+          </button>
+          </div>
+        </form>        
       </div>   
       </Wrapper>    
     )
@@ -151,6 +153,12 @@ input:focus {
   border-radius: 0.5rem;
 }
 
+.btn-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
 .loginBtn {
   margin-top: 1.2rem;
   cursor: pointer;
@@ -162,16 +170,18 @@ input:focus {
   box-shadow:var(--dark-shadow);
 }
 
+.loginBtn:hover {
+  background-color: var(--clr-gold);
+  color: var(--clr-white);
+}
+
 .loginSignupBtn {
-  position: absolute;
-  top: 6rem;
-  right: 2rem;
   margin-top: 1.2rem;
   cursor: pointer;
-  background-color: var(--clr-gold);
+  background-color: var(--clr-brown);
   border: none;
   border-radius: 0.5rem;
-  padding: 0.7rem;
+  padding: 0.5rem;
   box-shadow:var(--dark-shadow);
 }
 
@@ -180,7 +190,7 @@ input:focus {
 }
 
 .loginSignupBtn:hover {
-  background-color: var(--clr-brown);
+  background-color: var(--clr-gold);
 }
 
 @media screen and (min-width: 800px){
@@ -215,8 +225,6 @@ input:focus {
   }
   
   .loginSignupBtn {
-    top: 9rem;
-    right: 27rem;
     border-radius: 0.5rem;
     padding: 0.6rem;
     background-color: var(--clr-brown);

@@ -65,12 +65,7 @@ const Signup = () => {
 return (
   <Wrapper>
     <div className="signup">
-    <form className="signupForm" onSubmit={onSubmit}>
-      <button className="btn signupLoginBtn">
-        <Link className="link" to="/login">
-          Login
-        </Link>
-      </button>
+    <form className="signupForm" onSubmit={onSubmit}>     
       <span className="signupTitle">Signup</span>
       <label>Username</label>
       <input
@@ -112,11 +107,17 @@ return (
         value={password2}
         onChange={onChange}
       />
+      <div className="btn-container">
       <button className="btn signupBtn" type="submit">
         Sign up
       </button>
-    </form>
-    
+      <button className="btn signupLoginBtn">
+        <Link className="link" to="/login">
+          Login
+        </Link>
+      </button>
+      </div>
+    </form> 
   </div>
   </Wrapper>
 )
@@ -180,6 +181,12 @@ border: none;
 border-radius: 0.5rem;
 }
 
+.btn-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
 .signupBtn {
 margin-top: 1.2rem;
 cursor: pointer;
@@ -197,10 +204,7 @@ box-shadow:var(--dark-shadow);
 }
 
 .signupLoginBtn {
-position: absolute;
-top: 7rem;
-right: 2rem;
-background-color: var(--clr-blue);
+background-color: var(--clr-gold);
 border-radius: 0.3rem;
 padding: 0.7rem;
 cursor:pointer;
@@ -209,12 +213,12 @@ box-shadow: var(--dark-shadow);
 }
 
 .signupLoginBtn a {
-  color: var(--clr-lightblue);
+  color: var(--clr-white);
 }
 
 .signupLoginBtn:hover {
-  background-color: var(--clr-white);
-  color: var(--clr-blue);
+  background-color: var(--clr-brown);
+  color: var(--clr-white);
 }
 
 @media screen and (min-width: 800px){
@@ -252,11 +256,9 @@ box-shadow: var(--dark-shadow);
     }
     
     .signupLoginBtn {
-    top: -3rem;
-    right: 3rem;
-    border-radius: 0.3rem;
-    padding: 0.4rem;
-    font-size: 1.5rem;
+      margin-top: 1.2rem;
+      border-radius: 0.5rem;
+      padding: 0.7rem;
     }
 }
 
