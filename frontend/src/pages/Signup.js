@@ -188,7 +188,8 @@ border-radius: 0.5rem;
 }
 
 .signupBtn {
-margin-top: 1.2rem;
+width: 5rem;
+font-size: 0.8rem;
 cursor: pointer;
 background-color: var(--clr-blue);
 border: none;
@@ -204,6 +205,8 @@ box-shadow:var(--dark-shadow);
 }
 
 .signupLoginBtn {
+width: 5rem;
+font-size: 0.8rem;
 background-color: var(--clr-gold);
 border-radius: 0.3rem;
 padding: 0.7rem;

@@ -160,13 +160,13 @@ input:focus {
 }
 
 .loginBtn {
-  margin-top: 1.2rem;
+  width: 5rem;
   cursor: pointer;
   background-color: var(--clr-white);
   border: none;
   color: var(--clr-brown);
   border-radius: 0.5rem;
-  padding: 0.7rem;
+  padding: 0.5rem;
   box-shadow:var(--dark-shadow);
 }
 
@@ -176,7 +176,7 @@ input:focus {
 }
 
 .loginSignupBtn {
-  margin-top: 1.2rem;
+  width: 5rem;
   cursor: pointer;
   background-color: var(--clr-brown);
   border: none;
