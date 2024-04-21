@@ -1,122 +1,180 @@
-const jwt = require("jsonwebtoken")
-const bcrypt = require("bcryptjs")
-const asyncHandler = require("express-async-handler")
-const User = require("../models/User")
+import asyncHandler from "../middleware/asyncHandler.js";
+import generateToken from "../utils/generateToken.js";
+import User from "../models/User.js";
 
-// @desc    Register new user
+// @desc    Auth user & get token
+// @route   POST /api/users/auth
+// @access  Public
+export const authUser = asyncHandler(async (req, res) => {
+  const { email, password } = req.body;
+
+  const user = await User.findOne({ email });
+
+  if (user && (await user.matchPassword(password))) {
+    generateToken(res, user._id);
+
+    res.json({
+      _id: user._id,
+      userName: user.userName,
+      email: user.email,
+      isAdmin: user.isAdmin,
+    });
+  } else {
+    res.status(401);
+    throw new Error("Invalid email or password");
+  }
+});
+
+// @desc    Register a new user
 // @route   POST /api/users
 // @access  Public
-const signupUser = asyncHandler(async (req, res) => {
-  const { userName, email, password } = req.body
+export const registerUser = asyncHandler(async (req, res) => {
+  const { userName, email, password } = req.body;
 
-  if (!userName || !email || !password) {
-    res.status(400)
-    throw new Error("Please add all fields")
-  }
-
-  // Check if user exists
-  const userExists = await User.findOne({ email })
+  const userExists = await User.findOne({ email });
 
   if (userExists) {
-    res.status(400)
-    throw new Error("User already exists")
+    res.status(400);
+    throw new Error("User already exists");
   }
 
-  // Hash password
-  const salt = await bcrypt.genSalt(10)
-  const hashedPassword = await bcrypt.hash(password, salt)
-
-  // Create user
   const user = await User.create({
     userName,
     email,
-    password: hashedPassword,
-  })
+    password,
+  });
 
   if (user) {
+    generateToken(res, user._id);
+
     res.status(201).json({
-      _id: user.id,
+      _id: user._id,
       userName: user.userName,
       email: user.email,
-      token: generateToken(user._id),
-    })
+      isAdmin: user.isAdmin,
+    });
   } else {
-    res.status(400)
-    throw new Error("Invalid user data")
+    res.status(400);
+    throw new Error("Invalid user data");
   }
-})
+});
 
-// @desc    Authenticate a user
-// @route   POST /api/users/login
+// @desc    Logout user / clear cookie
+// @route   POST /api/users/logout
 // @access  Public
-const loginUser = asyncHandler(async (req, res) => {
-  const { email, password } = req.body
+export const logoutUser = (req, res) => {
+  res.clearCookie("jwt");
+  res.status(200).json({ message: "Logged out successfully" });
+};
 
-  // Check for user email
-  const user = await User.findOne({ email })
+// @desc    Get user profile
+// @route   GET /api/users/profile
+// @access  Private
+export const getUserProfile = asyncHandler(async (req, res) => {
+  const user = await User.findById(req.user._id);
 
-  if (user && (await bcrypt.compare(password, user.password))) {
+  if (user) {
     res.json({
-      _id: user.id,
+      _id: user._id,
       userName: user.userName,
       email: user.email,
-      token: generateToken(user._id),
-    })
+      isAdmin: user.isAdmin,
+    });
   } else {
-    res.status(400)
-    throw new Error("Invalid credentials")
+    res.status(404);
+    throw new Error("User not found");
   }
-})
+});
 
-//delete user
-const deleteUser = asyncHandler(async (req, res) => {
-  if (req.body.userId === req.params.id ) {
-    await User.findByIdAndDelete(req.params.id)
-    res.status(200).json("Account has been deleted")
-  } else if (error) {
-    return res.status(500).json(err)
-  } else {
-    return res.status(403).json("You can delete only your account!")
-  }
-})
-
-//Update user
-const updateUser = asyncHandler(async (req, res) => {
-  if (req.body.userId === req.params.id ) {
-    if (req.body.password) {
-        const salt = await bcrypt.genSalt(10);
-        req.body.password = await bcrypt.hash(req.body.password, salt)
-      if (err) {
-        return res.status(500).json(err);
-      }
-      const updatedUser = await User.findByIdAndUpdate(req.params.id, req.body, {new: true,})
-      res.status(200).json(updatedUser) 
-    }
-  else if(err) {
-    return res.status(500).json(err)
-  }else{
-    return res.status(403).json("You can update only your account!")
-  }
-}})
-
-// @desc    Get user data
-// @route   GET /api/users/me
+// @desc    Update user profile
+// @route   PUT /api/users/profile
 // @access  Private
-const getMe = asyncHandler(async (req, res) => {
-  res.status(200).json(req.user)
-})
+export const updateUserProfile = asyncHandler(async (req, res) => {
+  const user = await User.findById(req.user._id);
 
-// Generate JWT
-const generateToken = (id) => {
-  return jwt.sign({ id }, process.env.JWT_SECRET, {
-    expiresIn: "30d",
-  })
-}
+  if (user) {
+    user.userName = req.body.userName || user.userName;
+    user.email = req.body.email || user.email;
 
-module.exports = {
-  signupUser,
-  loginUser,
-  updateUser,
-  deleteUser,
-  getMe
-}
+    if (req.body.password) {
+      user.password = req.body.password;
+    }
+
+    const updatedUser = await user.save();
+
+    res.json({
+      _id: updatedUser._id,
+      userName: updatedUser.userName,
+      email: updatedUser.email,
+      isAdmin: updatedUser.isAdmin,
+    });
+  } else {
+    res.status(404);
+    throw new Error("User not found");
+  }
+});
+
+// @desc    Get all users
+// @route   GET /api/users
+// @access  Private/Admin
+export const getUsers = asyncHandler(async (req, res) => {
+  const users = await User.find({});
+  res.json(users);
+});
+
+// @desc    Delete user
+// @route   DELETE /api/users/:id
+// @access  Private/Admin
+export const deleteUser = asyncHandler(async (req, res) => {
+  const user = await User.findById(req.params.id);
+
+  if (user) {
+    if (user.isAdmin) {
+      res.status(400);
+      throw new Error("Can not delete admin user");
+    }
+    await User.deleteOne({ _id: user._id });
+    res.json({ message: "User removed" });
+  } else {
+    res.status(404);
+    throw new Error("User not found");
+  }
+});
+
+// @desc    Get user by ID
+// @route   GET /api/users/:id
+// @access  Private/Admin
+export const getUserById = asyncHandler(async (req, res) => {
+  const user = await User.findById(req.params.id).select("-password");
+
+  if (user) {
+    res.json(user);
+  } else {
+    res.status(404);
+    throw new Error("User not found");
+  }
+});
+// @desc    Update user
+// @route   PUT /api/users/:id
+// @access  Private/Admin
+export const updateUser = asyncHandler(async (req, res) => {
+  const user = await User.findById(req.params.id);
+
+  if (user) {
+    user.userName = req.body.userName || user.userName;
+    user.email = req.body.email || user.email;
+    user.isAdmin = Boolean(req.body.isAdmin);
+
+    const updatedUser = await user.save();
+
+    res.json({
+      _id: updatedUser._id,
+      userName: updatedUser.userName,
+      email: updatedUser.email,
+      isAdmin: updatedUser.isAdmin,
+    });
+  } else {
+    res.status(404);
+    throw new Error("User not found");
+  }
+});
