@@ -1,10 +1,9 @@
 import React from "react"
 import styled from "styled-components"
 import { Link } from "react-router-dom"
-import OpenInNewIcon from '@mui/icons-material/OpenInNew';
+import search from "../assets/search.png";
 
 const Post = ({ post }) => {
-  
  
   return (
     <Wrapper>
@@ -15,7 +14,7 @@ const Post = ({ post }) => {
         <div className="userContainer">
         <div className="user"><p>Created by: {post.user ? post.user.userName : "Unknown"}</p></div> 
         <Link to={`/posts/${post._id}`} className="link">
-            <OpenInNewIcon className="link-icon"/>
+            <div className="link-icon"><img src={search} alt="search" /></div>
         </Link>
         </div>
       </div>

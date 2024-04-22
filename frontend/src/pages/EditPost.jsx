@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import img from "../assets/write.jpg";
-import { toast } from "react-toastify";
+import { toast } from 'react-toastify';
 import {
   useGetPostByIdQuery,
   useUpdatePostMutation,

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import img from "../assets/write.jpg";
-import { toast } from "react-toastify";
+import { toast } from 'react-toastify';
 import { useNavigate } from "react-router-dom";
 import no_img from "../assets/no_image.jpg";
 import Resizer from "react-image-file-resizer";

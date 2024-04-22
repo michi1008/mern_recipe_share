@@ -20,8 +20,6 @@ import EditPost from "./pages/EditPost";
 import UserPosts from "./pages/UserPosts";
 import SinglePostPage from "./pages/SinglePostPage";
 import ErrorPage from "./pages/ErrorPage";
-import Navbar from "./components/Navbar";
-import Footer from "./components/Footer";
 import store from './store';
 import { Provider } from 'react-redux';
 import { ToastContainer } from "react-toastify";
@@ -51,7 +49,6 @@ const router = createBrowserRouter(
     </Route>
   )
 );
-
 
   const root = ReactDOM.createRoot(document.getElementById('root'));
   root.render(

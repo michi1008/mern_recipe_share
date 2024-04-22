@@ -7,8 +7,8 @@ import {
   useDeletePostMutation,
 } from "../slices/postsApiSlice";
 import Spinner from "../components/Spinner";
-import DeleteTwoToneIcon from "@material-ui/icons/DeleteTwoTone";
-import EditTwoToneIcon from "@material-ui/icons/EditTwoTone";
+import trash from "../assets/trash.png";
+import edit from "../assets/edit.png";
 import { toast } from "react-toastify";
 
 const UserPosts = () => {
@@ -74,10 +74,11 @@ const UserPosts = () => {
               </div>
               <div className="iconContainer">
                 <Link to={`/posts/userPosts/${post._id}/edit`}>
-                  <EditTwoToneIcon className="icon" />
+                  <img className="icon" src={edit} alt="editl" />
                 </Link>
-                <DeleteTwoToneIcon
+                <img
                   className="icon"
+                  src={trash}
                   onClick={() => handleDeletePost(post._id)}
                 />
               </div>
@@ -166,8 +167,8 @@ const Wrapper = styled.section`
   }
 
   .icon {
-    color: var(--clr-primary-4);
-    margin-top: 0.5rem;
+    width: 1.5rem;
+    height: 1.2rem;
   }
 
   @media screen and (max-width: 800px) {

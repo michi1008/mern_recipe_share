@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import styled from "styled-components";
 import {
   useGetPostByIdQuery,
@@ -8,8 +8,8 @@ import {
 import { useSelector } from "react-redux";
 import Spinner from "../components/Spinner";
 import Message from "../components/Message";
-import { toast } from "react-toastify";
-import ReplyIcon from "@mui/icons-material/Reply";
+import { toast } from 'react-toastify';
+import reply from "../assets/reply.png";
 
 const SinglePostPage = () => {
   const { postId } = useParams();
@@ -169,14 +169,8 @@ const SinglePostPage = () => {
                     className="replyBtn"
                     onClick={() => handleReplyClick(postComment._id)}
                   >
-                    <ReplyIcon
-                      style={{
-                        backgroundColor: "transparent",
-                        boxShadow: "none",
-                        border: "none",
-                        fontSize: 20,
-                      }}
-                    />
+                    <div>${reply}</div>
+                  
                   </button>
                 )}
               </ul>

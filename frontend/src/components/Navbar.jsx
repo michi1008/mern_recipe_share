@@ -4,9 +4,9 @@ import { useSelector, useDispatch } from "react-redux";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useLogoutMutation } from "../slices/usersApiSlice";
 import { logout } from "../slices/authSlice";
-import CancelIcon from "@mui/icons-material/Cancel";
-import MenuIcon from "@mui/icons-material/Menu";
-import ExitToAppRoundedIcon from "@mui/icons-material/ExitToAppRounded";
+import cancel from "../assets/cancel.png";
+import menu from "../assets/menu.png";
+import exit from "../assets/logout.png";
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -31,13 +31,12 @@ const Navbar = () => {
       <nav>
         <div className="title">
           <h4>Share Recipes</h4>
-          <div className="underline"></div>
         </div>
         <div className="menu" onClick={() => setMenuOpen(!menuOpen)}>
           {menuOpen ? (
-            <CancelIcon className="icon" />
+            <div className="icon"><img src={cancel} alt="cancel" /></div>
           ) : (
-            <MenuIcon className="icon" />
+            <div className="icon"><img src={menu} alt="menu" /></div>
           )}
         </div>
         <ul className={menuOpen ? "open" : ""}>
@@ -83,7 +82,7 @@ const Navbar = () => {
           )}
           {userInfo && (
             <li onClick={handleLogout}>
-              <ExitToAppRoundedIcon className="logout" />
+              <div className="logout"><img src={exit} alt="Exit" /></div>
             </li>
           )}
         </ul>
@@ -174,11 +173,6 @@ const Wrapper = styled.section`
 
   .logout {
     cursor: pointer;
-    font-size: 3rem;
-  }
-
-  .logout:hover {
-    color: var(--clr-red);
   }
 
   @media screen and (max-width: 1120px) {

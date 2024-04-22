@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
+import { toast } from 'react-toastify';
 import img from "../assets/signup.jpg";
 import Spinner from "../components/Spinner";
 import { useRegisterMutation } from "../slices/usersApiSlice";

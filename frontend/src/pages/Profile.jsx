@@ -1,13 +1,10 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
-import { toast } from "react-toastify";
-import Message from "../components/Message";
+import { toast } from 'react-toastify';
 import Spinner from "../components/Spinner";
 import { useProfileMutation } from "../slices/usersApiSlice";
 import { setCredentials } from "../slices/authSlice";
-import { FaTimes } from "react-icons/fa";
 
 const Profile = () => {
   const [userName, setUserName] = useState("");
