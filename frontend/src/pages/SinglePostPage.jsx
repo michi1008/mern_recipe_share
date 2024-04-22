@@ -7,7 +7,6 @@ import {
 } from "../slices/postsApiSlice";
 import { useSelector } from "react-redux";
 import Spinner from "../components/Spinner";
-import Message from "../components/Message";
 import { toast } from 'react-toastify';
 import reply from "../assets/reply.png";
 
@@ -169,8 +168,7 @@ const SinglePostPage = () => {
                     className="replyBtn"
                     onClick={() => handleReplyClick(postComment._id)}
                   >
-                    <div>${reply}</div>
-                  
+                   reply
                   </button>
                 )}
               </ul>
@@ -389,7 +387,7 @@ const Wrapper = styled.section`
   }
 
   .replyBtn {
-    color: var(--clr-white);
+    border-radius: 5px;
     background-color: var(--clr-primary-4);
   }
 
