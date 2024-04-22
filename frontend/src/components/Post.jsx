@@ -71,9 +71,7 @@ display: -webkit-box;
 }
 
 .link-icon {
-  color: var(--clr-primary-3);
-  font-size: 2rem;
-  font-weight: 700;
+  
   cursor: pointer;
 }
 

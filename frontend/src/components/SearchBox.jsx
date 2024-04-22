@@ -7,15 +7,15 @@ const SearchBox = () => {
   const { keyword: urlKeyword } = useParams();
 
   const [keyword, setKeyword] = useState(urlKeyword || "");
-  const [isFocused, setIsFocused] = useState(false);
+
 
   const submitHandler = (e) => {
     e.preventDefault();
-    if (keyword.trim()) {
-      setKeyword(" ");
-      navigate(`/search/${keyword}`);
+    if (keyword) {
+      navigate(`/search/${keyword.trim()}`);
+      setKeyword('');
     } else {
-      navigate("/");
+      navigate('/');
     }
   };
 
@@ -27,10 +27,8 @@ const SearchBox = () => {
           type="text"
           name="q"
           value={keyword}
-          placeholder={isFocused || keyword ? "" : "Search..."}
+          placeholder="Search..."
           onChange={(e) => setKeyword(e.target.value)}
-          onFocus={() => setIsFocused(true)}
-          onBlur={() => setIsFocused(false)}
         />
       </form>
     </Wrapper>

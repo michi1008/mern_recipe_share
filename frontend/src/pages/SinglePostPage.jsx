@@ -194,9 +194,9 @@ const SinglePostPage = () => {
                 <button className="commentSubmit" type="submit">Submit</button>
               </form>
             ) : (
-              <Message>
-                Please <Link to="/login">Login</Link> to comment
-              </Message>
+              <div className="commentAskLogin">
+                <p>Please <Link to="/login">Login</Link> to comment</p>
+              </div>
             )}
           </div>
         </div>
@@ -400,6 +400,11 @@ const Wrapper = styled.section`
   .commentSubmit {
     background-color: var(--clr-brown);
     border-radius: 5px;
+  }
+
+  .commentAskLogin p{
+    font-size: 1.2rem;
+    color: var(--clr-brown);
   }
 
   @media screen and (max-width: 800px) {

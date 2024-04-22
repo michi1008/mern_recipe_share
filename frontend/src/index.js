@@ -19,10 +19,8 @@ import NewPost from "./pages/NewPost";
 import EditPost from "./pages/EditPost";
 import UserPosts from "./pages/UserPosts";
 import SinglePostPage from "./pages/SinglePostPage";
-import ErrorPage from "./pages/ErrorPage";
 import store from './store';
 import { Provider } from 'react-redux';
-import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const router = createBrowserRouter(
