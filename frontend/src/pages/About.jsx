@@ -16,15 +16,15 @@ const About = () => {
             When I invite my friends for a dinner party, many of them ask me for
             my food recipes. My dishes are usally my own creations. I don"t
             follow any recipes. With this website, I can easily share my recipes
-            with my friends. <br></br>
+            with my friends. <br></br><br></br>
             In addition, I realized that many people think Japanese people only
             eat Sushi or Ramen. This is not the case. We have many home made
             varieties of food, including regional dishes within Japan. <br></br>
             You can find many recipes on Japanese websites, but they are mostly
             in Japanese. So I want to share some Japanese receipes on this site.{" "}
-            <br></br>
+            <br></br><br></br>
             Last but not least, I created this site for my son, who lives in
-            Japan. Since we don"t live in the same place, I can"t show him how
+            Japan. Since we don"t live in the same place, I can't show him how
             to cook. With this website, I can share my recipes with him and he
             can also share his recipes. <br></br>I hope this recipe sharing
             website can help poeple to cook healthy and delicious meals and
@@ -50,10 +50,11 @@ const Wrapper = styled.section`
         rgba(255, 255, 255, 0.4)
       ),
       url(${img});
-    border-radius: 3px;
-    background-color: var(--clr-green);
+    border-radius: 5px;
     background-repeat: no-repeat;
     height: calc(100vh-5rem);
+    opacity: 0.5
+    z-index: -1;
   }
 
   .titleContainer {
@@ -75,8 +76,8 @@ const Wrapper = styled.section`
   }
 
   p {
-    color: var(--clr-primary-3);
-    font-size: 1.2rem;
+    color: var(--clr-primary-4);
+    font-size: 1.5rem;
   }
 
   @media (max-width: 800px) {

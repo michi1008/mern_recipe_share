@@ -150,7 +150,7 @@ const SinglePostPage = () => {
                       value={comment}
                       onChange={(e) => setComment(e.target.value)}
                     />
-                    <button type="submit">Submit</button>
+                    <button className="replyBtn"  onClick={() => handleReplyClick(postComment._id)}>Reply</button>
                   </form>
                 )}
                 {/* Display replies under the original comment */}
@@ -389,10 +389,14 @@ const Wrapper = styled.section`
   .replyBtn {
     border-radius: 5px;
     background-color: var(--clr-primary-4);
+    width: 5rem;
+    height: 2rem;
+    font-size: 0.8rem;
   }
 
   .comment.reply {
     margin-left: 2rem;
+    margin-top: 1rem;
   }
 
   .commentSubmit {

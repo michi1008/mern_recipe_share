@@ -225,9 +225,7 @@ const Wrapper = styled.section`
     }
 
     .icon {
-      font-size: 5rem;
-      padding: 1rem;
-      color: var(--clr-white);
+      margin-top: 0.5rem;
     }
   }
 `;
