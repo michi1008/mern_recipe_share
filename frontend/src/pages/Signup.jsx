@@ -31,13 +31,33 @@ const Signup = () => {
     }
   }, [navigate, redirect, userInfo]);
 
+  const isPasswordStrong = (password) => {
+    // Define the criteria for password strength
+    const minLength = 8; // Minimum length
+    const uppercaseRegex = /[A-Z]/; // At least one uppercase letter
+    const lowercaseRegex = /[a-z]/; // At least one lowercase letter
+    const digitRegex = /[0-9]/; // At least one digit
+    const specialCharRegex = /[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]/; // At least one special character
+  
+    // Check if the password meets all criteria
+    return (
+      password.length >= minLength &&
+      uppercaseRegex.test(password) &&
+      lowercaseRegex.test(password) &&
+      digitRegex.test(password) &&
+      specialCharRegex.test(password)
+    );
+  };
+
   const submitHandler = async (e) => {
     e.preventDefault();
     if (password !== confirmPassword) {
-      toast.error("Passwords do not match");
+      toast.error('Passwords do not match');
+    } else if (!isPasswordStrong(password)) {
+      toast.error('Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, one digit, and one special character');
     } else {
       try {
-        const res = await register({ userName, email, password }).unwrap();
+        const res = await register({ name, email, password }).unwrap();
         dispatch(setCredentials({ ...res }));
         navigate(redirect);
       } catch (err) {
