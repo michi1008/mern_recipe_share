@@ -57,7 +57,7 @@ const Signup = () => {
       toast.error('Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, one digit, and one special character');
     } else {
       try {
-        const res = await register({ name, email, password }).unwrap();
+        const res = await register({ userName, email, password }).unwrap();
         dispatch(setCredentials({ ...res }));
         navigate(redirect);
       } catch (err) {
