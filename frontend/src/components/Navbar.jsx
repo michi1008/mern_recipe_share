@@ -159,7 +159,6 @@ const Wrapper = styled.section`
 
   nav .navUser h4 {
     margin-top: 0.3rem;
-    font-style: italic;
     font-size: 1.2rem;
     font-weight: 600;
     margin: 0 0.5rem;
