@@ -27,10 +27,6 @@ app.use("/api/posts", postRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api", forgetPasswordRoutes);
 
-// Middleware for handling errors
-app.use((req, res, next) => {
-  res.status(404).json({ message: `Not Found - ${req.originalUrl}` });
-});
 
 if (process.env.NODE_ENV === "production") {
   const __dirname = path.resolve();
