@@ -19,6 +19,7 @@ import NewPost from "./pages/NewPost";
 import EditPost from "./pages/EditPost";
 import UserPosts from "./pages/UserPosts";
 import SinglePostPage from "./pages/SinglePostPage";
+import ForgetPasswordForm from "./components/ForgetPasswordForm";
 import store from './store';
 import { Provider } from 'react-redux';
 import "react-toastify/dist/ReactToastify.css";
@@ -37,6 +38,7 @@ const router = createBrowserRouter(
       <Route path='/about' element={<About />} />
       <Route path='/signup' element={<Signup />} />
       <Route path='/login' element={<Login />} />
+      <Route path="/forget-password" element={<ForgetPasswordForm />} />
       {/* Registered users */}
       <Route path='' element={<PrivateRoute />}>
         <Route path='/create' element={<NewPost />} />

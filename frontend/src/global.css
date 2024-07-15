@@ -5,11 +5,11 @@ const GlobalStyle = createGlobalStyle` */
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap");
 
 :root{
---clr-primary-1: #FBFADA;
---clr-primary-2: #ADBC9F;
---clr-primary-3: #436850;
---clr-primary-4: #12372A;
---clr-red: #e64a47;
+--clr-primary-1: #f1faee;
+--clr-primary-2: #a8dadc;
+--clr-primary-3: #457b9d;
+--clr-primary-4: #1d3557;
+--clr-red: #e63946;
 --clr-white: #fff;
 --clr-black: #000;
 --clr-grey: #999;

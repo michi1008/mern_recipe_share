@@ -8,6 +8,7 @@ import { setCredentials } from "../slices/authSlice";
 import img from "../assets/login.jpg";
 import Spinner from "../components/Spinner";
 
+
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -78,6 +79,9 @@ const Login = () => {
                 Signup
               </Link>
             </button>
+            <Link to="/forget-password" className="forgotPasswordLink">
+            Forgot Password?
+          </Link>
           </div>
         </form>
       </div>
@@ -189,6 +193,11 @@ const Wrapper = styled.section`
   .loginSignupBtn:hover {
     background-color: var(--clr-white);
     color: var(--clr-brown);
+  }
+
+  .forgotPasswordLink {
+    color: var(--clr-white);
+    margin-top: 2rem;
   }
 
   @media screen and (max-width: 800px) {

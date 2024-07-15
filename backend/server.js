@@ -6,8 +6,10 @@ import connectDB from "./config/db.js";
 const port = process.env.PORT || 4000;
 import postRoutes from "./routes/postRoutes.js";
 import userRoutes from "./routes/userRoutes.js";
+import forgetPasswordRoutes from "./routes/forgetPasswordRoutes.js";
 import { notFound, errorHandler } from "./middleware/errorMiddleware.js";
 import path from "path";
+
 
 // Connect to MongoDB
 connectDB();
@@ -23,6 +25,12 @@ app.use(cookieParser());
 
 app.use("/api/posts", postRoutes);
 app.use("/api/users", userRoutes);
+app.use("/api", forgetPasswordRoutes);
+
+// Middleware for handling errors
+app.use((req, res, next) => {
+  res.status(404).json({ message: `Not Found - ${req.originalUrl}` });
+});
 
 if (process.env.NODE_ENV === "production") {
   const __dirname = path.resolve();
