@@ -238,6 +238,7 @@ export const forgetPassword = asyncHandler(async (req, res) => {
     // Send the email
     transporter.sendMail(mailOptions, (err, info) => {
       if (err) {
+        console.error('Error sending email:', err);
         return res.status(500).send({ message: err.message });
       }
       res.status(200).send({ message: "Email sent" });
