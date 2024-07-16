@@ -1,6 +1,9 @@
 import asyncHandler from "../middleware/asyncHandler.js";
 import generateToken from "../utils/generateToken.js";
 import User from "../models/User.js";
+import jwt from "jsonwebtoken";
+import nodemailer from 'nodemailer';
+import bcrypt from 'bcryptjs'; // Correctly import bcrypt
 
 // @desc    Auth user & get token
 // @route   POST /api/users/auth
@@ -8,22 +11,34 @@ import User from "../models/User.js";
 export const authUser = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
 
+  console.log("Attempting to authenticate user with email:", email);
+
   const user = await User.findOne({ email });
+  console.log("User found:", user);
 
-  if (user && (await user.matchPassword(password))) {
-    generateToken(res, user._id);
+  if (user) {
+    const isMatch = await user.matchPassword(password);
+    console.log("Password match result:", isMatch);
 
-    res.json({
-      _id: user._id,
-      userName: user.userName,
-      email: user.email,
-      isAdmin: user.isAdmin,
-    });
-  } else {
-    res.status(401);
-    throw new Error("Invalid email or password");
+    if (isMatch) {
+      generateToken(res, user._id);
+
+      console.log("User authenticated successfully");
+
+      return res.json({
+        _id: user._id,
+        userName: user.userName,
+        email: user.email,
+        isAdmin: user.isAdmin,
+      });
+    }
   }
+
+  console.log("Authentication failed");
+
+  res.status(401).json({ message: "Invalid email or password" });
 });
+
 
 // @desc    Register a new user
 // @route   POST /api/users
@@ -97,7 +112,8 @@ export const updateUserProfile = asyncHandler(async (req, res) => {
     user.email = req.body.email || user.email;
 
     if (req.body.password) {
-      user.password = req.body.password;
+      const salt = await bcrypt.genSalt(10);
+      user.password = await bcrypt.hash(req.body.password, salt);
     }
 
     const updatedUser = await user.save();
@@ -131,7 +147,7 @@ export const deleteUser = asyncHandler(async (req, res) => {
   if (user) {
     if (user.isAdmin) {
       res.status(400);
-      throw new Error("Can not delete admin user");
+      throw new Error("Cannot delete admin user");
     }
     await User.deleteOne({ _id: user._id });
     res.json({ message: "User removed" });
@@ -154,6 +170,7 @@ export const getUserById = asyncHandler(async (req, res) => {
     throw new Error("User not found");
   }
 });
+
 // @desc    Update user
 // @route   PUT /api/users/:id
 // @access  Private/Admin
@@ -176,5 +193,92 @@ export const updateUser = asyncHandler(async (req, res) => {
   } else {
     res.status(404);
     throw new Error("User not found");
+  }
+});
+
+export const forgetPassword = asyncHandler(async (req, res) => {
+  try {
+    // Find the user by email
+    const user = await User.findOne({ email: req.body.email });
+
+    // If user not found, send error message
+    if (!user) {
+      return res.status(404).send({ message: "User not found" });
+    }
+
+    // Generate a unique JWT token for the user that contains the user's id
+    const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, { expiresIn: '10m' });
+
+    // Send the token to the user's email
+    const transporter = nodemailer.createTransport({
+      service: "gmail",
+      auth: {
+        user: process.env.EMAIL,
+        pass: process.env.PASSWORD_APP_EMAIL,
+      },
+    });
+
+    // Email configuration
+    const mailOptions = {
+      from: process.env.EMAIL,
+      to: req.body.email,
+      subject: "Reset Password",
+      html: `<h1>Reset Your Password</h1>
+        <p>Click on the following link to reset your password:</p>
+        <a href="https://mern-recipe-share.onrender.com/reset-password/${token}">https://mern-recipe-share.onrender.com/reset-password/${token}</a>
+        <p>The link will expire in 10 minutes.</p>
+        <p>If you didn't request a password reset, please ignore this email.</p>`,
+    };
+
+    // Send the email
+    transporter.sendMail(mailOptions, (err, info) => {
+      if (err) {
+        return res.status(500).send({ message: err.message });
+      }
+      res.status(200).send({ message: "Email sent" });
+    });
+  } catch (err) {
+    res.status(500).send({ message: err.message });
+  }
+});
+
+export const resetPassword = asyncHandler(async (req, res) => {
+  try {
+    // Verify the token sent by the user
+    const decodedToken = jwt.verify(req.params.token, process.env.JWT_SECRET);
+  
+    // If the token is invalid, return an error
+    if (!decodedToken) {
+      return res.status(401).send({ message: "Invalid token" });
+    }
+
+    // Find the user with the id from the token
+    const user = await User.findById(decodedToken.userId);
+ 
+    if (!user) {
+      return res.status(401).send({ message: "No user found" });
+    }
+
+    // Hash the new password
+    const salt = await bcrypt.genSalt(10);
+    req.body.newPassword = await bcrypt.hash(req.body.newPassword, salt);
+    
+    const updatedUser = await User.findByIdAndUpdate(
+      decodedToken.userId,
+      { password: req.body.newPassword },
+      { new: true }
+    );
+    
+    if (!updatedUser) {
+      return res.status(401).send({ message: "Failed to update password" });
+    }
+    
+   
+   
+    // Send success response
+    res.status(200).send({ message: "Password updated" });
+  } catch (err) {
+    // Send error response if any error occurs
+    res.status(500).send({ message: err.message });
   }
 });

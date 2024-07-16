@@ -136,7 +136,6 @@ const Wrapper = styled.section`
   nav ul li a {
     display: block;
     text-decoration: none;
-    font-style: italic;
     color: var(--clr-white);
     font-size: 1.2rem;
     padding: 0.5rem;

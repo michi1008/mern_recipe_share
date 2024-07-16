@@ -9,12 +9,19 @@ export const apiSlice = createApi({
   endpoints: (builder) => ({
     forgetPassword: builder.mutation({
       query: ({email}) => ({
-        url: '/api/forget-password',
+        url: '/api/users/forget-password',
         method: 'POST',
         body: {email},
+      }),
+    }),
+    resetPassword: builder.mutation({
+      query: ({ token, newPassword }) => ({
+        url: `/api/users/reset-password/${token}`,
+        method: 'POST',
+        body: { newPassword },
       }),
     }),
   }),
 });
 
-export const { useForgetPasswordMutation } = apiSlice;
+export const { useForgetPasswordMutation, useResetPasswordMutation } = apiSlice;

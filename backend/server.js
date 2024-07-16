@@ -6,7 +6,6 @@ import connectDB from "./config/db.js";
 const port = process.env.PORT || 4000;
 import postRoutes from "./routes/postRoutes.js";
 import userRoutes from "./routes/userRoutes.js";
-import forgetPasswordRoutes from "./routes/forgetPasswordRoutes.js";
 import { notFound, errorHandler } from "./middleware/errorMiddleware.js";
 import path from "path";
 
@@ -25,7 +24,6 @@ app.use(cookieParser());
 
 app.use("/api/posts", postRoutes);
 app.use("/api/users", userRoutes);
-app.use("/api", forgetPasswordRoutes);
 
 
 if (process.env.NODE_ENV === "production") {
