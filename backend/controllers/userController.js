@@ -216,6 +216,11 @@ export const forgetPassword = asyncHandler(async (req, res) => {
         user: process.env.EMAIL,
         pass: process.env.PASSWORD_APP_EMAIL,
       },
+      secure: true, // Use TLS
+  tls: {
+    // Avoid self-signed certificate errors
+    rejectUnauthorized: false,
+  },
     });
 
     // Email configuration
