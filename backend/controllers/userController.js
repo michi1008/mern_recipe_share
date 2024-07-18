@@ -229,6 +229,8 @@ export const forgetPassword = asyncHandler(async (req, res) => {
     // Avoid self-signed certificate errors
     rejectUnauthorized: false,
   },
+  logger: true,
+  debug: true,
     });
 
     // Email configuration
@@ -252,6 +254,7 @@ export const forgetPassword = asyncHandler(async (req, res) => {
       res.status(200).send({ message: "Email sent" });
     });
   } catch (err) {
+    console.error('Error in forgetPassword:', err);
     res.status(500).send({ message: err.message });
   }
 });
