@@ -198,8 +198,11 @@ export const updateUser = asyncHandler(async (req, res) => {
 
 // Function to log environment variables for debugging
 const logEnvVariables = () => {
-  console.log('Email:', process.env.EMAIL);
-  console.log('App Password:', process.env.PASSWORD_APP_EMAIL);
+ 
+    console.log('Email:', process.env.EMAIL);
+    console.log('App Password:', process.env.PASSWORD_APP_EMAIL);
+    console.log('JWT Secret:', process.env.JWT_SECRET);
+
 };
 
 
@@ -225,10 +228,9 @@ export const forgetPassword = asyncHandler(async (req, res) => {
         pass: process.env.PASSWORD_APP_EMAIL,
       },
       secure: true, // Use TLS
-  tls: {
-    // Avoid self-signed certificate errors
-    rejectUnauthorized: false,
-  },
+      tls: {
+        rejectUnauthorized: false,
+      },
   logger: true,
   debug: true,
     });
