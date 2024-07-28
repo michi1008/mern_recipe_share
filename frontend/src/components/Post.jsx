@@ -14,7 +14,7 @@ const Post = ({ post }) => {
         <div className="userContainer">
         <div className="user"><p>Created by: {post.user ? post.user.userName : "Unknown"}</p></div> 
         <Link to={`/posts/${post._id}`} className="link">
-            <div className="link-icon"><img src={search} alt="search" /></div>
+            <div className="link-icon">Go to menu</div>
         </Link>
         </div>
       </div>
@@ -71,8 +71,13 @@ display: -webkit-box;
 }
 
 .link-icon {
-  
+  text-align: center;
   cursor: pointer;
+  font-size: 0.8rem;
+  background-color: var(--clr-primary-3);
+  color: var(--clr-white);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  border-radius: var(--radius);
 }
 
 .link-icon:hover {

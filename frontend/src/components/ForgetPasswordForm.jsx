@@ -33,7 +33,7 @@ const ForgetPasswordForm = () => {
         required
       />
       <button type="submit">Submit</button>
-      {message && <p>{message}</p>}
+      {message && <p className="message">👉 {message}</p>}
     </form>
     </Wrapper>
     
@@ -54,6 +54,10 @@ const Wrapper = styled.section`
 
   .forgetPasswordForm {
     margin : 2rem 0;
+  }
+  
+  .message {
+    margin: 1rem 0;
   }
 `
 

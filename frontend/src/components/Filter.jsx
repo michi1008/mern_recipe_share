@@ -14,6 +14,19 @@ const Filter = ({ onChange }) => {
   const clearFilter = () => {
     setCategory("");
     setSortBy("");
+    onChange({ category: "", sortBy: "" });
+  };
+
+  const handleSortChange = (e) => {
+    const newSortBy = e.target.value;
+    setSortBy(newSortBy);
+    onChange({ category, sortBy: newSortBy });
+  };
+
+  const handleCategoryChange = (e) => {
+    const newCategory = e.target.value;
+    setCategory(newCategory);
+    onChange({ category: newCategory, sortBy });
   };
 
   return (
@@ -27,7 +40,7 @@ const Filter = ({ onChange }) => {
           className="filterOption"
           name="category"
           value={category}
-          onChange={(e) => setCategory(e.target.value)}
+          onChange={handleCategoryChange}
         >
           <option value="">Select a Category</option>
           <option value="meat">Meat</option>
@@ -45,14 +58,12 @@ const Filter = ({ onChange }) => {
           className="filterOption"
           name="sortBy"
           value={sortBy}
-          onChange={(e) => setSortBy(e.target.value)}
+          onChange={handleSortChange}
         >
           <option value="">Sort By</option>
           <option value="nameAZ">A to Z</option>
           <option value="nameZA">Z to A</option>
         </select>
-
-        <button className="applyFilterBtn">Apply Filter</button>
         <button className="clearFilterBtn" onClick={clearFilter}>
           Clear Filter
         </button>

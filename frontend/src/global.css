@@ -23,6 +23,7 @@ const GlobalStyle = createGlobalStyle` */
 --fixed-width: 620px;
 --transition: all 0.3s linear;
 --spacing: 0.1rem;
+--radius: 5px;
 }
 
 *,

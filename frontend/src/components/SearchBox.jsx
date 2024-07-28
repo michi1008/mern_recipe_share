@@ -49,7 +49,8 @@ const Wrapper = styled.section`
 
   .searchInput:focus {
     outline: 3px solid var(--clr-brown);
-    color: var(--clr-white);
+    background-color: var(--clr-white);
+    color: var(--clr-brown);
   }
 
   .searchInput {
